@@ -1,0 +1,12 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+# RewriteBase /
+
+	RewriteRule wp-((signup|login|admin|includes|cron|main|trackback)(.*))$ wordpress/wp-$1
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule !\.(pdf|js|ico|gif|jpg|png|svg|css|rar|zip|tar\.gz)$ index.php [L]
+</IfModule>

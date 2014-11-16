@@ -1,0 +1,13 @@
+/wp-config-local.php
+node_modules
+npm-debug.log
+
+[Tt]humbs.db
+[Dd]esktop.ini
+*.DS_store
+.DS_store?
+._*
+.Trashes
+
+/vendor/*
+/wordpress/*
