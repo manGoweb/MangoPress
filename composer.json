@@ -15,6 +15,26 @@
       "email": "email@matejsimek.com",
       "homepage": "http://www.matejsimek.com"
     }
+  ],
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "wordpress/wordpress",
+        "type": "webroot",
+        "version": "4.0",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/WordPress/WordPress/archive/4.0.zip"
+        },
+        "require" : {
+          "fancyguy/webroot-installer": "1.1.0"
         }
-    ]
+      }
+    }
+  ],
+  "extra": {
+    "webroot-dir": "wordpress",
+    "webroot-package": "wordpress/wordpress"
+  }
 }
