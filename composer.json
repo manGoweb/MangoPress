@@ -18,6 +18,10 @@
   ],
   "repositories": [
     {
+      "type": "composer",
+      "url": "http://wpackagist.org"
+    },
+    {
       "type": "package",
       "package": {
         "name": "wordpress/wordpress",
@@ -34,6 +38,10 @@
     }
   ],
   "extra": {
+    "installer-paths": {
+      "wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin", "type:wordpress-plugin"],
+      "wp-content/themes/{$name}": ["type:wordpress-theme"]
+    },
     "webroot-dir": "wordpress",
     "webroot-package": "wordpress/wordpress"
   }

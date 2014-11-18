@@ -10,6 +10,7 @@ define('LOG_DIR', BASE_DIR . '/log');
 define('TEMP_DIR', BASE_DIR . '/temp');
 
 define('WP_DIR', BASE_DIR . '/wordpress');
+define('ABSPATH', WP_DIR . '/');
 
 // Wait, wait. Are we deploying?!
 if(file_exists(BASE_DIR . '/maintenance.php')) {
