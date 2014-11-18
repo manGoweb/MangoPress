@@ -1,8 +1,10 @@
 {
-    "name": "mangoweb/wordpress-skeleton",
-    "description": "ManGoweb's WordPress project boilerplate.",
-    "require": {
-        "nette/nette": "@stable"
+  "name": "mangoweb/wordpress-skeleton",
+  "description": "ManGoweb's WordPress project boilerplate.",
+  "require": {
+    "nette/nette": "@stable",
+    "wordpress/wordpress": "@stable "
+  },
   "authors": [
     {
       "name": "ViliamKopecky",
