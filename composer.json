@@ -3,7 +3,7 @@
   "description": "ManGoweb's WordPress project boilerplate.",
   "require": {
     "nette/nette": "@stable",
-    "wordpress/wordpress": "@stable "
+    "wordpress/wordpress": "@stable"
   },
   "authors": [
     {
