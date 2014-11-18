@@ -19,6 +19,7 @@ define('WP_SITEURL', getBaseUrl());
 
 define('WP_CONTENT_DIR', BASE_DIR . '/wp-content');
 define('WP_CONTENT_URL', WP_SITEURL . '/wp-content');
+define('WP_DEFAULT_THEME', 'mango');
 
 require BASE_DIR . '/wp-config-local.php';
 
