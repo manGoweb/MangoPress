@@ -1,11 +1,52 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
-        "This file is @generated automatically"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "29d87fb916180d013af9dd06f0be6c1b",
+    "hash": "6fd6ef84a5a25334b9219875423a71cf",
     "packages": [
+        {
+            "name": "fancyguy/webroot-installer",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fancyguy/webroot-installer.git",
+                "reference": "a2d5c2e149d837e5580a62a91d3c91577aa30d28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fancyguy/webroot-installer/zipball/a2d5c2e149d837e5580a62a91d3c91577aa30d28",
+                "reference": "a2d5c2e149d837e5580a62a91d3c91577aa30d28",
+                "shasum": ""
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "FancyGuy\\Composer\\WebrootInstaller"
+            },
+            "autoload": {
+                "psr-0": {
+                    "FancyGuy\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Steve Buzonas",
+                    "email": "steve@fancyguy.com",
+                    "homepage": "http://www.stevebuzonas.com"
+                }
+            ],
+            "description": "A composer installer for libraries that live in an application webroot.",
+            "homepage": "http://fancyguy.github.com/webroot-installer/",
+            "time": "2013-03-15 17:51:14"
+        },
         {
             "name": "latte/latte",
             "version": "v2.2.4",
@@ -496,16 +537,16 @@
         },
         {
             "name": "nette/http",
-            "version": "v2.2.3",
+            "version": "v2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/http.git",
-                "reference": "1fafcc7b575604488d33a02063784a9746263482"
+                "reference": "e86342380c5e427f87000d7d104494fa336fbc12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/http/zipball/1fafcc7b575604488d33a02063784a9746263482",
-                "reference": "1fafcc7b575604488d33a02063784a9746263482",
+                "url": "https://api.github.com/repos/nette/http/zipball/e86342380c5e427f87000d7d104494fa336fbc12",
+                "reference": "e86342380c5e427f87000d7d104494fa336fbc12",
                 "shasum": ""
             },
             "require": {
@@ -545,7 +586,7 @@
             ],
             "description": "Nette HTTP Component",
             "homepage": "http://nette.org",
-            "time": "2014-11-15 17:52:29"
+            "time": "2014-11-16 13:45:55"
         },
         {
             "name": "nette/mail",
@@ -650,16 +691,16 @@
         },
         {
             "name": "nette/nette",
-            "version": "v2.2.5",
+            "version": "v2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/nette.git",
-                "reference": "9429a342bcc90b5292dd62d8690d2968070de02c"
+                "reference": "c343e84e210c62ad8c19cd8e0a616383c78c1ac7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/nette/zipball/9429a342bcc90b5292dd62d8690d2968070de02c",
-                "reference": "9429a342bcc90b5292dd62d8690d2968070de02c",
+                "url": "https://api.github.com/repos/nette/nette/zipball/c343e84e210c62ad8c19cd8e0a616383c78c1ac7",
+                "reference": "c343e84e210c62ad8c19cd8e0a616383c78c1ac7",
                 "shasum": ""
             },
             "require": {
@@ -672,7 +713,7 @@
                 "nette/di": "2.2.2",
                 "nette/finder": "2.2.0",
                 "nette/forms": "2.2.3",
-                "nette/http": "2.2.3",
+                "nette/http": "2.2.4",
                 "nette/mail": "2.2.3",
                 "nette/neon": "2.2.3",
                 "nette/php-generator": "2.2.1",
@@ -723,7 +764,7 @@
                 "mvc",
                 "templating"
             ],
-            "time": "2014-11-15 17:24:52"
+            "time": "2014-11-16 13:53:15"
         },
         {
             "name": "nette/php-generator",
@@ -1134,15 +1175,29 @@
                 "nette"
             ],
             "time": "2014-11-15 17:22:04"
+        },
+        {
+            "name": "wordpress/wordpress",
+            "version": "4.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "fancyguy/webroot-installer": "1.1.0"
+            },
+            "type": "webroot"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "nette/nette": 0
+        "nette/nette": 0,
+        "wordpress/wordpress": 0
     },
-    "prefer-stable": false,
     "platform": [],
     "platform-dev": []
 }
