@@ -3,11 +3,16 @@
     "description": "ManGoweb's WordPress project boilerplate.",
     "require": {
         "nette/nette": "@stable"
+  "authors": [
+    {
+      "name": "ViliamKopecky",
+      "email": "vk@viliamkopecky.cz"
     },
-    "authors": [
-        {
-            "name": "ViliamKopecky",
-            "email": "vk@viliamkopecky.cz"
+    {
+      "name": "Matej Simek",
+      "email": "email@matejsimek.com",
+      "homepage": "http://www.matejsimek.com"
+    }
         }
     ]
 }
