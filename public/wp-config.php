@@ -21,11 +21,11 @@ define('WP_CONTENT_DIR', BASE_DIR . '/wp-content');
 define('WP_CONTENT_URL', WP_SITEURL . '/wp-content');
 //define('WPMU_PLUGIN_DIR', BASE_DIR . '/wp-content/mu-plugins');
 //define('WPMU_PLUGIN_URL', WP_SITEURL . '/wp-content/mu-plugins');
-define('WP_DEFAULT_THEME', 'mango');
+define('WP_DEFAULT_THEME', 'theme');
 
 // define('WP_DEBUG_DISPLAY', FALSE); // Do not display error messages
 
-// define('DISALLOW_FILE_EDIT', TRUE); // Disable the Plugin and Theme Editor
+define('DISALLOW_FILE_EDIT', TRUE); // Disable the Plugin and Theme Editor
 // define('DISALLOW_FILE_MODS', true); // Disable Plugin and Theme Update and Installation
 // define('AUTOMATIC_UPDATER_DISABLED', true); // Disable all automatic updates
 // define('WP_AUTO_UPDATE_CORE', 'minor'); // Enable core updates for minor releases (default); true - Enable all core updates, including minor and major; false - Disable all core updates

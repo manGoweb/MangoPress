@@ -3,7 +3,7 @@
   "description": "ManGoweb's WordPress project boilerplate.",
   "require": {
     "nette/nette": "@stable",
-    "wordpress/wordpress": "@stable"
+    "wordpress/wordpress": "*"
   },
   "authors": [
     {
@@ -39,10 +39,10 @@
   ],
   "extra": {
     "installer-paths": {
-      "wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin", "type:wordpress-plugin"],
-      "wp-content/themes/{$name}": ["type:wordpress-theme"]
+      "public/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin", "type:wordpress-plugin"],
+      "public/wp-content/themes/{$name}": ["type:wordpress-theme"]
     },
-    "webroot-dir": "wordpress",
+    "webroot-dir": "public/wp-core",
     "webroot-package": "wordpress/wordpress"
   }
 }

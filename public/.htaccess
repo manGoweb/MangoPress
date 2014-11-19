@@ -4,7 +4,7 @@ Options -Indexes
 	RewriteEngine On
 # RewriteBase /
 
-	RewriteRule wp-((signup|login|admin|includes|cron|main|trackback)(.*))$ wordpress/wp-$1
+	RewriteRule wp-((signup|login|admin|includes|cron|main|trackback)(.*))$ wp-core/wp-$1
 
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d

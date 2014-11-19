@@ -1,5 +1,7 @@
 <?php
 
+// Hello, hard worker!
+
 // define constants
 define('BASE_DIR', dirname(__FILE__));
 define('WWW_DIR', dirname(__FILE__));
@@ -9,7 +11,7 @@ define('LIBS_DIR', BASE_DIR . '/vendor');
 define('LOG_DIR', BASE_DIR . '/log');
 define('TEMP_DIR', BASE_DIR . '/temp');
 
-define('WP_DIR', BASE_DIR . '/wordpress');
+define('WP_DIR', BASE_DIR . '/wp-core');
 define('ABSPATH', WP_DIR . '/');
 
 // Wait, wait. Are we deploying?!
@@ -22,3 +24,7 @@ require_once LIBS_DIR . '/autoload.php';
 
 // start debugging
 Tracy\Debugger::enable(Tracy\Debugger::DETECT, LOG_DIR);
+
+
+// run, WordPress, run!
+require WP_DIR . '/index.php';

@@ -1,7 +1,3 @@
-/wp-config-local.php
-node_modules
-npm-debug.log
-
 [Tt]humbs.db
 [Dd]esktop.ini
 *.DS_store
@@ -9,6 +5,8 @@ npm-debug.log
 ._*
 .Trashes
 
-/vendor/*
-/wordpress/*
-/wp-content/mu-plugins
+/config/config.local.neon
+/node_modules
+/npm-debug.log
+/vendor
+/public/wp-core

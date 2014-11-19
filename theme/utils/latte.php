@@ -8,9 +8,7 @@ function toRelativeUrl($url) {
 function render($path, $parameters = array()) {
 	$defaults = array(
 		'baseUrl' => get_site_url(),
-		'basePath' => toRelativeUrl(get_site_url()),
-		'themeUrl' => get_template_directory_uri(),
-		'themePath' => toRelativeUrl(get_template_directory_uri()),
+		'basePath' => toRelativeUrl(get_site_url())
 	);
 
 	$parameters += $defaults;
