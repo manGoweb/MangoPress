@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/init.php';
+require_once dirname(__FILE__) . '/index.php';
 
 function getBaseUrl()
 {
@@ -17,7 +17,7 @@ function getBaseUrl()
 define('WP_HOME', getBaseUrl());
 define('WP_SITEURL', getBaseUrl());
 
-define('WP_CONTENT_DIR', BASE_DIR . '/wp-content');
+define('WP_CONTENT_DIR', WWW_DIR . '/wp-content');
 define('WP_CONTENT_URL', WP_SITEURL . '/wp-content');
 //define('WPMU_PLUGIN_DIR', BASE_DIR . '/wp-content/mu-plugins');
 //define('WPMU_PLUGIN_URL', WP_SITEURL . '/wp-content/mu-plugins');
@@ -32,6 +32,6 @@ define('DISALLOW_FILE_EDIT', TRUE); // Disable the Plugin and Theme Editor
 // define('FORCE_SSL_LOGIN', true); // Require SSL for Admin and Logins
 
 
-require BASE_DIR . '/wp-config-local.php';
+require WWW_DIR . '/wp-config-local.php';
 
 require_once WP_DIR . '/wp-settings.php';
