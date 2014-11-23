@@ -1,17 +1,54 @@
-# manGoweb's WordPress boilerplate
+# MangoPress
 
-*(WordPress + Nette)²*
+Fine tuned WordPress structure with the horse power of the Nette Framework, all utilizing the [Composer](https://getcomposer.org) and [mango-cli](https://github.com/manGoweb/mango-cli).
 
-## Get your tools ready
 
-Of course you need `Git`, `PHP`, `MySQL`, `Composer`, `Node.js`.
+## Starting a new project
 
-## Generate project from skeleton
+```sh
+mango init && composer install
+```
 
-Before `mango-cli` is ready...
+Requirements: PHP stack,  [Composer](https://getcomposer.org), [mango-cli](https://github.com/manGoweb/mango-cli)
 
-- Clone this repo.
-- Run `composer install`.
-- Create a new database.
+Additional steps:
+- Create a new database for WordPress installation
 - Create your `wp-config-local.php` based on `wp-config-local-sample.php`.
-- Make writeable dirs `log/`,  `temp/`, `public/wp-content/*`
+- Make directories `log/`,  `temp/`, `public/wp-content/*` writeable for web process
+
+## Project structure
+
+* `app` - Nette MVC application
+* `config` - All configuration in one place
+* `public` - Public directory to be set as document_root dir
+  * `assets` - compiled theme assets, do not edit them here
+  * `wp-content` - WP content directory
+  * `wp-core` - WP distribution installed via composer
+* `theme` - main WP theme with all templates and original assets
+* `vendor` - composer packages  
+
+## Theme development
+
+You are going to spent the most of your time in the `theme` directory. Follow these code architecture instructions to avoid a loss of your sanity:
+
+* Use `index.php` and other WP template files as controllers (php code only). Controller should define and fill a context for an actual template. 
+* Use `templates/*.latte` as views (templates). All the HTML chunks belong here. Work with given context only and do not execute unnecessary php code. 
+* Assets source directories are `styles`, `scripts` and `images` and the [mango-cli](https://github.com/manGoweb/mango-cli) compiles them to the `public/assets` distribution directory.
+
+## Manage WP plugins
+
+```sh
+composer install wpackagist-plugin/PLUGINNAME
+```
+
+Thanks to [wpackagist](http://wpackagist.org) repository, you can install all plugins and themes from [official WordPress directory](http://plugins.svn.wordpress.org) via composer.
+
+Installed plugins are used as [mu-plugins](http://codex.wordpress.org/Must_Use_Plugins), which cannot be disabled or removed from administration.
+Beware: not all plugins can work that way, especially ones that need some sort of activation initialization steps.
+
+
+
+## Copyright
+
+Copyright 2014 by [manGoweb s.r.o.](http://www.mangoweb.cz) Code released under [the MIT license](LICENSE).
+
