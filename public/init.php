@@ -11,10 +11,6 @@ define('TEMP_DIR', BASE_DIR . '/temp');
 
 define('WP_DIR', WWW_DIR . '/wp-core');
 
-if(!defined('ABSPATH')){
-	define('ABSPATH', WP_DIR . '/');
-}
-
 // Wait, wait. Are we deploying?!
 if(file_exists(BASE_DIR . '/maintenance.php')) {
 	require BASE_DIR . '/maintenance.php';
