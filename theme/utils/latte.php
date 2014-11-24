@@ -6,12 +6,18 @@ function toRelativeUrl($url) {
 }
 
 function render($path, $parameters = array()) {
+	global $App;
+
 	$defaults = array(
 		'baseUrl' => get_site_url(),
 		'basePath' => toRelativeUrl(get_site_url())
 	);
 
 	$parameters += $defaults;
+
+	if(!empty($App)) {
+		$parameters['App'] = $App;
+	}
 
 	$latte = new Latte\Engine;
 	$latte->setTempDirectory(TEMP_DIR);
