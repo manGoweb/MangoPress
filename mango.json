@@ -12,7 +12,7 @@
   ],
 
   "images": [
-    "theme/img/**/*.{jpg,png,svg}"
+    "theme/images/**/*.{jpg,png,svg}"
   ],
 
   "dependencies": [
