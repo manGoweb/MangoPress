@@ -29,3 +29,7 @@ if(file_exists(LIBS_DIR . '/autoload.php')) {
 Tracy\Debugger::enable(Tracy\Debugger::DETECT, LOG_DIR);
 
 $App = require APP_DIR . '/bootstrap.php';
+
+if(!$App) {
+	exit;
+}
