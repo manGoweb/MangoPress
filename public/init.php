@@ -8,6 +8,7 @@ define('APP_DIR', BASE_DIR . '/app');
 define('LIBS_DIR', BASE_DIR . '/vendor');
 define('LOG_DIR', BASE_DIR . '/log');
 define('TEMP_DIR', BASE_DIR . '/temp');
+define('CONFIG_DIR', BASE_DIR . '/config');
 
 define('WP_DIR', WWW_DIR . '/wp-core');
 
@@ -26,3 +27,5 @@ if(file_exists(LIBS_DIR . '/autoload.php')) {
 
 // start debugging
 Tracy\Debugger::enable(Tracy\Debugger::DETECT, LOG_DIR);
+
+$App = require APP_DIR . '/bootstrap.php';

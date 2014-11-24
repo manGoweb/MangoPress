@@ -1,0 +1,16 @@
+parameters:
+  wp:
+    table_prefix: wp_
+
+services:
+  db: Nette\Database\Context
+
+database:
+  dsn: 'mysql:host=%db.host%;dbname=%db.name%'
+  user: %db.user%
+  password: %db.password%
+  options:
+    lazy: yes
+
+php:
+  date.timezone: Europe/Prague
