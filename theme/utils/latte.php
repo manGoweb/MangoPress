@@ -5,7 +5,7 @@ function toRelativeUrl($url) {
 	return '/' . $urlscript->getRelativeUrl();
 }
 
-function render($path, $parameters = array()) {
+function renderLatte($path, $parameters = array()) {
 	global $App;
 
 	$defaults = array(
@@ -24,10 +24,10 @@ function render($path, $parameters = array()) {
 
 	// $latte->addFilter('money', function($val) { return '...'; });
 
-	$latte->render($path, $parameters);
+	return $latte->render($path, $parameters);
 }
 
 function view($view, $parameters = array()) {
 	$path = THEME_VIEWS_DIR . "/$view.latte";
-	return render($path, $parameters);
+	return renderLatte($path, $parameters);
 }
