@@ -6,7 +6,7 @@ Fine tuned WordPress structure with the horse power of the Nette Framework, all 
 ## Starting a new project
 
 ```sh
-mango init && composer install
+mango init --source git@github.com:manGoweb/MangoPress.git && composer install
 ```
 
 Requirements: PHP stack,  [Composer](https://getcomposer.org), [mango-cli](https://github.com/manGoweb/mango-cli)
