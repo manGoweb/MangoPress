@@ -1,8 +1,8 @@
 <?php
 
 // define constants
-define('BASE_DIR', realpath(__DIR__ . '/..'));
-define('WWW_DIR', realpath(__DIR__));
+define('BASE_DIR', realpath(dirname(__FILE__) . '/..'));
+define('WWW_DIR', dirname(__FILE__));
 
 define('APP_DIR', BASE_DIR . '/app');
 define('LIBS_DIR', BASE_DIR . '/vendor');
