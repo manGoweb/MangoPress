@@ -1,0 +1,29 @@
+{
+
+  "dist_folder": "public/assets",
+  "src_folder": "theme",
+
+  "styles": [
+    "theme/styles/screen.styl"
+  ],
+
+  "scripts": [
+    "theme/scripts/index.js"
+  ],
+
+  "images": [
+    "theme/img/**/*.{jpg,png,svg}"
+  ],
+
+  "dependencies": [
+    "lt-ie-9",
+    "jquery",
+    "react"
+  ],
+
+  "watch": [
+    "theme/**/*.{php,latte}",
+    "app/**/*.{php,latte,neon}"
+  ]
+
+}

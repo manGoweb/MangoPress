@@ -6,6 +6,7 @@
 .Trashes
 
 /config/config.local.neon
+/mango.local.json
 /node_modules
 /npm-debug.log
 /vendor
