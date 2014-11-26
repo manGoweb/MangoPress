@@ -1,6 +1,0 @@
-parameters:
-  db:
-    name: wordpress_skeleton
-    user: root
-    password:
-    host: 127.0.0.1

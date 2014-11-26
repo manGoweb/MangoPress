@@ -1,0 +1,26 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+
+parameters:
+	# forceDebug: on # off
+	database:
+		driver: mysqli
+		host: localhost
+		username:
+		password:
+		database:
+		charset: utf8
+		sqlmode: TRADITIONAL
+		profiler: on
+
+nette:
+	mailer:
+		host: mailtrap.io
+		secure: tls
+		port: 2525
+		username:
+		password:

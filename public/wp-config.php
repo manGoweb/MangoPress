@@ -19,11 +19,11 @@ define('DISALLOW_FILE_EDIT', TRUE); // Disable the Plugin and Theme Editor
 // define('WP_AUTO_UPDATE_CORE', 'minor'); // Enable core updates for minor releases (default); true - Enable all core updates, including minor and major; false - Disable all core updates
 // define('FORCE_SSL_LOGIN', true); // Require SSL for Admin and Logins
 
-$params = $container->parameters;
-$db = $params['db'];
+$params = $App->parameters;
+$db = $params['database'];
 
-define('DB_NAME', $db['name']);
-define('DB_USER', $db['user']);
+define('DB_NAME', $db['database']);
+define('DB_USER', $db['username']);
 define('DB_PASSWORD', $db['password']);
 define('DB_HOST', $db['host']);
 define('DB_CHARSET', 'utf8');

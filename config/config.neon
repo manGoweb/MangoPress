@@ -1,16 +1,22 @@
 parameters:
-  wp:
-    table_prefix: wp_
-
-services:
-  db: Nette\Database\Context
+	wp:
+		table_prefix: wp_
 
 database:
-  dsn: 'mysql:host=%db.host%;dbname=%db.name%'
-  user: %db.user%
-  password: %db.password%
-  options:
-    lazy: yes
+	dsn: 'mysql:host=%database.host%;dbname=%database.database%'
+	user: %database.username%
+	password: %database.password%
+	options:
+		lazy: yes
+
+services:
+	- App\Models\Services\Mailer
+
+	db: Nette\Database\Context
+
+nette:
+	mailer:
+		smtp: true
 
 php:
-  date.timezone: Europe/Prague
+	date.timezone: Europe/Prague

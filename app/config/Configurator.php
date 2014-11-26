@@ -189,7 +189,7 @@ class MissingLocalConfigException extends RuntimeException
 	 */
 	public function __construct(FileNotFoundException $e)
 	{
-		parent::__construct('Copy "app/config/config.local.example.neon" to "app/config/config.local.neon" and update credentials.', NULL, $e);
+		parent::__construct('Copy "app/config/config.local.sample.neon" to "app/config/config.local.neon" and update credentials.', NULL, $e);
 	}
 
 }
