@@ -1,16 +1,10 @@
 <?php
 
-$configurator = new Nette\Configurator;
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/exceptions.php';
+require __DIR__ . '/config/Configurator.php';
 
-$configurator->enableDebugger(LOG_DIR);
-$configurator->setTempDirectory(TEMP_DIR);
-
-$configurator->createRobotLoader()
-	->addDirectory(APP_DIR)
-	->register();
-
-$configurator->addConfig(CONFIG_DIR . '/config.neon');
-$configurator->addConfig(CONFIG_DIR . '/config.local.neon');
+$configurator = new App\Config\Configurator;
 
 $container = $configurator->createContainer();
 

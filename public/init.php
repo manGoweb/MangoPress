@@ -6,8 +6,11 @@ define('WWW_DIR', dirname(__FILE__));
 
 define('APP_DIR', BASE_DIR . '/app');
 define('LIBS_DIR', BASE_DIR . '/vendor');
+define('BIN_DIR', BASE_DIR . '/bin');
 define('LOG_DIR', BASE_DIR . '/log');
 define('TEMP_DIR', BASE_DIR . '/temp');
+define('TESTS_DIR', BASE_DIR . '/tests');
+define('MIGRATIONS_DIR', BASE_DIR . '/migrations');
 define('CONFIG_DIR', BASE_DIR . '/config');
 
 define('WP_DIR', WWW_DIR . '/wp-core');
