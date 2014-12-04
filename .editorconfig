@@ -16,6 +16,10 @@ trim_trailing_whitespace = true
 indent_style = tab
 indent_size = 4
 
+[*.neon]
+indent_style = tab
+indent_size = 4
+
 [composer.lock]
 indent_size = 4
 
