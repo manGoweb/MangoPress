@@ -9,8 +9,8 @@ function renderLatte($path, $parameters = array()) {
 	global $App;
 
 	$defaults = array(
-		'baseUrl' => get_site_url(),
-		'basePath' => toRelativeUrl(get_site_url())
+		'baseUrl' => get_home_url(),
+		'basePath' => toRelativeUrl(get_home_url())
 	);
 
 	$parameters += $defaults;
