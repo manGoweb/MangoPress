@@ -2,13 +2,17 @@
 
 require_once dirname(__FILE__) . '/init.php';
 
-define('WP_SITEURL', $container->httpRequest->url->baseUrl);
-define('WP_HOME', WP_SITEURL);
+define('WP_HOME', rtrim($Url->baseUrl, '/'));
+define('WP_SITEURL', WP_HOME. '/wp-core');
+
+define('COOKIEPATH', $Url->basePath);
+define('SITECOOKIEPATH', $Url->basePath);
+define('ADMIN_COOKIE_PATH', $Url->basePath);
 
 define('WP_CONTENT_DIR', WWW_DIR . '/wp-content');
-define('WP_CONTENT_URL', WP_SITEURL . '/wp-content');
-//define('WPMU_PLUGIN_DIR', BASE_DIR . '/wp-content/mu-plugins');
-//define('WPMU_PLUGIN_URL', WP_SITEURL . '/wp-content/mu-plugins');
+define('WP_CONTENT_URL', WP_HOME . '/wp-content');
+//define('WPMU_PLUGIN_DIR', WP_CONTENT_DIR . '/mu-plugins');
+//define('WPMU_PLUGIN_URL', WP_CONTENT_URL . '/mu-plugins');
 define('WP_DEFAULT_THEME', 'theme');
 
 // define('WP_DEBUG_DISPLAY', FALSE); // Do not display error messages
