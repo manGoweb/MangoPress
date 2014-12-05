@@ -21,12 +21,7 @@ if(file_exists(BASE_DIR . '/maintenance.php')) {
 }
 
 // require Composer autoloader
-if(file_exists(LIBS_DIR . '/autoload.php')) {
-	require LIBS_DIR . '/autoload.php';
-} else {
-	header('Content-Type: text/plain;charset=utf-8');
-	die("Please install Composer dependencies.\n\nhttp://getcomposer.org");
-}
+require LIBS_DIR . '/autoload.php';
 
 // start debugging
 Tracy\Debugger::enable(Tracy\Debugger::DETECT, LOG_DIR);
