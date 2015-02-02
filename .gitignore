@@ -5,6 +5,7 @@
 ._*
 .Trashes
 
+/public/assets/
 /config/config.local.neon
 /mango.local.json
 /node_modules
