@@ -6,14 +6,14 @@ Fine tuned WordPress structure with the horse power of the Nette Framework, all 
 ## Starting a new project
 
 ```sh
-mango init --source git@github.com:manGoweb/MangoPress.git && composer install
+mango init --source manGoweb/MangoPress && composer install
 ```
 
 Requirements: PHP stack,  [Composer](https://getcomposer.org), [mango-cli](https://github.com/manGoweb/mango-cli)
 
 Additional steps:
 - Create a new database for WordPress installation
-- Create your `wp-config-local.php` based on `wp-config-local-sample.php`.
+- Create your `config/config.local.neon` based on `config.local.sample.neon`.
 - Make directories `log/`,  `temp/`, `public/wp-content/*` writeable for web process
 
 ## Project structure
@@ -25,14 +25,14 @@ Additional steps:
   * `wp-content` - WP content directory
   * `wp-core` - WP distribution installed via composer
 * `theme` - main WP theme with all templates and original assets
-* `vendor` - composer packages  
+* `vendor` - composer packages
 
 ## Theme development
 
 You are going to spent the most of your time in the `theme` directory. Follow these code architecture instructions to avoid a loss of your sanity:
 
 * Use `index.php` and other WP template files as controllers (php code only). Controller should define and fill a context for an actual template. 
-* Use `templates/*.latte` as views (templates). All the HTML chunks belong here. Work with given context only and do not execute unnecessary php code. 
+* Use templates `views/*.latte` as views. All the HTML chunks belong here. Work with given context only and do not execute unnecessary php code. 
 * Assets source directories are `styles`, `scripts` and `images` and the [mango-cli](https://github.com/manGoweb/mango-cli) compiles them to the `public/assets` distribution directory.
 
 ## Manage WP plugins
