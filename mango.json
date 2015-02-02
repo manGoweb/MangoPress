@@ -1,29 +1,28 @@
 {
-
-  "dist_folder": "public/assets",
   "src_folder": "theme",
-
+  "dist_folder": "public/assets",
   "styles": [
     "theme/styles/screen.styl"
   ],
-
   "scripts": [
-    "theme/scripts/index.js"
+    "theme/scripts/index.js",
+    "theme/scripts/netteForms.js"
   ],
-
   "images": [
     "theme/images/**/*.{jpg,png,svg}"
   ],
-
-  "dependencies": [
-    "lt-ie-9",
-    "jquery",
-    "react"
+  "static": [
+    "theme/fonts/**",
+    "theme/scripts/modernizr.custom.js"
   ],
-
+  "templates": null,
+  "dependencies": [
+    "react",
+    "stylus-normalize",
+    "bootstrap-stylus"
+  ],
   "watch": [
-    "theme/**/*.{php,latte}",
-    "app/**/*.{php,latte,neon}"
-  ]
-
+    "theme/**/*.{latte,php}"
+  ],
+  "snippet": "yes please"
 }
