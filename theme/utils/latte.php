@@ -1,17 +1,33 @@
 <?php
 
-function toRelativeUrl($url) {
+function toPath($url) {
 	$urlscript = new Nette\Http\UrlScript($url);
-	return '/' . $urlscript->getRelativeUrl();
+	return rtrim($urlscript->scheme . '://' . $urlscript->authority . $urlscript->path, '/');
+}
+
+function toRelativePath($url) {
+	$urlscript = new Nette\Http\UrlScript($url);
+	return rtrim($urlscript->getPath(), '/');
 }
 
 function renderLatte($path, $parameters = array()) {
 	global $App;
+	global $View;
+	global $wp_query;
+	global $post;
 
 	$defaults = array(
-		'baseUrl' => get_home_url(),
-		'basePath' => toRelativeUrl(get_home_url())
+		'baseUrl' => toPath(WP_HOME),
+		'basePath' => toRelativePath(WP_HOME),
+		'assetsUrl' => toPath(WP_HOME) . '/assets',
+		'assetsPath' => toRelativePath(WP_HOME) . '/assets',
+		'wp_query' => $wp_query,
+		'post' => $post
 	);
+
+	if(is_array($View)) {
+		$parameters += $View;
+	}
 
 	$parameters += $defaults;
 
@@ -22,7 +38,10 @@ function renderLatte($path, $parameters = array()) {
 	$latte = new Latte\Engine;
 	$latte->setTempDirectory(TEMP_DIR);
 
-	// $latte->addFilter('money', function($val) { return '...'; });
+	MangowebLatteMacroSet::install($latte->getCompiler());
+	Nette\Bridges\FormsLatte\FormMacros::install($latte->getCompiler());
+
+	MangowebLatteFilterSet::install($latte);
 
 	return $latte->render($path, $parameters);
 }

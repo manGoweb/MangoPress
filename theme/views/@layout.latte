@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>{wp_title()}</title>
-<link rel="stylesheet" href="{$basePath}/assets/styles/screen.css">
+<title>{get_the_title()|emphasize}</title>
+<link rel="stylesheet" href="{$assetsUrl}/styles/screen.css">
 {wp_head()}
 </head>
 <body>
+{$mangoSnippet}
 {block #content}{/block}
 {wp_footer()}
 </body>
