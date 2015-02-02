@@ -14,18 +14,18 @@ trim_trailing_whitespace = true
 
 [*.php]
 indent_style = tab
-indent_size = 4
+indent_size = 2
 
 [*.neon]
 indent_style = tab
-indent_size = 4
+indent_size = 2
 
 [composer.lock]
-indent_size = 4
+indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
 
 [.htaccess]
 indent_style = tab
-indent_size = 4
+indent_size = 2
