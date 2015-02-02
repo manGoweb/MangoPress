@@ -8,6 +8,7 @@
 /public/assets/
 /config/config.local.neon
 /mango.local.json
+/.mango-snippet.html
 /node_modules
 /npm-debug.log
 /vendor
