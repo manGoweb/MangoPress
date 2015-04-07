@@ -29,5 +29,6 @@ Tracy\Debugger::enable(Tracy\Debugger::DETECT, LOG_DIR);
 $App = require APP_DIR . '/bootstrap.php';
 
 if(!$App) {
-	exit;
+	header('Content-Type: text/plain;charset=utf-8');
+	die("App was not created in bootstrap.");
 }
