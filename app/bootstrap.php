@@ -7,9 +7,9 @@ $configurator = new App\Config\Configurator;
 
 $container = $configurator->createContainer();
 
-$useNette = FALSE; // use your own condition
+$useNetteApplication = FALSE; // use your own condition
 
-if($useNette) {
+if($useNetteApplication) {
 	$container->application->run();
 	return false;
 }
