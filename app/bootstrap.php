@@ -14,7 +14,7 @@ if($useNetteApplication) {
 	return false;
 }
 
-require __DIR__ . '/misc.php';
+require __DIR__ . '/wp-utils.php';
 
 // Pass the Container to the WordPress part
 return $container;
