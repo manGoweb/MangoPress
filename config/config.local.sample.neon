@@ -6,8 +6,9 @@
 #
 
 parameters:
-	# forceDebug: on # off
 	mango: on
+
+	# forceDebug: on # off
 
 	wp: # change on production!
 		AUTH_KEY:         "teqesanuremydy$y$amutudesavyqyva$ybyra3ave3aqepavyjyzytuqanuhe$y"
