@@ -33,14 +33,14 @@ define('DB_HOST', $db['host']);
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
-define('AUTH_KEY',         '{{ put your random salt here }}');
-define('SECURE_AUTH_KEY',  '{{ put your random salt here }}');
-define('LOGGED_IN_KEY',    '{{ put your random salt here }}');
-define('NONCE_KEY',        '{{ put your random salt here }}');
-define('AUTH_SALT',        '{{ put your random salt here }}');
-define('SECURE_AUTH_SALT', '{{ put your random salt here }}');
-define('LOGGED_IN_SALT',   '{{ put your random salt here }}');
-define('NONCE_SALT',       '{{ put your random salt here }}');
+define('AUTH_KEY', $params['wp']['AUTH_KEY']);
+define('SECURE_AUTH_KEY', $params['wp']['SECURE_AUTH_KEY']);
+define('LOGGED_IN_KEY', $params['wp']['LOGGED_IN_KEY']);
+define('NONCE_KEY', $params['wp']['NONCE_KEY']);
+define('AUTH_SALT', $params['wp']['AUTH_SALT']);
+define('SECURE_AUTH_SALT', $params['wp']['SECURE_AUTH_SALT']);
+define('LOGGED_IN_SALT', $params['wp']['LOGGED_IN_SALT']);
+define('NONCE_SALT', $params['wp']['NONCE_SALT']);
 
 $table_prefix  = 'wp_';
 
