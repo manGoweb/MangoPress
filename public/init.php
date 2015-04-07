@@ -15,11 +15,6 @@ define('CONFIG_DIR', BASE_DIR . '/config');
 
 define('WP_DIR', WWW_DIR . '/wp-core');
 
-// Wait, wait. Are we deploying?!
-if(file_exists(BASE_DIR . '/maintenance.php')) {
-	require BASE_DIR . '/maintenance.php';
-}
-
 // require Composer autoloader
 if(file_exists(LIBS_DIR . '/autoload.php')) {
 	require LIBS_DIR . '/autoload.php';
