@@ -1,0 +1,33 @@
+#
+# Requires MetaBox plugin: http://metabox.io/
+#
+
+prefix: m_
+
+register:
+	personal:
+		title: Personal Information
+		context: normal # normal, advanced, side
+		post_types:
+			- post
+			- page
+		fields:
+			full_name:
+				name: Full name
+				desc: "Format: First Last"
+				type: text
+			birth_date:
+				name: Birth date
+				type: date
+
+	images:
+		title: Images
+		context: side # normal, advanced, side
+		post_types:
+			- page
+			- video
+			- header
+		fields:
+			profile:
+				name: Profile image
+				type: file
