@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/init.php';
+require_once __DIR__ . '/init.php';
 
 define('WP_HOME', rtrim($Url->baseUrl, '/'));
 define('WP_SITEURL', WP_HOME. '/wp-core');

@@ -6,4 +6,4 @@ if(file_exists(__DIR__ . '/maintenance.php')) {
 }
 
 // run, WordPress, run!
-require dirname(__FILE__) . '/wp-core/index.php';
+require __DIR__ . '/wp-core/index.php';
