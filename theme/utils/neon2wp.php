@@ -6,6 +6,7 @@ if(!defined('NEON_WP_DIR')) {
 	define('NEON_WP_DIR', __DIR__ . '/..');
 }
 
+add_theme_support('post-thumbnails');
 
 foreach($filenames as $filename) {
 	$path = NEON_WP_DIR . "/$filename.neon";
