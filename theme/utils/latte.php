@@ -50,3 +50,11 @@ function view($view, $parameters = array()) {
 	$path = THEME_VIEWS_DIR . "/$view.latte";
 	return renderLatte($path, $parameters);
 }
+
+function renderLatteToString($path, $parameters = array()) {
+	ob_start();
+	renderLatte($path, $parameters);
+	$str = ob_get_contents();
+	ob_end_clean();
+	return $str;
+}
