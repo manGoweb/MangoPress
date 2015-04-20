@@ -15,7 +15,7 @@
     "theme/fonts/**",
     "theme/scripts/modernizr.custom.js"
   ],
-  "templates": null,
+  "templates": [],
   "dependencies": [
     "react",
     "stylus-normalize",
