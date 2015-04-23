@@ -40,7 +40,7 @@ foreach($filenames as $filename) {
 		}
 		if($filename === 'taxonomies') {
 			register_taxonomy($data['name'], $data['post_types'], $data);
-			if(is_array($data['terms'])) {
+			if(!empty($data['terms']) && is_array($data['terms'])) {
 				$terms = $data['terms'];
 				foreach($terms as $slug => $term) {
 					if(is_string($term)) {
