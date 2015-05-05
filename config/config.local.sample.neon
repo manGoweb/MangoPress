@@ -6,7 +6,7 @@
 #
 
 parameters:
-	mango: on
+	mango: off
 
 	# forceDebug: on # off
 
