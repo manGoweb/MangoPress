@@ -19,7 +19,7 @@
   "dependencies": [
     "react",
     "stylus-normalize",
-    "bootstrap-stylus"
+    "bootstrap-styl"
   ],
   "watch": [
     "theme/**/*.{latte,php}"
