@@ -1,17 +1,8 @@
 extensions:
 	console: Kdyby\Console\DI\ConsoleExtension
-	monolog: Kdyby\Monolog\DI\MonologExtension
-	dibi: Dibi\Bridges\Nette\DibiExtension22
 
 php:
 	date.timezone: Europe/Prague
-
-dibi:
-	host: %database.host%
-	username: %database.username%
-	password: %database.password%
-	database: %database.database%
-	lazy: TRUE
 
 nette:
 	application:
@@ -26,9 +17,4 @@ services:
   # Router
 	routerFactory: App\Models\Factories\RouterFactory
 	router: @routerFactory::createRouter()
-
-  # Database / Orm
-	serviceContainerFactory: App\Models\Orm\ServiceContainerFactory(@dibi.connection, @performanceHelperCache)
-	performanceHelperCache: Nette\Caching\Cache(@cacheStorage, Orm.PerformanceHelper)
-	orm: App\Models\Orm\RepositoryContainer(@serviceContainerFactory, [], @container)
 

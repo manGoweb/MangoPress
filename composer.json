@@ -4,22 +4,13 @@
 	"require": {
 		"php": "~5.5",
 		"wordpress/wordpress": "*",
-		"nette/nette": "~2.2.0",
-		"dibi/dibi": "~2.2.0",
-		"petrp/orm": "~0.4.0",
-		"kdyby/console": "~2.3.0",
-		"kdyby/monolog": "dev-master#e45b7c3",
-		"doctrine/dbal": "~2.4.0",
-		"nextras/migrations": "~2.3.0"
+		"nette/nette": "~2.3.1",
+    "kdyby/console": "@dev",
+		"nextras/migrations": "~3.0.0"
 	},
 	"require-dev": {
-		"nette/tester": "~1.2.0",
-		"mikulas/lattecs": "~0.3",
-		"mikulas/code-sniffs": "~1.3",
-		"mikulas/adminer-package": "~4.0",
-		"symfony/process": "~2.4",
-		"jdorn/sql-formatter": "~1.2.17",
-		"oodle/inflect": "~0.2.0"
+		"nette/tester": "~1.4.0",
+		"mikulas/adminer-package": "~4.0"
 	},
 	"authors": [
 		{
@@ -38,18 +29,14 @@
 			"url": "http://wpackagist.org"
 		},
 		{
-			"type": "composer",
-			"url": "http://orm.petrprochazka.com/composer"
-		},
-		{
 			"type": "package",
 			"package": {
 				"name": "wordpress/wordpress",
 				"type": "webroot",
-				"version": "4.1.1",
+				"version": "4.2.1",
 				"dist": {
 					"type": "zip",
-					"url": "https://github.com/WordPress/WordPress/archive/4.1.1.zip"
+					"url": "https://github.com/WordPress/WordPress/archive/4.2.1.zip"
 				},
 				"require": {
 					"fancyguy/webroot-installer": "1.1.0"
