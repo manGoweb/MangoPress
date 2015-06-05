@@ -2,18 +2,20 @@
   "src_folder": "theme",
   "dist_folder": "public/assets",
   "styles": [
-    "theme/styles/screen.styl"
+    "theme/styles/screen.styl",
+    "theme/styles/admin.styl"
   ],
   "scripts": [
     "theme/scripts/index.js",
-    "theme/scripts/netteForms.js"
+    "theme/scripts/admin.js"
   ],
   "images": [
     "theme/images/**/*.{jpg,png,svg}"
   ],
   "static": [
+    "theme/libs/**",
     "theme/fonts/**",
-    "theme/scripts/modernizr.custom.js"
+    "theme/static/**"
   ],
   "templates": [],
   "dependencies": [
