@@ -18,5 +18,8 @@ nette:
 	mailer:
 		smtp: true
 
+di:
+	accessors: on
+
 php:
 	date.timezone: Europe/Prague
