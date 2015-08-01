@@ -95,7 +95,7 @@ class Configurator extends Nette\Configurator
 			$mode = $p['forceDebug'] === FALSE
 				? Debugger::PRODUCTION
 				: Debugger::DEVELOPMENT;
-			Debugger::enable($mode, LOGS_DIR, 'bugs+mangopress@mangoweb.cz');
+			Debugger::enable($mode, LOG_DIR, 'bugs+mangopress@mangoweb.cz');
 		}
 	}
 
