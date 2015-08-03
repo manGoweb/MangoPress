@@ -1,5 +1,7 @@
 <?php
 
+// Life with WordPress is full of workarounds
+
 function filter_current_theme_uri($args) {
 	return get_site_url();
 }
