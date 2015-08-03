@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/utils/MangowebLatteMacroSet.php';
+require __DIR__ . '/utils/MangowebLatteFilterSet.php';
+
 function toPath($url) {
 	$urlscript = new Nette\Http\UrlScript($url);
 	return rtrim($urlscript->scheme . '://' . $urlscript->authority . $urlscript->path, '/');
@@ -39,7 +42,6 @@ function renderLatte($path, $parameters = array()) {
 	$latte->setTempDirectory(TEMP_DIR . '/cache/latte');
 
 	MangowebLatteMacroSet::install($latte->getCompiler());
-	Nette\Bridges\FormsLatte\FormMacros::install($latte->getCompiler());
 
 	MangowebLatteFilterSet::install($latte);
 
