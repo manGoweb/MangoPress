@@ -1,6 +1,6 @@
 <?php
 
-function get_field($id, $key, $as = 'string') {
+function get_field($id, $key, $as = null) {
 	$as = strtolower($as);
 	$val = get_post_meta($id, $key, true);
 	switch($as) {
@@ -22,5 +22,5 @@ function get_image_url($id, $size = 'thumbnail') {
 }
 
 function get_thumbnail_url($id, $size = 'thumbnail') {
-	return wp_get_attachment_image_src(get_post_thumbnail_id($id), $size)[0];
+	return get_image_url(get_post_thumbnail_id($id), $size);
 }
