@@ -42,6 +42,7 @@ function renderLatte($path, $parameters = array()) {
 	$latte->setTempDirectory(TEMP_DIR . '/cache/latte');
 
 	MangowebLatteMacroSet::install($latte->getCompiler());
+	Nette\Bridges\FormsLatte\FormMacros::install($latte->getCompiler());
 
 	MangowebLatteFilterSet::install($latte);
 
