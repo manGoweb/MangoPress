@@ -29,9 +29,11 @@ if(is_admin()) foreach(glob(ADMIN_UTILS_DIR . '/*.php') as $filename) {
 	require_once $filename;
 }
 
+// CSRF protection
+$App->session->start();
+
 if(Strings::startsWith($Url->pathInfo, 'api/')) {
 	$ApiRequest = Strings::split(Strings::trim($Url->pathInfo, '~/+~'), '~/~');
 	array_shift($ApiRequest);
 	require API_DIR . '/index.php';
 }
-
