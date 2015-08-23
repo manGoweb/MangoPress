@@ -8,8 +8,8 @@
     "theme/styles/admin.styl"
   ],
   "scripts": [
-    "theme/scripts/index.js",
-    "theme/scripts/admin.js"
+    "theme/scripts/index.es6",
+    "theme/scripts/admin.es6"
   ],
   "images": [
     "theme/images/**/*.{jpg,png,svg}"
