@@ -13,7 +13,9 @@ defaults:
 		- excerpt
 		- revisions
 		- page-attributes
-
+remove:
+	- posts
+	- comments
 register:
 	header:
 		public: false

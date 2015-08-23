@@ -55,6 +55,26 @@ foreach($filenames as $filename) {
 		}
 	}
 
+	if($filename === 'post_types' && !empty($res['remove'])) {
+		add_action('admin_menu', function() use ($res) {
+			$translate = [
+				'dashboard' => 'index.php',
+				'posts' => 'edit.php',
+				'media' => 'upload.php',
+				'pages' => 'edit.php?post_type=page',
+				'comments' => 'edit-comments.php',
+				'themes' => 'themes.php',
+				'appearance' => 'themes.php',
+				'tools' => 'tools.php',
+				'users' => 'users.php',
+				'settings' => 'options-general.php',
+			];
+			foreach($res['remove'] as $to_remove) {
+				remove_menu_page(empty($translate[$to_remove]) ? $to_remove : $translate[$to_remove]);
+			}
+		});
+	}
+
 	if($filename === 'meta_fields') {
 		$prefix = isset($res['prefix']) ? $res['prefix'] : '';
 		add_filter('rwmb_meta_boxes', function($meta_boxes) use ($prefix, $register){
