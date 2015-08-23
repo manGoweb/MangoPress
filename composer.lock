@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "df9e5dc33278b30d63277c6ca71ceaab",
+    "hash": "2d6af87fd68cb0e81b79c0607665099a",
     "packages": [
         {
             "name": "fancyguy/webroot-installer",
@@ -1283,6 +1283,69 @@
             "time": "2015-07-13 22:30:00"
         },
         {
+            "name": "nextras/forms",
+            "version": "v1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nextras/forms.git",
+                "reference": "d5c2d7bbf307fa15257da77217b50d652d0c4af4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nextras/forms/zipball/d5c2d7bbf307fa15257da77217b50d652d0c4af4",
+                "reference": "d5c2d7bbf307fa15257da77217b50d652d0c4af4",
+                "shasum": ""
+            },
+            "require": {
+                "nette/application": "~2.2",
+                "nette/component-model": "~2.2",
+                "nette/forms": "~2.2",
+                "nette/utils": "~2.2",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "latte/latte": "~2.2",
+                "nette/tester": "~1.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nextras\\Forms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "http://davidgrudl.com"
+                },
+                {
+                    "name": "Nextras Community",
+                    "homepage": "https://github.com/nextras/forms/graphs/contributors"
+                },
+                {
+                    "name": "Jan Škrášek",
+                    "homepage": "http://jan.skrasek.com"
+                }
+            ],
+            "description": "Extra form components for Nette Framework.",
+            "keywords": [
+                "form",
+                "nette"
+            ],
+            "time": "2015-08-22 12:32:22"
+        },
+        {
             "name": "nextras/migrations",
             "version": "v3.0.1",
             "source": {
@@ -1452,10 +1515,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "4.2.3",
+            "version": "4.3",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.2.3.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.3.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1468,16 +1531,16 @@
     "packages-dev": [
         {
             "name": "mikulas/adminer-package",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mikulas/adminer-package.git",
-                "reference": "e81094c136bd77ef2a9aa5a953f8172f6e76a065"
+                "reference": "a1f063ba37d20e6faa905725016fe713666c22c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mikulas/adminer-package/zipball/e81094c136bd77ef2a9aa5a953f8172f6e76a065",
-                "reference": "e81094c136bd77ef2a9aa5a953f8172f6e76a065",
+                "url": "https://api.github.com/repos/Mikulas/adminer-package/zipball/a1f063ba37d20e6faa905725016fe713666c22c9",
+                "reference": "a1f063ba37d20e6faa905725016fe713666c22c9",
                 "shasum": ""
             },
             "type": "library",
@@ -1504,20 +1567,20 @@
                 "postgres",
                 "psql"
             ],
-            "time": "2015-03-10 16:40:53"
+            "time": "2015-08-17 15:25:22"
         },
         {
             "name": "nette/tester",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "0e9059c051fd685d76e675efb577840b0bb6a288"
+                "reference": "0807e28b615af7a51acb6903d9f562ccab15fb51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/0e9059c051fd685d76e675efb577840b0bb6a288",
-                "reference": "0e9059c051fd685d76e675efb577840b0bb6a288",
+                "url": "https://api.github.com/repos/nette/tester/zipball/0807e28b615af7a51acb6903d9f562ccab15fb51",
+                "reference": "0807e28b615af7a51acb6903d9f562ccab15fb51",
                 "shasum": ""
             },
             "require": {
@@ -1529,7 +1592,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -1560,7 +1623,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2015-03-27 14:19:31"
+            "time": "2015-07-16 02:05:19"
         }
     ],
     "aliases": [],

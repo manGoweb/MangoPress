@@ -4,13 +4,14 @@
 	"require": {
 		"php": "~5.5",
 		"wordpress/wordpress": "*",
-		"nette/nette": "~2.3.1",
+		"nette/nette": "~2.3.4",
     "kdyby/console": "@dev",
-		"nextras/migrations": "~3.0.0"
+		"nextras/migrations": "~3.0.0",
+		"nextras/forms": "^1.6"
 	},
 	"require-dev": {
-		"nette/tester": "~1.4.0",
-		"mikulas/adminer-package": "~4.0"
+		"nette/tester": "~1.5.0",
+		"mikulas/adminer-package": "~4.2.2"
 	},
 	"authors": [
 		{
@@ -33,10 +34,10 @@
 			"package": {
 				"name": "wordpress/wordpress",
 				"type": "webroot",
-				"version": "4.2.3",
+				"version": "4.3",
 				"dist": {
 					"type": "zip",
-					"url": "https://github.com/WordPress/WordPress/archive/4.2.3.zip"
+					"url": "https://github.com/WordPress/WordPress/archive/4.3.zip"
 				},
 				"require": {
 					"fancyguy/webroot-installer": "1.1.0"
