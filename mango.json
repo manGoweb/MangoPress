@@ -1,4 +1,5 @@
 {
+  "version": ">=0.17",
   "src_folder": "theme",
   "dist_folder": "public/assets",
   "styles": [
@@ -20,7 +21,6 @@
     "theme/static/**",
     "node_modules/lt-ie-9/lt-ie-9.min.js"
   ],
-  "templates": [],
   "dependencies": [
     "lt-ie-9",
     "jquery",
@@ -31,5 +31,8 @@
   "watch": [
     "theme/**/*.{latte,php}"
   ],
+  "hooks": {
+    "init": "mango install"
+  },
   "snippet": "yes please"
 }
