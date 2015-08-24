@@ -1,4 +1,5 @@
 parameters:
+	assetsDir: %wwwDir%/assets
 	wp:
 		table_prefix: wp_
 
