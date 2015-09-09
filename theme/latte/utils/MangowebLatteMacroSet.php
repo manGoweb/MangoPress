@@ -17,11 +17,11 @@ class MangowebLatteMacroSet extends MacroSet {
 
 	public function macroLoop(MacroNode $node, PhpWriter $writer) {
 		$query = empty($node->args) ? '$GLOBALS["wp_query"]' : $node->args;
-		return $writer->write('while('.$query.'->have_posts()){ '.$query.'->the_post();$Post='.$query.'->post;');
+		return $writer->write('@$Posts[]=$Post; while('.$query.'->have_posts()){ '.$query.'->the_post();$Post='.$query.'->post;');
 	}
 
 	public function macroLoopEnd(MacroNode $node, PhpWriter $writer) {
-		return $writer->write('}wp_reset_postdata();');
+		return $writer->write('}wp_reset_postdata(); $Post=array_pop($Posts)');
 	}
 
 	public function macroSet(MacroNode $node, PhpWriter $writer) {
