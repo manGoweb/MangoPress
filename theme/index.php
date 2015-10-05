@@ -1,3 +1,4 @@
 <?php
 
-view('index', array( 'greeting' => 'Hello' ));
+// fallback view
+view('fallback');

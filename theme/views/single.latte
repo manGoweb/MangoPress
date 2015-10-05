@@ -1,0 +1,24 @@
+{extends @layout.latte}
+
+{block #content}
+{loop}
+<article class="post">
+  <h1 class="post-title">{$Post|wp_title}</h1>
+
+  <div class="post-thumbnail">
+    <a href="{$Post|wp_thumbnail:large}" class="post-thumbnail-wrap"><img src="{$Post|wp_thumbnail}" alt=""></a>
+  </div>
+
+  <div class="post-excerpt">
+    {$Post|wp_excerpt}
+  </div>
+
+  <div class="post-content">
+    {$Post|wp_content}
+  </div>
+
+  <div class="post-meta">
+    {$Post|wp_meta:_edit_lock}
+  </div>
+</article>
+{/loop}
