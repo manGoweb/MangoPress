@@ -3,8 +3,10 @@
 {default $author = ''}
 {default $title = get_the_title()}
 
+{default $activeLang = 'cs'}
+
 <!DOCTYPE html>
-<html lang="en" class="no-js page-loading">
+<html lang="{$activeLang}" class="no-js page-loading">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,6 +18,7 @@
 <meta name="keywords" content="{$keywords}">
 <meta name="author" content="{$author}">
 
+{use_google_fonts([ 'Lato:400,700,900:latin,latin-ext', 'Playfair+Display:700italic:latin,latin-ext' ])}
 <link rel="stylesheet" href="{$assetsUrl}/styles/screen.css" media="screen">
 
 <!--[if lt IE 9]>
@@ -34,7 +37,10 @@
   {$Forms[contact]}
 </footer>
 
+
 {block scripts}
+{analytics()}
+{*eu_cookies($activeLang)*}
 <script src="https://code.jquery.com/jquery-1.11.2.min.js" defer></script>
 <script src="https://nette.github.io/resources/js/netteForms.min.js" defer></script>
 <script src="{$assetsUrl}/scripts/index.js" defer></script>
