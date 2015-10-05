@@ -1,13 +1,51 @@
+// @require "../../node_modules/stylus-normalize/normalize.styl"
 // @require "../../node_modules/bootstrap-styl/bootstrap"
 
 @require "vars/*"
+@require "mixins/*"
 
+@require "misc/*"
+
+@require "typo/*"
+@require "parts/*"
+@require "layout/*"
+
+// some useful examples here:
 body
-  background #fafafa
-  font-family: sans-serif
-  font-size: 22px
-  text-align: center
+  font-size 16px
 
-a
-  color #789
-  text-decoration none
+  text-align center
+
+  $fallback = Helvetica, sans-serif
+  webfont('Lato', $fallback, 400)
+
+  @extends $readable
+
+  background #FFFFFA
+  color #444
+
+  h1, h2, h3
+    webfont('Playfair Display', serif, 700)
+    font-style italic
+
+  h1
+    font-size 4em
+    margin-bottom 0
+
+  h2
+    font-size 2.5em
+
+form
+  max-width 20em
+  margin 4em auto
+
+  @extends $form
+
+  label, input[type="submit"]
+    font-weight 900
+
+.post
+  margin 4em 0
+
+// this should be the last
+@require "shame/*"
