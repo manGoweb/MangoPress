@@ -26,7 +26,8 @@
     "jquery",
     "stylus-normalize",
     "bootstrap-styl",
-    "react"
+    "react@0.14.0-rc1",
+    "react-dom@0.14.0-rc1"
   ],
   "watch": [
     "theme/**/*.{latte,php}"
