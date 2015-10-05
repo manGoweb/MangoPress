@@ -1,5 +1,11 @@
 <?php
 
+use Nette\Utils\Html;
+
+function safe($content) {
+	return Html::el()->setHtml($content);
+}
+
 MangoFilters::$set['url'] = 'rawurlencode';
 
 foreach (array('normalize', 'toAscii', 'webalize', 'padLeft', 'padRight', 'reverse') as $name) {
@@ -34,16 +40,35 @@ MangoFilters::$set['wp_content'] = function($id) {
 	$post = lazy_post($id);
 	if(!$post) return $id;
 
-	return apply_filters('the_content', $post->post_content);
+	return safe(apply_filters('the_content', $post->post_content));
 };
 
-MangoFilters::$set['wp_meta'] = function($id, $meta) {
+MangoFilters::$set['wp_excerpt'] = function($id) {
 	$post = lazy_post($id);
 	if(!$post) return $id;
 
-	dump(get_post_meta($post->ID, $meta));
+	return safe(apply_filters('the_excerpt', $post->post_excerpt));
+};
 
-	return get_post_meta($post->ID, $meta);
+MangoFilters::$set['wp_permalink'] = function($id) {
+	$post = lazy_post($id);
+	if(!$post) return $id;
+
+	return get_permalink($id);
+};
+
+MangoFilters::$set['wp_meta'] = function($id, $meta, $single = TRUE) {
+	$post = lazy_post($id);
+	if(!$post) return $id;
+
+	return get_post_meta($post->ID, $meta, $single);
+};
+
+MangoFilters::$set['wp_meta_list'] = function($id, $meta) {
+	$post = lazy_post($id);
+	if(!$post) return $id;
+
+	return get_post_meta($post->ID, $meta, FALSE);
 };
 
 MangoFilters::$set['wp_image'] = function($id, $size = 'thumbnail') {
