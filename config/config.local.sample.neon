@@ -8,6 +8,9 @@
 parameters:
 	mango: off
 
+	# Universal Analytics ID
+	UA: 'UA-XXXXXXX-X'
+
 	# forceDebug: on # off
 
 	wp: # change on production!
