@@ -1,0 +1,9 @@
+webfont($name, $fallback = sans-serif, $weight = normal)
+  font-family $fallback
+  font-weight $weight
+
+  .wf-loading &
+    color transparent !important
+
+  .wf-active &
+    font-family $name, $fallback
