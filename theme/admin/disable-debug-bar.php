@@ -1,3 +1,5 @@
 <?php
 
-Tracy\Debugger::$productionMode = TRUE;
+if(defined('DOING_AJAX') && DOING_AJAX) {
+	Tracy\Debugger::$productionMode = TRUE;
+}
