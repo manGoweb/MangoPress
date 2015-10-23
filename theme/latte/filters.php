@@ -57,6 +57,19 @@ MangoFilters::$set['wp_permalink'] = function($id) {
 	return get_permalink($id);
 };
 
+MangoFilters::$set['wp_date'] = function($id, $format = null) {
+	$post = lazy_post($id);
+	if(!$post) return $id;
+
+	$date = new \DateTime($post->post_date);
+
+	if($format) {
+		return $date->format($format);
+	} else {
+		return $date->format(get_option('date_format'));
+	}
+};
+
 MangoFilters::$set['wp_meta'] = function($id, $meta, $single = TRUE) {
 	$post = lazy_post($id);
 	if(!$post) return $id;
