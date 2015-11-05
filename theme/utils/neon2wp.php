@@ -79,10 +79,6 @@ foreach($filenames as $filename) {
 		$prefix = isset($res['prefix']) ? $res['prefix'] : '';
 		add_filter('rwmb_meta_boxes', function($meta_boxes) use ($prefix, $register){
 			foreach($register as $name => $data) {
-				if(isset($data['post_types'])) {
-					$data['pages'] = $data['post_types'];
-					unset($data['post_types']);
-				}
 				if(empty($data['id']) && !empty($name)) {
 					$data['id'] = $name;
 				}
@@ -92,7 +88,16 @@ foreach($filenames as $filename) {
 						$data['fields'][$field_name]['id'] = $prefix.$field_name;
 					}
 				}
-				$meta_boxes[] = $data;
+				if(!empty($data['templates'])) {
+					$template_name = basename(get_post_meta( $_GET['post'], '_wp_page_template', true ), '.php');
+					if(in_array($template_name, $data['templates'])) {
+						$post = get_post($_GET['post']);
+						$data['post_types'][] = $post->post_type;
+						$meta_boxes[] = $data;
+					}
+				} else {
+					$meta_boxes[] = $data;
+				}
 			}
 			return $meta_boxes;
 		});
