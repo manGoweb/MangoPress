@@ -33,7 +33,7 @@ MangoFilters::$set['wp_title'] = function($id) {
 	$post = lazy_post($id);
 	if(!$post) return $id;
 
-	return apply_filters('the_title', $post->post_title);
+	return safe(apply_filters('the_title', $post->post_title));
 };
 
 MangoFilters::$set['wp_content'] = function($id) {
