@@ -8,6 +8,8 @@ if(!defined('NEON_WP_DIR')) {
 
 add_theme_support('post-thumbnails');
 
+$alternate_posts_per_page = array();
+
 foreach($filenames as $filename) {
 	$path = NEON_WP_DIR . "/$filename.neon";
 
@@ -37,6 +39,9 @@ foreach($filenames as $filename) {
 		}
 		if($filename === 'post_types') {
 			register_post_type($data['name'], $data);
+			if(isset($data['per_page'])) {
+				$alternate_posts_per_page[$data['name']] = $data['per_page'];
+			}
 		}
 		if($filename === 'taxonomies') {
 			register_taxonomy($data['name'], $data['post_types'], $data);
@@ -58,16 +63,16 @@ foreach($filenames as $filename) {
 	if($filename === 'post_types' && !empty($res['remove'])) {
 		add_action('admin_menu', function() use ($res) {
 			$translate = [
-				'dashboard' => 'index.php',
-				'posts' => 'edit.php',
-				'media' => 'upload.php',
-				'pages' => 'edit.php?post_type=page',
-				'comments' => 'edit-comments.php',
-				'themes' => 'themes.php',
-				'appearance' => 'themes.php',
-				'tools' => 'tools.php',
-				'users' => 'users.php',
-				'settings' => 'options-general.php',
+			'dashboard' => 'index.php',
+			'posts' => 'edit.php',
+			'media' => 'upload.php',
+			'pages' => 'edit.php?post_type=page',
+			'comments' => 'edit-comments.php',
+			'themes' => 'themes.php',
+			'appearance' => 'themes.php',
+			'tools' => 'tools.php',
+			'users' => 'users.php',
+			'settings' => 'options-general.php',
 			];
 			foreach($res['remove'] as $to_remove) {
 				remove_menu_page(empty($translate[$to_remove]) ? $to_remove : $translate[$to_remove]);
@@ -103,3 +108,18 @@ foreach($filenames as $filename) {
 		});
 	}
 }
+
+add_action('pre_get_posts', function($query) use ($alternate_posts_per_page) {
+	if($query->is_main_query() && !is_admin()) {
+		foreach($alternate_posts_per_page as $post_type => $per_page) {
+			if($query->is_post_type_archive($post_type)) {
+				if($per_page === 'all') {
+					$query->set('is_paged', false);
+				} else {
+					$query->set('posts_per_page', $per_page);
+				}
+				return;
+			}
+		}
+	}
+});
