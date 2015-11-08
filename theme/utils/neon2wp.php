@@ -94,9 +94,10 @@ foreach($filenames as $filename) {
 					}
 				}
 				if(!empty($data['templates'])) {
-					$template_name = basename(get_post_meta( $_GET['post'], '_wp_page_template', true ), '.php');
+					$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
+					$template_name = basename(get_post_meta( $post_id, '_wp_page_template', true ), '.php');
 					if(in_array($template_name, $data['templates'])) {
-						$post = get_post($_GET['post']);
+						$post = get_post($post_id);
 						$data['post_types'][] = $post->post_type;
 						$meta_boxes[] = $data;
 					}
