@@ -1,6 +1,7 @@
 <?php
 
 function get_field($id, $key, $as = null) {
+	$id = ($id instanceof WP_Post) ? $id->ID : $id;
 	$as = strtolower($as);
 	$val = get_post_meta($id, $key, true);
 	switch($as) {
