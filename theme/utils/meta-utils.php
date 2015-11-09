@@ -13,6 +13,8 @@ function get_field($id, $key, $as = null) {
 			return (double) $val;
 		case 'string':
 			return (string) $val;
+		case 'post':
+			return get_post($val);
 		default:
 			return $val;
 	}
