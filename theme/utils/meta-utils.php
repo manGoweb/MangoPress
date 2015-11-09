@@ -18,6 +18,10 @@ function get_field($id, $key, $as = null) {
 	}
 }
 
+function meta($id, $key, $as = null) {
+	return get_field($id, $key, $as);
+}
+
 function get_image_url($id, $size = 'thumbnail') {
 	return wp_get_attachment_image_src($id, $size)[0];
 }
