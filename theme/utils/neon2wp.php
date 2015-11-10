@@ -118,7 +118,7 @@ add_action('pre_get_posts', function($query) use ($alternate_posts_per_page) {
 		foreach($alternate_posts_per_page as $post_type => $per_page) {
 			if($query->is_post_type_archive($post_type) || $query->is_tax($post_type)) {
 				if($per_page === 'all') {
-					$query->set('is_paged', false);
+					$query->set('nopaging', true);
 				} else {
 					$query->set('posts_per_page', $per_page);
 				}
