@@ -45,6 +45,9 @@ foreach($filenames as $filename) {
 		}
 		if($filename === 'taxonomies') {
 			register_taxonomy($data['name'], $data['post_types'], $data);
+			if(isset($data['per_page'])) {
+				$alternate_posts_per_page[$data['name']] = $data['per_page'];
+			}
 			if(!empty($data['terms']) && is_array($data['terms'])) {
 				$terms = $data['terms'];
 				foreach($terms as $slug => $term) {
@@ -113,7 +116,7 @@ foreach($filenames as $filename) {
 add_action('pre_get_posts', function($query) use ($alternate_posts_per_page) {
 	if($query->is_main_query() && !is_admin()) {
 		foreach($alternate_posts_per_page as $post_type => $per_page) {
-			if($query->is_post_type_archive($post_type)) {
+			if($query->is_post_type_archive($post_type) || $query->is_tax($post_type)) {
 				if($per_page === 'all') {
 					$query->set('is_paged', false);
 				} else {
