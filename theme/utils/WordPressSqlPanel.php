@@ -25,7 +25,7 @@ class WordPressSqlPanel implements Nette\Diagnostics\IBarPanel {
 		foreach($wpdb->queries as $q) {
 			$time += $q[1];
 		}
-		$count = count($wpdb->queries);
+		$count = $wpdb->num_queries;
 		$span->add(($time ? sprintf(' %0.1f ms / ', $time * 1000) : '') . $count);
 		return $span;
 	}
@@ -35,17 +35,23 @@ class WordPressSqlPanel implements Nette\Diagnostics\IBarPanel {
 		global $wpdb;
 		$inner = '';
 		foreach($wpdb->queries as $q) {
-			$query = $q[0];
+			$query = \Nette\Database\Helpers::dumpSql($q[0]);
 			$time = round($q[1]*100000)/1000;
 			$files = $q[2];
-			$inner .= "<tr><td>$time</td><td><code>$query</code></td></tr>";
+			$callstack = explode(', ', $q[2]);
+			array_shift($callstack);
+			array_shift($callstack);
+			array_shift($callstack);
+			array_map($callstack, 'htmlspecialchars');
+			$callstack = implode('<br>', $callstack);
+			$inner .= "<tr><td rowspan='2'>$time</td><td><code>$query</code></td></tr><tr><td><code style='font-size:.8em'>$callstack</code></td></tr>";
 		}
 		$panelHtml = "
 		<h1>WordPress SQL</h1>
 		<div class='tracy-inner nette-DbConnectionPanel'>
 			<table>
 				<tr><th>Time&nbsp;ms</th><th>SQL Query</th></tr>
-				".$inner."
+					$inner
 			</table>
 		</div>
 		";
