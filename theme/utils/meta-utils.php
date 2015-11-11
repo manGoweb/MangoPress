@@ -4,6 +4,9 @@ function get_field($id, $key, $as = null) {
 	$id = ($id instanceof WP_Post) ? $id->ID : $id;
 	$as = strtolower($as);
 	$val = get_post_meta($id, $key, true);
+	if(!$val) {
+		return $val;
+	}
 	switch($as) {
 		case 'date':
 		case 'datetime':
