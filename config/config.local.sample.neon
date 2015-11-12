@@ -13,7 +13,9 @@ parameters:
 
 	# forceDebug: on # off
 
-	wp: # change on production!
+	# change salting on production!
+	# use https://configenerator.surge.sh/
+	wp:
 		AUTH_KEY:         "teqesanuremydy$y$amutudesavyqyva$ybyra3ave3aqepavyjyzytuqanuhe$y"
 		SECURE_AUTH_KEY:  "#uguhehepuny$unetyhajavaby3y#edymedujupejyrarezepeve3e#aba3e@uhe"
 		LOGGED_IN_KEY:    "dydaje#ezy3yry$udubuzuva$evatedybumamuhe#ydumuga3y@yhy#usydasyra"
@@ -38,5 +40,5 @@ nette:
 		host: mailtrap.io
 		secure: tls
 		port: 2525
-		username:
+		username: "49949482bd6158c63"
 		password:
