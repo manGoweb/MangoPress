@@ -12,8 +12,8 @@ database:
 
 services:
 	- App\Models\Services\Mailer
-
 	db: Nette\Database\Context
+	mailer: @nette.mailer
 
 nette:
 	mailer:
