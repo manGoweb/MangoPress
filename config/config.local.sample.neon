@@ -16,14 +16,14 @@ parameters:
 	# change salting on production!
 	# use https://configenerator.surge.sh/
 	wp:
-		AUTH_KEY:         "teqesanuremydy$y$amutudesavyqyva$ybyra3ave3aqepavyjyzytuqanuhe$y"
-		SECURE_AUTH_KEY:  "#uguhehepuny$unetyhajavaby3y#edymedujupejyrarezepeve3e#aba3e@uhe"
-		LOGGED_IN_KEY:    "dydaje#ezy3yry$udubuzuva$evatedybumamuhe#ydumuga3y@yhy#usydasyra"
-		NONCE_KEY:        "jamegagavu#ubepuhe$yqyzy@u@a3yzega#uqarumubunynysynebugedyrepume"
-		AUTH_SALT:        "#a3ysubahave3upapa$ubamyzypuzudypuruzybu3yhada@e@uga#anu$a@utyvu"
-		SECURE_AUTH_SALT: "gahuqe@udesanubazaquta$a3atypuhaze@ahytyza3usuqu3egymaby3apymeha"
-		LOGGED_IN_SALT:   "rebumy$u3eqevyvadydegu@aneny3aga$yrupasybe3a@y3a#ybyqajeqybuja$y"
-		NONCE_SALT:       "$asusa$yjyqatemabura#uhuze@uvanumesusenahyjyny#uzynu#y3ezypu3uva"
+		AUTH_KEY:         "YFo9OsdGdc CHANGE ON PRODUCTION YFo9OsdGdd"
+		SECURE_AUTH_KEY:  "rgoJjobcfb CHANGE ON PRODUCTION rgoJjobcfc"
+		LOGGED_IN_KEY:    "x2GU6Bss6h CHANGE ON PRODUCTION x2GU6Bss6i"
+		NONCE_KEY:        "kwF7eWA7tw CHANGE ON PRODUCTION kwF7eWA7tx"
+		AUTH_SALT:        "SbPSqToK6Z CHANGE ON PRODUCTION SbPSqToK6a"
+		SECURE_AUTH_SALT: "TpLLmOmKrH CHANGE ON PRODUCTION TpLLmOmKri"
+		LOGGED_IN_SALT:   "DwPCNhVi7M CHANGE ON PRODUCTION DwPCNhVi7N"
+		NONCE_SALT:       "bZWrihs6uo CHANGE ON PRODUCTION bZWrihs6up"
 
 	database:
 		driver: mysqli
