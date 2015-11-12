@@ -31,6 +31,10 @@ xl-xxl = "(min-width:" + $xl + ") and (max-width:" + $xxl + ")"
 lt-xxl = "(max-width:" + $xxl + ")"
 gt-xxl = "(min-width:" + $xxl + ")"
 
+xxl-xxxl = "(min-width:" + $xxl + ") and (max-width:" + $xxxl + ")"
+lt-xxxl = "(max-width:" + $xxxl + ")"
+gt-xxxl = "(min-width:" + $xxxl + ")"
+
 use-transition = gt-xs
 has-retina = "(min-device-pixel-ratio: 2)"
 
@@ -43,20 +47,19 @@ show-mq()
     content ''
 
     position fixed
-    bottom 0
+    bottom 1px
     left 0
     z-index 987654
 
     padding .3em .75em .4em .5em
 
-    background rgba(#000, .75)
-    color #FFF
+    color #000
 
-    font-size 11px
+    font-size 9px
     font-weight bold
     font-family sans-serif
 
-    border solid 0 rgba(#000, .2)
+    border-bottom solid 2px rgba(#000, .5)
     border-top-right-radius 3px
     border-top-width 1px
     border-right-width 1px
@@ -64,25 +67,37 @@ show-mq()
     pointer-events none
 
     @media lt-xxs
+      width $xxs
       content 'lt-xxs'
 
     @media xxs-xs
+      width $xxs
       content 'xxs-xs'
 
     @media xs-s
+      width $xs
       content 'xs-s'
 
     @media s-m
+      width $s
       content 's-m'
 
     @media m-l
+      width $m
       content 'm-l'
 
     @media l-xl
+      width $l
       content 'l-xl'
 
     @media xl-xxl
+      width $xl
       content 'xl-xxl'
 
-    @media gt-xxl
-      content 'gt-xxl'
+    @media xxl-xxxl
+      width $xxl
+      content 'xxl-xxxl'
+
+    @media gt-xxxl
+      width $xxxl
+      content 'gt-xxxl'
