@@ -1,8 +1,8 @@
 <?php
 
-$Request = $container->httpRequest;
+$Req = $container->httpRequest;
 
-$Url = $Request->url;
+$Url = $Req->url;
 $cwd = strtolower(realpath('.'));
 $wpdir = strtolower(realpath(WP_DIR));
 
