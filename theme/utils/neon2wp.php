@@ -96,7 +96,7 @@ foreach($filenames as $filename) {
 						$data['fields'][$field_name]['id'] = $prefix.$field_name;
 					}
 				}
-				if(!empty($data['templates'])) {
+				if(!empty($data['templates']) && (!empty($_GET['post']) || !empty($_POST['post_ID']))) {
 					$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
 					$template_name = basename(get_post_meta( $post_id, '_wp_page_template', true ), '.php');
 					if(in_array($template_name, $data['templates'])) {
