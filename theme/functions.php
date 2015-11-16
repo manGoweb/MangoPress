@@ -1,8 +1,12 @@
 <?php
 
 use Nette\Utils\Strings;
+use Nette\Utils\ArrayHash;
 
-$View = [];
+
+$View = new ArrayHash;
+
+$View->parameters = ArrayHash::from($App->parameters);
 
 setlocale(LC_ALL,  get_locale().'.utf-8');
 
@@ -20,10 +24,11 @@ foreach(glob(THEME_UTILS_DIR . '/*.php') as $filename) {
 	require_once $filename;
 }
 
+$Forms = new ArrayHash;
 foreach(glob(FORMS_DIR . '/*.php') as $filename) {
 	$Forms[basename($filename, '.php')] = require_once $filename;
 }
-$View['Forms'] = $Forms;
+$View->forms = $Forms;
 
 if(is_admin()) foreach(glob(ADMIN_UTILS_DIR . '/*.php') as $filename) {
 	require_once $filename;

@@ -19,7 +19,9 @@ function renderLatte($path, $parameters = array()) {
 	global $wp_query;
 	global $post;
 
-	$defaults = array(
+
+	$fullParameters = array(
+		'App' => $App,
 		'baseUrl' => toPath(WP_HOME),
 		'basePath' => toRelativePath(WP_HOME),
 		'assetsUrl' => toPath(WP_HOME) . '/assets',
@@ -28,14 +30,12 @@ function renderLatte($path, $parameters = array()) {
 		'post' => $post
 	);
 
-	if(is_array($View)) {
-		$parameters += $View;
+	foreach($View as $key => $val) {
+		$fullParameters[$key] = $val;
 	}
 
-	$parameters += $defaults;
-
-	if(!empty($App)) {
-		$parameters['App'] = $App;
+	foreach($parameters as $key => $val) {
+		$fullParameters[$key] = $val;
 	}
 
 	$latte = new Latte\Engine;
@@ -46,7 +46,7 @@ function renderLatte($path, $parameters = array()) {
 
 	MangowebLatteFilterSet::install($latte);
 
-	return $latte->render($path, $parameters);
+	return $latte->render($path, (array) $fullParameters);
 }
 
 function view($view, $parameters = array()) {
