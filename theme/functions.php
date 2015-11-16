@@ -28,7 +28,7 @@ $Forms = new ArrayHash;
 foreach(glob(FORMS_DIR . '/*.php') as $filename) {
 	$Forms[basename($filename, '.php')] = require_once $filename;
 }
-$View->forms = $Forms;
+$View->Forms = $Forms;
 
 if(is_admin()) foreach(glob(ADMIN_UTILS_DIR . '/*.php') as $filename) {
 	require_once $filename;
