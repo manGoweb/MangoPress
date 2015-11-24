@@ -36,4 +36,8 @@ Sed blandit interdum bibendum. Cum sociis natoque penatibus et magnis dis partur
 
 		return ucfirst(implode(' ', $result));
 	}
+
+	static function sentence() {
+		return self::title(10, 2) . '.';
+	}
 }
