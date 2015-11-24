@@ -21,4 +21,19 @@ Donec lobortis dolor sem, non ornare enim sodales a. Cum sociis natoque penatibu
 
 Sed blandit interdum bibendum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum viverra feugiat felis eu sollicitudin. Nullam enim mauris, ultricies nec risus sed, mattis scelerisque ex. Quisque nec auctor augue. Proin porttitor commodo mi, vitae maximus mauris semper ut. Mauris blandit quis nisl ac dignissim. Vivamus cursus, dui at molestie dignissim, elit elit mattis dui, vitae fermentum nunc orci at ligula.', $len);
 	}
+
+	static function title($max = 5, $min = 2) {
+		$words = explode(' ', 'Sed blandit interdum bibendum Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus Vestibulum viverra feugiat felis eu sollicitudin Nullam enim mauris ultricies nec risus sed mattis scelerisque ex Quisque nec auctor augue Proin porttitor commodo mi vitae maximus mauris semper ut Mauris blandit quis nisl ac dignissim Vivamus cursus dui at molestie dignissim elit elit mattis dui vitae fermentum nunc orci at ligula');
+
+		shuffle($words);
+
+		$len = rand(min($max, $min), max($max, $min));
+
+		$result = [];
+		for($i = 0; $i < $len; $i++) {
+			$result[] = $words[$i];
+		}
+
+		return ucfirst(implode(' ', $result));
+	}
 }
