@@ -90,7 +90,7 @@ MangoFilters::$set['wp_terms'] = function($id, $taxonomy, $delimiter = ', ') {
 
 	$terms = wp_get_post_terms($post->ID, $taxonomy, [ 'fields' => 'names' ]);
 
-	return implode($delimiter, $terms);
+	return html_entity_decode(implode($delimiter, $terms));
 };
 
 MangoFilters::$set['wp_meta_list'] = function($id, $meta) {
