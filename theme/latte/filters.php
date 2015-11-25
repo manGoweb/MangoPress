@@ -114,4 +114,8 @@ MangoFilters::$set['wp_thumbnail'] = function($id, $size = 'thumbnail') {
 	return wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size)[0];
 };
 
+MangoFilters::$set['wp_esc'] = function($str) {
+	return html_entity_decode($str);
+};
+
 // you may add more
