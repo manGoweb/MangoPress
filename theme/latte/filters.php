@@ -70,11 +70,27 @@ MangoFilters::$set['wp_date'] = function($id, $format = null) {
 	}
 };
 
+MangoFilters::$set['wp_DateTime'] = function($id, $format = null) {
+	$post = lazy_post($id);
+	if(!$post) return $id;
+
+	return new \DateTime($post->post_date);
+};
+
 MangoFilters::$set['wp_meta'] = function($id, $meta, $as = null) {
 	$post = lazy_post($id);
 	if(!$post) return $id;
 
 	return get_field($post->ID, $meta, $as);
+};
+
+MangoFilters::$set['wp_terms'] = function($id, $taxonomy, $delimiter = ', ') {
+	$post = lazy_post($id);
+	if(!$post) return $id;
+
+	$terms = wp_get_post_terms($post->ID, $taxonomy, [ 'fields' => 'names' ]);
+
+	return implode($delimiter, $terms);
 };
 
 MangoFilters::$set['wp_meta_list'] = function($id, $meta) {
