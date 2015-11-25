@@ -12,6 +12,7 @@ class MangowebLatteMacroSet extends MacroSet {
 		$me = new static($compiler);
 
 		$me->addMacro('loop', array($me, 'macroLoop'), array($me, 'macroLoopEnd'));
+		$me->addMacro('repeat', array($me, 'macroRepeat'), array($me, 'macroRepeatEnd'));
 		$me->addMacro('set', array($me, 'macroSet'));
 	}
 
@@ -22,6 +23,20 @@ class MangowebLatteMacroSet extends MacroSet {
 
 	public function macroLoopEnd(MacroNode $node, PhpWriter $writer) {
 		return $writer->write('}wp_reset_postdata(); $Post=array_pop($Posts)');
+	}
+
+	public function macroRepeat(MacroNode $node, PhpWriter $writer) {
+		$args = explode(',', empty($node->args) ? '5' : $node->args);
+		$args = array_map('intval', $args);
+		$min = min($args);
+		$max = max($args);
+		;
+
+		return $writer->write('@$_repeats[]=$_repeat; foreach(range(1, rand('.$min.', '.$max.')) as $_repeat){');
+	}
+
+	public function macroRepeatEnd(MacroNode $node, PhpWriter $writer) {
+		return $writer->write('}$_repeat=array_pop($_repeats)');
 	}
 
 	public function macroSet(MacroNode $node, PhpWriter $writer) {
