@@ -1,10 +1,12 @@
 <?php
 
 class Mock {
-	static function image($size = 600) {
+	static function image($size = 600, $ratio = 1) {
 		$sizes = explode('/', (string) $size);
+
 		if(count($sizes) === 1) {
-			$sizes[1] = $size;
+			$size = (float) $size;
+			$sizes[1] =  $size / $ratio;
 		}
 
 		return 'https://unsplash.it/' . implode('/', $sizes) . '?random=' . rand();
