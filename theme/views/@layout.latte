@@ -19,11 +19,11 @@
 <meta name="author" content="{$author}">
 
 {use_google_fonts([ 'Lato:400,700,900:latin,latin-ext', 'Playfair+Display:700italic:latin,latin-ext' ])}
-<link rel="stylesheet" href="{$assetsUrl}/styles/screen.css" media="screen">
+<link rel="stylesheet" href="{$assetsPath}/styles/screen.css" media="screen">
 
 <!--[if lt IE 9]>
-<link rel="stylesheet" href="{$assetsUrl}/styles/oldie.css" media="screen">
-<script src="{$assetsUrl}/node_modules/lt-ie-9/lt-ie-9.min.js"></script>
+<link rel="stylesheet" href="{$assetsPath}/styles/oldie.css" media="screen">
+<script src="{$assetsPath}/node_modules/lt-ie-9/lt-ie-9.min.js"></script>
 <![endif]-->
 
 {wp_head()}
@@ -43,11 +43,11 @@
 {*eu_cookies($activeLang)*}
 <script src="https://code.jquery.com/jquery-1.11.2.min.js" defer></script>
 <script src="https://nette.github.io/resources/js/netteForms.min.js" defer></script>
-<script src="{$assetsUrl}/scripts/index.js" defer></script>
+<script src="{$assetsPath}/scripts/index.js" defer></script>
 {/block}
 
 {wp_footer()}
 
-<noscript defer><link rel="stylesheet" href="{$assetsUrl}/styles/print.css" media="print"></noscript>
+<noscript defer><link rel="stylesheet" href="{$assetsPath}/styles/print.css" media="print"></noscript>
 </body>
 </html>
