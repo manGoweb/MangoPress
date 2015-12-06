@@ -33,14 +33,15 @@ define('DB_HOST', $db['host']);
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
-define('AUTH_KEY', $params['wp']['AUTH_KEY']);
-define('SECURE_AUTH_KEY', $params['wp']['SECURE_AUTH_KEY']);
-define('LOGGED_IN_KEY', $params['wp']['LOGGED_IN_KEY']);
-define('NONCE_KEY', $params['wp']['NONCE_KEY']);
-define('AUTH_SALT', $params['wp']['AUTH_SALT']);
-define('SECURE_AUTH_SALT', $params['wp']['SECURE_AUTH_SALT']);
-define('LOGGED_IN_SALT', $params['wp']['LOGGED_IN_SALT']);
-define('NONCE_SALT', $params['wp']['NONCE_SALT']);
+$wpParams = $params['wp'];
+define('AUTH_KEY', $wpParams['AUTH_KEY']);
+define('SECURE_AUTH_KEY', $wpParams['SECURE_AUTH_KEY']);
+define('LOGGED_IN_KEY', $wpParams['LOGGED_IN_KEY']);
+define('NONCE_KEY', $wpParams['NONCE_KEY']);
+define('AUTH_SALT', $wpParams['AUTH_SALT']);
+define('SECURE_AUTH_SALT', $wpParams['SECURE_AUTH_SALT']);
+define('LOGGED_IN_SALT', $wpParams['LOGGED_IN_SALT']);
+define('NONCE_SALT', $wpParams['NONCE_SALT']);
 
 $table_prefix  = 'wp_';
 
