@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6777369e64ac4561b0f61f7640e7ff0d",
-    "content-hash": "f532efaa10f427fbfa383a3c31add0be",
+    "hash": "31c2a6f30193fb726e16fe262d9fa0d0",
+    "content-hash": "8cb53e882322131d1e4ebde75e2d4a84",
     "packages": [
         {
             "name": "fancyguy/webroot-installer",
@@ -224,6 +224,46 @@
             "description": "Tracy panel showing committed SQL queries.",
             "homepage": "https://github.com/mangoweb/MangoPressSqlPanel",
             "time": "2015-12-06 17:23:48"
+        },
+        {
+            "name": "mangoweb/mangopress-templating",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/manGoweb/MangoPressTemplating.git",
+                "reference": "314f3ec91c446e21ead3f04fc12ba7ec0cb69125"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/314f3ec91c446e21ead3f04fc12ba7ec0cb69125",
+                "reference": "314f3ec91c446e21ead3f04fc12ba7ec0cb69125",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "^2.3",
+                "nette/http": "^2.3",
+                "nette/utils": "^2.3",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ViliamKopecky",
+                    "email": "vk@viliamkopecky.cz"
+                }
+            ],
+            "description": "Prepared templating workflow with filters and macros.",
+            "homepage": "https://github.com/mangoweb/MangoPressTemplating",
+            "time": "2015-12-06 18:04:50"
         },
         {
             "name": "nette/application",
@@ -1728,7 +1768,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kdyby/console": 20,
-        "mangoweb/mangopress-sql-panel": 20
+        "mangoweb/mangopress-sql-panel": 20,
+        "mangoweb/mangopress-templating": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
