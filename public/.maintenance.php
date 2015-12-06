@@ -7,19 +7,22 @@ header('Retry-After: 300'); // 5 minutes in seconds
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="generator" content="Nette Framework">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <style>
-body { color: #333; background: white; width: 500px; margin: 100px auto }
-h1 { font: bold 47px/1.5 sans-serif; margin: .6em 0 }
-p { font: 21px/1.5 Georgia,serif; margin: 1.5em 0 }
+body { color: #333; background: white; font: normal 20px/1.5 sans-serif }
+h1 { font-size: 2em; margin: 0 }
+p { margin: 0 }
+.msg { max-width: 500px; margin: 10% auto }
 </style>
 
 <title>Site is temporarily down for maintenance</title>
 
-<h1>We're Sorry</h1>
-
-<p>The site is temporarily down for maintenance. Please try again in a few minutes.</p>
+<div class="msg">
+	<h1>We're Sorry</h1>
+	<p>The site is temporarily down for maintenance.<br>Please try again in a few minutes.</p>
+</div>
 
 <?php
 
