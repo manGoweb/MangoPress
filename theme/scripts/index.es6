@@ -1,1 +1,1 @@
-require('./utils/defer')
+/* main scripts file */

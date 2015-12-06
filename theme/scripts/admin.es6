@@ -1,1 +1,1 @@
-/* Admin scripts */
+/* admin scripts file */
