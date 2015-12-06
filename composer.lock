@@ -193,12 +193,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressSqlPanel.git",
-                "reference": "76869a950c8aee466a13e9ea9266eb79782ea623"
+                "reference": "1721eb225b6454ff97b83a2e22876cc7aafc3ee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressSqlPanel/zipball/76869a950c8aee466a13e9ea9266eb79782ea623",
-                "reference": "76869a950c8aee466a13e9ea9266eb79782ea623",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressSqlPanel/zipball/1721eb225b6454ff97b83a2e22876cc7aafc3ee4",
+                "reference": "1721eb225b6454ff97b83a2e22876cc7aafc3ee4",
                 "shasum": ""
             },
             "require": {
@@ -223,7 +223,7 @@
             ],
             "description": "Tracy panel showing committed SQL queries.",
             "homepage": "https://github.com/mangoweb/MangoPressSqlPanel",
-            "time": "2015-12-06 17:23:48"
+            "time": "2015-12-06 18:05:05"
         },
         {
             "name": "mangoweb/mangopress-templating",
@@ -231,12 +231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressTemplating.git",
-                "reference": "314f3ec91c446e21ead3f04fc12ba7ec0cb69125"
+                "reference": "3e507dad7a85581dea4a44803833cb1b0408ed20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/314f3ec91c446e21ead3f04fc12ba7ec0cb69125",
-                "reference": "314f3ec91c446e21ead3f04fc12ba7ec0cb69125",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/3e507dad7a85581dea4a44803833cb1b0408ed20",
+                "reference": "3e507dad7a85581dea4a44803833cb1b0408ed20",
                 "shasum": ""
             },
             "require": {
@@ -263,7 +263,7 @@
             ],
             "description": "Prepared templating workflow with filters and macros.",
             "homepage": "https://github.com/mangoweb/MangoPressTemplating",
-            "time": "2015-12-06 18:04:50"
+            "time": "2015-12-06 18:12:10"
         },
         {
             "name": "nette/application",
