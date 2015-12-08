@@ -18,6 +18,4 @@ switch($ApiRequest[0]) {
 		break;
 }
 
-Tracy\Debugger::$productionMode = TRUE;
-header('Content-Type:application/json;charset=utf-8');
-print(json_encode($payload)) and die();
+sendPayload($payload);
