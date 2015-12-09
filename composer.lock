@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "31c2a6f30193fb726e16fe262d9fa0d0",
-    "content-hash": "8cb53e882322131d1e4ebde75e2d4a84",
+    "hash": "15ff9169344183746b4fa51efe04f02d",
+    "content-hash": "ea87b23298b4da76075624a385e1705d",
     "packages": [
         {
             "name": "fancyguy/webroot-installer",
@@ -231,12 +231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressTemplating.git",
-                "reference": "3e507dad7a85581dea4a44803833cb1b0408ed20"
+                "reference": "652bb554a9dcbf38066192323f0a10c5c3668473"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/3e507dad7a85581dea4a44803833cb1b0408ed20",
-                "reference": "3e507dad7a85581dea4a44803833cb1b0408ed20",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/652bb554a9dcbf38066192323f0a10c5c3668473",
+                "reference": "652bb554a9dcbf38066192323f0a10c5c3668473",
                 "shasum": ""
             },
             "require": {
@@ -263,7 +263,7 @@
             ],
             "description": "Prepared templating workflow with filters and macros.",
             "homepage": "https://github.com/mangoweb/MangoPressTemplating",
-            "time": "2015-12-06 18:12:10"
+            "time": "2015-12-08 08:16:50"
         },
         {
             "name": "nette/application",
@@ -1426,16 +1426,16 @@
         },
         {
             "name": "nextras/migrations",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/migrations.git",
-                "reference": "1eb7a0264af5647a65ca835a8bbbc346751592d2"
+                "reference": "d17c9e268ffc094c2fd7081b32baa9e87e381fad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/migrations/zipball/1eb7a0264af5647a65ca835a8bbbc346751592d2",
-                "reference": "1eb7a0264af5647a65ca835a8bbbc346751592d2",
+                "url": "https://api.github.com/repos/nextras/migrations/zipball/d17c9e268ffc094c2fd7081b32baa9e87e381fad",
+                "reference": "d17c9e268ffc094c2fd7081b32baa9e87e381fad",
                 "shasum": ""
             },
             "require": {
@@ -1478,7 +1478,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Database migrations runner",
-            "time": "2015-11-01 08:47:20"
+            "time": "2015-12-08 10:03:25"
         },
         {
             "name": "symfony/console",
@@ -1653,10 +1653,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "4.3.1",
+            "version": "4.4",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.3.1.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.4.zip",
                 "reference": null,
                 "shasum": null
             },
