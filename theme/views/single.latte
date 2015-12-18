@@ -1,7 +1,7 @@
 {extends @layout.latte}
 
 {block #content}
-{loop}
+{each}
 <article class="post">
   <h1 class="post-title">{$Post|wp_title}</h1>
 
@@ -18,4 +18,4 @@
   </div>
 
 </article>
-{/loop}
+{/each}

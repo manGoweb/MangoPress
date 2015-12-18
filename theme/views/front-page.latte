@@ -4,11 +4,11 @@
 <h1>Welcome to MangoPress</h1>
 <p>This is a front-page template located in <code>theme/views/front-page.latte</code>.</p>
 
-{loop}
+{each}
 <article class="post">
   <h2 class="post-title"><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
   <div class="post-content">
     {$Post|wp_content}
   </div>
 </article>
-{/loop}
+{/each}
