@@ -55,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/Console.git",
-                "reference": "94c6a5ff54445146b46afe17c324bd70036aed86"
+                "reference": "25052f7d6cf9f355435b22b515c19004ff186b2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Console/zipball/94c6a5ff54445146b46afe17c324bd70036aed86",
-                "reference": "94c6a5ff54445146b46afe17c324bd70036aed86",
+                "url": "https://api.github.com/repos/Kdyby/Console/zipball/25052f7d6cf9f355435b22b515c19004ff186b2f",
+                "reference": "25052f7d6cf9f355435b22b515c19004ff186b2f",
                 "shasum": ""
             },
             "require": {
@@ -130,7 +130,7 @@
                 "kdyby",
                 "nette"
             ],
-            "time": "2015-10-30 22:06:23"
+            "time": "2015-12-17 13:05:28"
         },
         {
             "name": "latte/latte",
@@ -231,12 +231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressTemplating.git",
-                "reference": "652bb554a9dcbf38066192323f0a10c5c3668473"
+                "reference": "6dd73bc9892e076542081155c367ae44178caa30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/652bb554a9dcbf38066192323f0a10c5c3668473",
-                "reference": "652bb554a9dcbf38066192323f0a10c5c3668473",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/6dd73bc9892e076542081155c367ae44178caa30",
+                "reference": "6dd73bc9892e076542081155c367ae44178caa30",
                 "shasum": ""
             },
             "require": {
@@ -263,7 +263,7 @@
             ],
             "description": "Prepared templating workflow with filters and macros.",
             "homepage": "https://github.com/mangoweb/MangoPressTemplating",
-            "time": "2015-12-08 08:16:50"
+            "time": "2015-12-18 09:50:16"
         },
         {
             "name": "nette/application",
