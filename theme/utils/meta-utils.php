@@ -1,9 +1,9 @@
 <?php
 
-function get_field($id, $key, $as = null) {
+function get_field($id, $key, $as = null, $single = true) {
 	$id = ($id instanceof WP_Post) ? $id->ID : $id;
 	$as = strtolower($as);
-	$val = get_post_meta($id, $key, true);
+	$val = get_post_meta($id, $key, $single);
 	if(!$val) {
 		return $val;
 	}
@@ -25,6 +25,14 @@ function get_field($id, $key, $as = null) {
 
 function meta($id, $key, $as = null) {
 	return get_field($id, $key, $as);
+}
+
+function get_field_array($id, $key, $as = null) {
+	return get_field($id, $key, $as, false);
+}
+
+function meta_array($id, $key, $as = null) {
+	return get_field($id, $key, $as, false);
 }
 
 function get_image_url($id, $size = 'thumbnail') {
