@@ -136,7 +136,11 @@ class Cart extends Nette\Object {
 			'post_content' => json_encode($this->session->items),
 			'post_type' => $this->config['order_post_type']
 		]);
+		// to-do: save options to meta fields
+		// to-do: nicer post_content
+		// to-do: serialize dynamic things - like prices and sum
 		$this->reset();
+		return $id;
 	}
 
 	function getItemsCount() {
