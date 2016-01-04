@@ -1,0 +1,34 @@
+{var $title = Styleguide}
+{var $sgc = 'styleguide-component'}
+
+{extends @layout.latte}
+
+{block body}
+<div class="styleguide">
+<h1>{$title}</h1>
+
+  <div class="{$sgc}">
+    <h2 class="{$sgc}-name">.btn</h2>
+
+    <div class="{$sgc}-preview">
+      <a href="#" class="btn">Ahoj</a>
+    </div>
+  </div>
+
+  <div class="{$sgc}">
+    <h2 class="{$sgc}-name">.btn.small</h2>
+
+    <div class="{$sgc}-preview">
+      <a href="#" class="btn small">Ahoj</a>
+    </div>
+  </div>
+
+  <div class="{$sgc}">
+    <h2 class="{$sgc}-name">.btn.big</h2>
+
+    <div class="{$sgc}-preview">
+      <a href="#" class="btn big">Ahoj</a>
+    </div>
+  </div>
+
+</div>
