@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "15ff9169344183746b4fa51efe04f02d",
-    "content-hash": "ea87b23298b4da76075624a385e1705d",
+    "hash": "4c47f4001a5552f85d1b0e981e497777",
+    "content-hash": "c1d9efb577cfe8ce883d869a7f4d3f86",
     "packages": [
         {
             "name": "fancyguy/webroot-installer",
@@ -55,18 +55,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/Console.git",
-                "reference": "25052f7d6cf9f355435b22b515c19004ff186b2f"
+                "reference": "b4d717826cbad6c61e847ec55f172de62f7cae9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Console/zipball/25052f7d6cf9f355435b22b515c19004ff186b2f",
-                "reference": "25052f7d6cf9f355435b22b515c19004ff186b2f",
+                "url": "https://api.github.com/repos/Kdyby/Console/zipball/b4d717826cbad6c61e847ec55f172de62f7cae9c",
+                "reference": "b4d717826cbad6c61e847ec55f172de62f7cae9c",
                 "shasum": ""
             },
             "require": {
-                "nette/application": "~2.3@dev",
                 "nette/di": "~2.3@dev",
-                "nette/http": "~2.3@dev",
                 "symfony/console": "~2.3"
             },
             "require-dev": {
@@ -94,6 +92,10 @@
                 "nette/utils": "~2.3@dev",
                 "symfony/event-dispatcher": "~2.3",
                 "tracy/tracy": "~2.3@dev"
+            },
+            "suggest": {
+                "nette/application": "For hooking the extension into the app and enabling running it through www/index.php",
+                "nette/http": "For faking the url of the request in cli"
             },
             "type": "library",
             "extra": {
@@ -130,7 +132,7 @@
                 "kdyby",
                 "nette"
             ],
-            "time": "2015-12-17 13:05:28"
+            "time": "2015-12-30 17:40:11"
         },
         {
             "name": "latte/latte",
@@ -1482,16 +1484,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "d232bfc100dfd32b18ccbcab4bcc8f28697b7e41"
+                "reference": "2e06a5ccb19dcf9b89f1c6a677a39a8df773635a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/d232bfc100dfd32b18ccbcab4bcc8f28697b7e41",
-                "reference": "d232bfc100dfd32b18ccbcab4bcc8f28697b7e41",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2e06a5ccb19dcf9b89f1c6a677a39a8df773635a",
+                "reference": "2e06a5ccb19dcf9b89f1c6a677a39a8df773635a",
                 "shasum": ""
             },
             "require": {
@@ -1538,24 +1540,27 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-30 12:35:10"
+            "time": "2015-12-22 10:25:57"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "0b6a8940385311a24e060ec1fe35680e17c74497"
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/0b6a8940385311a24e060ec1fe35680e17c74497",
-                "reference": "0b6a8940385311a24e060ec1fe35680e17c74497",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/49ff736bd5d41f45240cec77b44967d76e0c3d25",
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
             },
             "type": "library",
             "extra": {
@@ -1594,7 +1599,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-20 09:19:13"
         },
         {
             "name": "tracy/tracy",
@@ -1774,7 +1779,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~5.5"
+        "php": ">=5.5"
     },
     "platform-dev": []
 }

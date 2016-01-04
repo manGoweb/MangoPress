@@ -2,7 +2,7 @@
 	"name": "mangoweb/minor",
 	"description": "ManGoweb's WordPress project boilerplate.",
 	"require": {
-		"php": "~5.5",
+		"php": ">=5.5",
 		"wordpress/wordpress": "*",
 		"nette/nette": "~2.3.4",
     "kdyby/console": "@dev",
