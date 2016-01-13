@@ -1,6 +1,6 @@
 <?php
 
-$filenames = [ 'post_types', 'taxonomies', 'meta_fields' ];
+$filenames = [ 'post_types', 'settings', 'taxonomies', 'meta_fields' ];
 
 if(!defined('NEON_WP_DIR')) {
 	define('NEON_WP_DIR', __DIR__ . '/..');
@@ -23,6 +23,7 @@ foreach($filenames as $filename) {
 	$defaults = empty($res['defaults']) ? [] : $res['defaults'];
 
 	$register = $res['register'];
+
 
 	foreach($register as $name => $data) {
 		if(is_string($data)) {
@@ -107,6 +108,25 @@ foreach($filenames as $filename) {
 				} else {
 					$meta_boxes[] = $data;
 				}
+			}
+			return $meta_boxes;
+		});
+	}
+
+	if($filename === 'settings') {
+		add_filter('mb_settings_pages', function($meta_boxes) use ($register) {
+			foreach($register as $name => $data) {
+				if(empty($data['id']) && !empty($name)) {
+					$data['id'] = $name;
+				}
+				if(empty($data['menu_title']) && !empty($data['title'])) {
+					$data['menu_title'] = $data['title'];
+				}
+				if(empty($data['icon_url']) && !empty($data['menu_icon'])) {
+					$data['icon_url'] = 'dashicons-'.$data['menu_icon'];
+				}
+				$data['id'] = $prefix.$data['id'];
+				$meta_boxes[] = $data;
 			}
 			return $meta_boxes;
 		});

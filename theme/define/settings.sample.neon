@@ -1,0 +1,9 @@
+#
+# Requires MetaBox plugin: http://metabox.io/
+# and mb-settings-page (paid plugin, ask someone)
+#
+
+register:
+	custom_settings_page:
+		title: Custom settings page
+		menu_icon: images-alt
