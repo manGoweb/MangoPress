@@ -14,6 +14,7 @@ if($useNetteApplication) {
 	return false;
 }
 
+require __DIR__ . '/shortcuts.php';
 require __DIR__ . '/wp-utils.php';
 
 // Pass the Container to the WordPress part
