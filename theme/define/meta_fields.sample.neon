@@ -9,6 +9,7 @@ register:
 		title: Personal Information
 		context: normal # normal, advanced, side
 		settings_pages: custom_settings_page
+		templates: custom-template-filename
 		post_types:
 			- post
 			- page
