@@ -100,21 +100,21 @@ foreach($filenames as $filename) {
 				if(!empty($data['templates']) && (!empty($_GET['post']) || !empty($_POST['post_ID']))) {
 					$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
 					$template_name = basename(get_post_meta( $post_id, '_wp_page_template', true ), '.php');
-					if(in_array($template_name, $data['templates'])) {
+					if(in_array($template_name, (array) $data['templates'])) {
 						$post = get_post($post_id);
 						$data['post_types'][] = $post->post_type;
-						$meta_boxes[] = $data;
 					}
-				} else {
-					$meta_boxes[] = $data;
 				}
+				$meta_boxes[] = $data;
 			}
+
 			return $meta_boxes;
 		});
 	}
 
 	if($filename === 'settings') {
-		add_filter('mb_settings_pages', function($meta_boxes) use ($register) {
+		$prefix = isset($res['prefix']) ? $res['prefix'] : '';
+		add_filter('mb_settings_pages', function($meta_boxes) use ($register, $prefix) {
 			foreach($register as $name => $data) {
 				if(empty($data['id']) && !empty($name)) {
 					$data['id'] = $name;
