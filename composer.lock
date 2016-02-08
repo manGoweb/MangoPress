@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4c47f4001a5552f85d1b0e981e497777",
-    "content-hash": "c1d9efb577cfe8ce883d869a7f4d3f86",
+    "hash": "d4c0bd59ae2d7dc4de1902990c79d136",
+    "content-hash": "6f563c82585a879ed885bd97f0fb2c68",
     "packages": [
         {
             "name": "fancyguy/webroot-installer",
@@ -55,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/Console.git",
-                "reference": "b4d717826cbad6c61e847ec55f172de62f7cae9c"
+                "reference": "ef9715211caef00c1dbfa61213fcaf3f435c63d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Console/zipball/b4d717826cbad6c61e847ec55f172de62f7cae9c",
-                "reference": "b4d717826cbad6c61e847ec55f172de62f7cae9c",
+                "url": "https://api.github.com/repos/Kdyby/Console/zipball/ef9715211caef00c1dbfa61213fcaf3f435c63d2",
+                "reference": "ef9715211caef00c1dbfa61213fcaf3f435c63d2",
                 "shasum": ""
             },
             "require": {
@@ -132,7 +132,7 @@
                 "kdyby",
                 "nette"
             ],
-            "time": "2015-12-30 17:40:11"
+            "time": "2016-01-20 10:47:55"
         },
         {
             "name": "latte/latte",
@@ -1428,16 +1428,16 @@
         },
         {
             "name": "nextras/migrations",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/migrations.git",
-                "reference": "d17c9e268ffc094c2fd7081b32baa9e87e381fad"
+                "reference": "dba650957584d3a8899c820e76fd8d5b1c4a5a60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/migrations/zipball/d17c9e268ffc094c2fd7081b32baa9e87e381fad",
-                "reference": "d17c9e268ffc094c2fd7081b32baa9e87e381fad",
+                "url": "https://api.github.com/repos/nextras/migrations/zipball/dba650957584d3a8899c820e76fd8d5b1c4a5a60",
+                "reference": "dba650957584d3a8899c820e76fd8d5b1c4a5a60",
                 "shasum": ""
             },
             "require": {
@@ -1480,20 +1480,20 @@
                 "BSD-3-Clause"
             ],
             "description": "Database migrations runner",
-            "time": "2015-12-08 10:03:25"
+            "time": "2016-01-14 17:52:41"
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.1",
+            "version": "v2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "2e06a5ccb19dcf9b89f1c6a677a39a8df773635a"
+                "reference": "d0239fb42f98dd02e7d342f793c5d2cdee0c478d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/2e06a5ccb19dcf9b89f1c6a677a39a8df773635a",
-                "reference": "2e06a5ccb19dcf9b89f1c6a677a39a8df773635a",
+                "url": "https://api.github.com/repos/symfony/console/zipball/d0239fb42f98dd02e7d342f793c5d2cdee0c478d",
+                "reference": "d0239fb42f98dd02e7d342f793c5d2cdee0c478d",
                 "shasum": ""
             },
             "require": {
@@ -1540,20 +1540,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-12-22 10:25:57"
+            "time": "2016-01-14 08:33:16"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25"
+                "reference": "1289d16209491b584839022f29257ad859b8532d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/49ff736bd5d41f45240cec77b44967d76e0c3d25",
-                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/1289d16209491b584839022f29257ad859b8532d",
+                "reference": "1289d16209491b584839022f29257ad859b8532d",
                 "shasum": ""
             },
             "require": {
@@ -1565,7 +1565,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -1599,7 +1599,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-20 09:19:13"
+            "time": "2016-01-20 09:13:37"
         },
         {
             "name": "tracy/tracy",
@@ -1658,10 +1658,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "4.4",
+            "version": "4.4.2",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.4.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.4.2.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1714,16 +1714,16 @@
         },
         {
             "name": "nette/tester",
-            "version": "v1.5.0",
+            "version": "v1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "0807e28b615af7a51acb6903d9f562ccab15fb51"
+                "reference": "b0f312e7ab9a70bbd5c92568e2a20dd46be9a529"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/0807e28b615af7a51acb6903d9f562ccab15fb51",
-                "reference": "0807e28b615af7a51acb6903d9f562ccab15fb51",
+                "url": "https://api.github.com/repos/nette/tester/zipball/b0f312e7ab9a70bbd5c92568e2a20dd46be9a529",
+                "reference": "b0f312e7ab9a70bbd5c92568e2a20dd46be9a529",
                 "shasum": ""
             },
             "require": {
@@ -1735,7 +1735,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "1.6-dev"
                 }
             },
             "autoload": {
@@ -1752,21 +1752,21 @@
             "authors": [
                 {
                     "name": "David Grudl",
-                    "homepage": "http://davidgrudl.com"
+                    "homepage": "https://davidgrudl.com"
                 },
                 {
                     "name": "Nette Community",
-                    "homepage": "http://nette.org/contributors"
+                    "homepage": "https://nette.org/contributors"
                 }
             ],
             "description": "An easy-to-use PHP unit testing framework.",
-            "homepage": "http://nette.org",
+            "homepage": "https://tester.nette.org",
             "keywords": [
                 "nette",
                 "testing",
                 "unit"
             ],
-            "time": "2015-07-16 02:05:19"
+            "time": "2015-10-26 05:38:30"
         }
     ],
     "aliases": [],
@@ -1778,8 +1778,6 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "php": ">=5.5"
-    },
+    "platform": [],
     "platform-dev": []
 }

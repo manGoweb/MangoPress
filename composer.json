@@ -2,18 +2,17 @@
 	"name": "mangoweb/minor",
 	"description": "ManGoweb's WordPress project boilerplate.",
 	"require": {
-		"php": ">=5.5",
 		"wordpress/wordpress": "*",
-		"nette/nette": "~2.3.4",
+		"nette/nette": "^2.3.4",
     "kdyby/console": "@dev",
-		"nextras/migrations": "~3.0.0",
+		"nextras/migrations": "^3.0.0",
 		"nextras/forms": "^1.6",
     "mangoweb/mangopress-sql-panel": "dev-master",
     "mangoweb/mangopress-templating": "dev-master"
 	},
 	"require-dev": {
-		"nette/tester": "~1.5.0",
-		"mikulas/adminer-package": "~4.2.2"
+		"nette/tester": "^1.5.0",
+		"mikulas/adminer-package": "^4.2.2"
 	},
 	"authors": [
 		{
@@ -36,10 +35,10 @@
 			"package": {
 				"name": "wordpress/wordpress",
 				"type": "webroot",
-				"version": "4.4",
+				"version": "4.4.2",
 				"dist": {
 					"type": "zip",
-					"url": "https://github.com/WordPress/WordPress/archive/4.4.zip"
+					"url": "https://github.com/WordPress/WordPress/archive/4.4.2.zip"
 				},
 				"require": {
 					"fancyguy/webroot-installer": "1.1.0"
