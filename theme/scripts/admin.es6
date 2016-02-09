@@ -1,1 +1,3 @@
-/* admin scripts file */
+//
+// Admin section bundle
+//

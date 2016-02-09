@@ -1,35 +1,30 @@
 {
-  "version": ">=0.24",
   "src_folder": "theme",
   "dist_folder": "public/assets",
   "styles": [
-    "theme/styles/critical.styl",
-    "theme/styles/screen.styl",
-    "theme/styles/print.styl",
+    "theme/styles/index.styl",
     "theme/styles/oldie.styl",
-    "theme/styles/admin.styl"
+    "theme/styles/print.styl",
+    "theme/styles/admin/index.styl"
   ],
   "scripts": [
-    "theme/scripts/critical.es6",
     "theme/scripts/index.es6",
     "theme/scripts/admin.es6"
   ],
   "images": [
-    "theme/images/**/*.{jpg,png,svg,gif}"
+    "theme/images/**/*.{jpg,png,gif}"
   ],
   "static": [
     "theme/libs/**",
+    "theme/images/**/*.svg",
     "theme/fonts/**",
-    "theme/static/**",
     "node_modules/lt-ie-9/lt-ie-9.min.js"
   ],
   "dependencies": [
-    "lt-ie-9",
-    "jquery",
-    "stylus-normalize",
     "bootstrap-styl",
-    "react",
-    "react-dom"
+    "jquery",
+    "lt-ie-9",
+    "stylus-normalize"
   ],
   "watch": [
     "theme/**/*.{latte,php}"
@@ -37,5 +32,6 @@
   "hooks": {
     "init": "mango install"
   },
-  "snippet": "yes please"
+  "snippet": "yes please",
+  "version": ">=0.24"
 }

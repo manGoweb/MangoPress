@@ -1,56 +1,70 @@
+<!DOCTYPE html>
+
 {default $description = ''}
 {default $keywords = ''}
-{default $author = ''}
+{default $author = 'manGoweb s.r.o. <info@mangoweb.cz> (http://www.mangoweb.cz)'}
 {default $title = wp_title('', false)}
-
 {default $activeLang = 'cs'}
 
-<!DOCTYPE html>
-<html lang="{$activeLang}" class="no-js page-loading">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>{html_entity_decode($title)}</title>
+	<title>{html_entity_decode($title)}</title>
 
-<link rel="icon" type="image/png" href="{$assetsPath}/favicon.png" sizes="16x16">
-<link rel="icon" type="image/png" href="{$assetsPath}/favicon-32x32.png" sizes="32x32">
+	<meta name="description" content="{$description}">
+	<meta name="keywords" content="{$keywords}">
+	<meta name="author" content="{$author}">
 
-<meta name="description" content="{$description}">
-<meta name="keywords" content="{$keywords}">
-<meta name="author" content="{$author}">
+	{* {use_google_fonts([ 'Lato:400,700,900:latin,latin-ext', 'Playfair+Display:700italic:latin,latin-ext' ])} *}
 
-{use_google_fonts([ 'Lato:400,700,900:latin,latin-ext', 'Playfair+Display:700italic:latin,latin-ext' ])}
-<link rel="stylesheet" href="{$assetsPath}/styles/screen.css" media="screen">
+	<link rel="stylesheet" href="{$assetsPath}/styles/index.css" media="screen">
+	<link rel="stylesheet" href="{$assetsPath}/styles/print.css" media="print">
 
-<!--[if lt IE 9]>
-<link rel="stylesheet" href="{$assetsPath}/styles/oldie.css" media="screen">
-<script src="{$assetsPath}/node_modules/lt-ie-9/lt-ie-9.min.js"></script>
-<![endif]-->
+	<link rel="icon" type="image/png" href="{$assetsPath}/favicon.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="{$assetsPath}/favicon-32x32.png" sizes="32x32">
 
-{wp_head()}
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="{$assetsPath}/styles/oldie.css" media="screen">
+	<script src="{$assetsPath}/node_modules/lt-ie-9/lt-ie-9.min.js"></script>
+	<![endif]-->
+
+	<script>
+		initComponents = [
+			{ name: 'shapes', data: { url: {$assetsPath}+'/images/shapes.svg' } }
+		]
+	</script>
+
+	{wp_head()}
+
 </head>
 <body>
-{$mangoSnippet}
 
-{block content}{/block}
+	{$mangoSnippet}
 
-<footer>
-  {$Forms[contact]}
-</footer>
+	<div class="layout">
 
+		{block content}{/block}
 
-{block scripts}
-{analytics()}
-{*eu_cookies($activeLang)*}
-<script src="https://code.jquery.com/jquery-1.11.2.min.js" defer></script>
-<script src="https://nette.github.io/resources/js/netteForms.min.js" defer></script>
-<script src="{$assetsPath}/scripts/index.js" defer></script>
-{/block}
+		<footer class="copyright">
+			<div class="copyright-text">brought to you by</div>
+			<a class="copyright-link" href="http://www.mangoweb.cz">
+				{include components/shape.latte name => mangoweb}
+			</a>
+		</footer>
 
-{wp_footer()}
+	</div>
 
-<noscript defer><link rel="stylesheet" href="{$assetsPath}/styles/print.css" media="print"></noscript>
+	{block scripts}
+		{analytics()}
+		{*eu_cookies($activeLang)*}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
+		<script src="{$assetsPath}/scripts/index.js" defer></script>
+	{/block}
+
+	{wp_footer()}
+
 </body>
 </html>
