@@ -1,7 +1,6 @@
 <?php
 
 header('HTTP/1.1 503 Service Unavailable');
-header('Retry-After: 300'); // 5 minutes in seconds
 
 ?>
 <!DOCTYPE html>
@@ -23,6 +22,28 @@ p { margin: 0 }
 	<h1>We're Sorry</h1>
 	<p>The site is temporarily down for maintenance.<br>Please try again in a few minutes.</p>
 </div>
+
+<script type="text/javascript">
+	function ping() {
+		var httpRequest = new XMLHttpRequest();
+		if (httpRequest) {
+			httpRequest.onreadystatechange = function() {
+				if (httpRequest.readyState === XMLHttpRequest.DONE) {
+					if (httpRequest.status === 200) {
+						location.reload();
+					} else {
+						setTimeout(function(){
+							ping();
+						}, 1000);
+					}
+				}
+			};
+			httpRequest.open('GET', '');
+			httpRequest.send();
+		}
+	}
+	ping();
+</script>
 
 <?php
 
