@@ -26,7 +26,18 @@ class Autoloader {
     if (isset(self::$_single)) { return; }
 
     self::$_single       = $this; // Singleton set.
-    self::$relative_path = '/../' . basename(__DIR__); // Rel path set.
+
+    /**
+     * @author: Mikulas
+     * This hotfix adds symlink support. Bedrock calls to wp function get_plugins,
+     * which is relative to WP_PLUGIN_DIR. Wp expects plugins and wp-plugins to be
+     * in the same directory, which they are not (even the symlink and mu-plugins are)
+     */
+    if (strncmp('/', __DIR__, 1) === 0) {
+      self::$relative_path = str_repeat('/..', 100) . WPMU_PLUGIN_DIR;
+    } else {
+      self::$relative_path = '/../' . basename(__DIR__);
+    }
 
     add_action('plugins_loaded', array($this, 'loadPlugins'), 0); // Always add filter to autoload.
 
