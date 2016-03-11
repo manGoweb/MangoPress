@@ -45,6 +45,13 @@ define('NONCE_SALT', $wpParams['NONCE_SALT']);
 
 $table_prefix  = 'wp_';
 
+if (strncmp(gethostname(), 'shared-', 7) === 0) {
+	// bedrock-autoloader symlink fix
+	define('PROJECT_ROOT', dirname(__DIR__, 3));
+	define('WP_PLUGIN_DIR', PROJECT_ROOT . '/public/wp-content/plugins');
+	define('WPMU_PLUGIN_DIR', WWW_DIR . '/wp-content/mu-plugins');
+}
+
 define('WP_DEBUG', !Tracy\Debugger::$productionMode);
 
 require_once WP_DIR . '/wp-settings.php';
