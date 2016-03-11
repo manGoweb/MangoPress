@@ -33,7 +33,11 @@ class Autoloader {
      * which is relative to WP_PLUGIN_DIR. Wp expects plugins and wp-plugins to be
      * in the same directory, which they are not (even the symlink and mu-plugins are)
      */
-    self::$relative_path = str_repeat('/..', 100) . WPMU_PLUGIN_DIR;
+    if (strncmp('/', __DIR__, 1) === 0) {
+      self::$relative_path = str_repeat('/..', 100) . WPMU_PLUGIN_DIR;
+    } else {
+      self::$relative_path = '/../' . basename(__DIR__);
+    }
 
     add_action('plugins_loaded', array($this, 'loadPlugins'), 0); // Always add filter to autoload.
 
