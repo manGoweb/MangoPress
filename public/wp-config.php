@@ -15,6 +15,8 @@ define('WP_CONTENT_URL', WP_HOME . '/wp-content');
 //define('WPMU_PLUGIN_URL', WP_CONTENT_URL . '/mu-plugins');
 define('WP_DEFAULT_THEME', 'theme');
 
+define('FS_METHOD', 'direct'); // never prompt for FTP credentials to install plugins
+
 // define('WP_DEBUG_DISPLAY', FALSE); // Do not display error messages
 
 define('DISALLOW_FILE_EDIT', TRUE); // Disable the Plugin and Theme Editor
