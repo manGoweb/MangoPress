@@ -2,6 +2,9 @@ parameters:
 	assetsDir: %wwwDir%/assets
 	wp:
 		table_prefix: wp_
+	s3:
+		bucket: uploads.mangoweb.org
+		region: eu-central-1
 
 database:
 	dsn: 'mysql:host=%database.host%;dbname=%database.database%'
