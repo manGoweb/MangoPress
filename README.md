@@ -16,6 +16,7 @@ Requirements: PHP stack,  [Composer](https://getcomposer.org), [mango-cli](https
 Additional steps:
 - Create a new database for WordPress installation
 - Create your `config/config.local.neon` based on `config.local.sample.neon`.
+  - update `parameters.s3.enabled` to `false` for development
 - Make directories `log/`,  `temp/`, `public/wp-content/*` writeable for web process
 
 ## Project structure
@@ -33,9 +34,15 @@ Additional steps:
 
 You are going to spent the most of your time in the `theme` directory. Follow these code architecture instructions to avoid a loss of your sanity:
 
-* Use `index.php` and other WP template files as controllers (php code only). Controller should define and fill a context for an actual template. 
-* Use templates `views/*.latte` as views. All the HTML chunks belong here. Work with given context only and do not execute unnecessary php code. 
+* Use `index.php` and other WP template files as controllers (php code only). Controller should define and fill a context for an actual template.
+* Use templates `views/*.latte` as views. All the HTML chunks belong here. Work with given context only and do not execute unnecessary php code.
 * Assets source directories are `styles`, `scripts` and `images` and the [mango-cli](https://github.com/manGoweb/mango-cli) compiles them to the `public/assets` distribution directory.
+
+## Scaling
+
+Mangopress has *wordpress-s3-media* plugin installed by default. It uploads to and serves all media from aws s3.
+For local development, you should have `parameters.s3.enabled` set to `false` and use filesystem as usual.
+Don't forget to set `parameters.s3.secret` in production config.
 
 ## Manage WP plugins
 
@@ -48,6 +55,7 @@ Thanks to [wpackagist](http://wpackagist.org) repository, you can install all pl
 Installed plugins are used as [mu-plugins](http://codex.wordpress.org/Must_Use_Plugins), which cannot be disabled or removed from administration.
 Beware: not all plugins can work that way, especially ones that need some sort of activation initialization steps.
 
+Applications deployed to production servers cannot install, update, or remove plugins at all. All changes must be tested, versioned and properly deployed instead.
 
 
 ## Copyright
