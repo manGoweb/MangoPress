@@ -60,10 +60,6 @@ if (!$s3['enabled']) {
 if (strncmp(gethostname(), 'shared-', 7) === 0) {
 	define('PROJECT_ROOT', dirname(__DIR__, 3));
 
-	// bedrock-autoloader symlink fix
-	define('WP_PLUGIN_DIR', PROJECT_ROOT . '/public/wp-content/plugins');
-	define('WPMU_PLUGIN_DIR', WWW_DIR . '/wp-content/mu-plugins');
-
 	// disable installing plugins and editing files inline
 	// all changes must be versioned and deployed instead
 	define('DISALLOW_FILE_MODS', true);
