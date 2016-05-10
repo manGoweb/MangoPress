@@ -1,10 +1,14 @@
 <?php
 
+require __DIR__ . '/hosting.php';
+$sentryClient = require __DIR__ . '/sentry.php';
 require __DIR__ . '/exceptions.php';
 require __DIR__ . '/config/Configurator.php';
 
 $configurator = new App\Config\Configurator;
-
+if ($sentryClient) {
+	$configurator->addServices(['sentry.client' => $sentryClient]);
+}
 $container = $configurator->createContainer();
 
 $useNetteApplication = FALSE; // use your own condition
