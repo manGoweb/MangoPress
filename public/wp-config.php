@@ -57,7 +57,7 @@ if (!$s3['enabled']) {
 	define('S3_UPLOADS_DISABLE_REPLACE_UPLOAD_URL', TRUE);
 }
 
-if (strncmp(gethostname(), 'shared-', 7) === 0) {
+if (Mangoweb\isSharedHost()) {
 	define('PROJECT_ROOT', dirname(__DIR__, 3));
 
 	// disable installing plugins and editing files inline
