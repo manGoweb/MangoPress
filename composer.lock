@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d7f2b8bbb15501e33535b2b37a695cb",
+    "hash": "6404763343e8cb454433cda71eb8e0ac",
     "content-hash": "11cc32113f2ca918b50d1e928f787479",
     "packages": [
         {
@@ -195,12 +195,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressSqlPanel.git",
-                "reference": "1721eb225b6454ff97b83a2e22876cc7aafc3ee4"
+                "reference": "2b4044b42c3397ca3573339113986a7a553b1190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressSqlPanel/zipball/1721eb225b6454ff97b83a2e22876cc7aafc3ee4",
-                "reference": "1721eb225b6454ff97b83a2e22876cc7aafc3ee4",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressSqlPanel/zipball/2b4044b42c3397ca3573339113986a7a553b1190",
+                "reference": "2b4044b42c3397ca3573339113986a7a553b1190",
                 "shasum": ""
             },
             "require": {
@@ -225,7 +225,7 @@
             ],
             "description": "Tracy panel showing committed SQL queries.",
             "homepage": "https://github.com/mangoweb/MangoPressSqlPanel",
-            "time": "2015-12-06 18:05:05"
+            "time": "2016-05-10 15:22:37"
         },
         {
             "name": "mangoweb/mangopress-templating",
