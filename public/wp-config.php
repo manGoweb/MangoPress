@@ -64,7 +64,7 @@ if (Mangoweb\isSharedHost()) {
 	// all changes must be versioned and deployed instead
 	define('DISALLOW_FILE_MODS', true);
 
-	define('S3_UPLOADS_PATH_PREFIX', '/' . gethostname() . '/' . basename(PROJECT_ROOT));
+	define('S3_UPLOADS_PATH_PREFIX', '/' . Mangoweb\getReplicationGroupName() . '/' . basename(PROJECT_ROOT));
 }
 
 define('WP_DEBUG', !Tracy\Debugger::$productionMode);
