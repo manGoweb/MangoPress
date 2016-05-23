@@ -57,6 +57,10 @@ Beware: not all plugins can work that way, especially ones that need some sort o
 
 Applications deployed to production servers cannot install, update, or remove plugins at all. All changes must be tested, versioned and properly deployed instead.
 
+## Troubleshooting
+### Nette generates links that lead to the 404 page
+Go to the Wordpress admin panel, then click Settings and go to the permailnks secion. From there just submit the form.
+That might resolve the issue.
 
 ## Copyright
 
