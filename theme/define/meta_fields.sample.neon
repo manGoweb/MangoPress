@@ -2,8 +2,6 @@
 # Requires MetaBox plugin: http://metabox.io/
 #
 
-prefix: m_
-
 register:
 	personal:
 		title: Personal Information
