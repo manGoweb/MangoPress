@@ -1,5 +1,5 @@
 {
-	"name": "mangoweb/minor",
+	"name": "mangoweb/mangopress",
 	"description": "ManGoweb's WordPress project boilerplate.",
 	"require": {
 		"wordpress/wordpress": "*",
