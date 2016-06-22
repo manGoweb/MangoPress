@@ -6,6 +6,20 @@ if(!defined('NEON_WP_DIR')) {
 	define('NEON_WP_DIR', __DIR__ . '/..');
 }
 
+function transformFields($fields, $prefix = NULL) {
+	$result = [];
+	foreach($fields as $field_name => $field) {
+		$result[$field_name] = $fields[$field_name];
+		if(empty($result[$field_name]['id'])) {
+			$result[$field_name]['id'] = $prefix.$field_name;
+		}
+		if(!empty($result[$field_name]['fields'])) {
+			$result[$field_name]['fields'] = transformFields((array) $result[$field_name]['fields'], $prefix);
+		}
+	}
+	return $result;
+}
+
 add_theme_support('post-thumbnails');
 
 $alternate_posts_per_page = array();
@@ -92,11 +106,7 @@ foreach($filenames as $filename) {
 					$data['id'] = $name;
 				}
 				$data['id'] = $prefix.$data['id'];
-				foreach((array) $data['fields'] as $field_name => $field) {
-					if(empty($data['fields'][$field_name]['id'])) {
-						$data['fields'][$field_name]['id'] = $prefix.$field_name;
-					}
-				}
+				$data['fields'] = transformFields((array) $data['fields'], $prefix);
 				if(!empty($data['templates']) && (!empty($_GET['post']) || !empty($_POST['post_ID']))) {
 					$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
 					$template_name = basename(get_post_meta( $post_id, '_wp_page_template', true ), '.php');
