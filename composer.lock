@@ -234,12 +234,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressTemplating.git",
-                "reference": "8f5850563016befbfa0f2cae732b073d3f69d403"
+                "reference": "3abd35007ab9112a9dff711172fccf7080a34113"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/8f5850563016befbfa0f2cae732b073d3f69d403",
-                "reference": "8f5850563016befbfa0f2cae732b073d3f69d403",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/3abd35007ab9112a9dff711172fccf7080a34113",
+                "reference": "3abd35007ab9112a9dff711172fccf7080a34113",
                 "shasum": ""
             },
             "require": {
@@ -266,7 +266,7 @@
             ],
             "description": "Prepared templating workflow with filters and macros.",
             "homepage": "https://github.com/mangoweb/MangoPressTemplating",
-            "time": "2016-06-22 08:14:15"
+            "time": "2016-06-22 15:34:28"
         },
         {
             "name": "monolog/monolog",
