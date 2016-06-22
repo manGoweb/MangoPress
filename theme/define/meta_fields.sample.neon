@@ -20,6 +20,42 @@ register:
 				name: Birth date
 				type: date
 
+			group_test:
+				name: Testing group
+				type: group
+				fields:
+					full_name:
+						name: Full name
+						desc: "Format: First Last"
+						type: text
+					birth_date:
+						name: Birth date
+						type: date
+
+			condition_logic_test_source:
+				name: Test conditional logic
+				type: select
+				options:
+					apple: Apple
+					orange: Orange
+					carrot: Carrot
+
+			condition_logic_test_target1:
+				name: Visible when Carrot
+				visible:
+					- condition_logic_test_source
+					- '='
+					- carrot
+				type: image
+
+			condition_logic_test_target2:
+				name: Hidden when Carrot
+				hidden:
+					- condition_logic_test_source
+					- '='
+					- carrot
+				type: text
+
 	images:
 		title: Images
 		context: side # normal, advanced, side
