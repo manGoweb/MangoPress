@@ -23,6 +23,8 @@ register:
 			group_test:
 				name: Testing group
 				type: group
+				clone: true
+				sort_clone: true
 				fields:
 					full_name:
 						name: Full name
