@@ -6,4 +6,4 @@ if(isset($_GET['styleguide'])) {
 }
 
 // latte file has same name as this file
-view(basename(__FILE__ , '.php'), [ 'greeting' => 'Hello' ]);
+view([ 'greeting' => 'Hello' ]);
