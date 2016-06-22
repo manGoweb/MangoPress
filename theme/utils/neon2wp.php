@@ -115,9 +115,19 @@ foreach($filenames as $filename) {
 						$data['post_types'][] = $post->post_type;
 					}
 				}
-				$meta_boxes[] = $data;
+				unset($data['templates']);
+				if(!empty($data['settings_pages'])) {
+					$setting_pagess_data = $data;
+					unset($setting_pages_data['templates']);
+					unset($setting_pages_data['post_types']);
+					$regular_data = $data;
+					unset($regular_data['settings_pages']);
+					$meta_boxes[] = $setting_pagess_data;
+					$meta_boxes[] = $regular_data;
+				} else {
+					$meta_boxes[] = $data;
+				}
 			}
-
 			return $meta_boxes;
 		});
 	}
