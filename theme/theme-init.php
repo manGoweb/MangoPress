@@ -31,7 +31,7 @@ if(is_admin()) foreach(glob(ADMIN_UTILS_DIR . '/*.php') as $filename) {
 }
 
 // CSRF protection
-$App->session->start();
+$App->getService('session')->start();
 
 if(Strings::startsWith($Url->pathInfo, 'api/')) {
 	$ApiRequest = Strings::split(Strings::trim($Url->pathInfo, '~/+~'), '~/~');
