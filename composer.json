@@ -4,16 +4,12 @@
 	"require": {
 		"wordpress/wordpress": "*",
 		"nette/nette": "^2.4.0",
-		"kdyby/console": "@dev",
-		"nextras/migrations": "^3.0.0",
-		"nextras/forms": "^1.6",
 		"mangoweb/mangopress-sql-panel": "dev-master",
 		"mangoweb/mangopress-templating": "dev-master",
 		"sentry/sentry": "^0.16.0"
 	},
 	"require-dev": {
-		"nette/tester": "^1.5.0",
-		"mikulas/adminer-package": "^4.2.2"
+		"nette/tester": "^1.7.0"
 	},
 	"authors": [
 		{

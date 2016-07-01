@@ -2,7 +2,6 @@
 
 namespace App\Config;
 
-use Bin\Support\VariadicArgvInput;
 use Nette;
 use Nette\DI;
 use Nette\DI\Container;
@@ -41,13 +40,11 @@ class Configurator extends Nette\Configurator
 
 		$defaults = array_map('realpath', [
 			'appDir' => APP_DIR,
-			'binDir' => BIN_DIR,
 			'libsDir' => LIBS_DIR,
 			'wwwDir' => WWW_DIR,
 			'logDir' => LOG_DIR,
 			'configDir' => CONFIG_DIR,
 			'testsDir' => TESTS_DIR,
-			'migrationsDir' => MIGRATIONS_DIR,
 		]);
 		$defaults += [
 			'testMode' => FALSE,
@@ -77,14 +74,8 @@ class Configurator extends Nette\Configurator
 	public function onInitConfigs()
 	{
 		$params = $this->getParameters();
-
-		$this->addConfig($params['configDir'] . '/system.neon', FALSE);
-		if ($this->isConsoleMode())
-		{
-			$this->addConfig($params['configDir'] . '/console.neon', FALSE);
-		}
-		$this->addConfig($params['configDir'] . '/config.neon', FALSE);
-		$this->addConfig($params['configDir'] . '/config.local.neon', FALSE);
+		$this->addConfig($params['configDir'] . '/config.neon');
+		$this->addConfig($params['configDir'] . '/config.local.neon');
 	}
 
 	public function onAfterDebug(Container $c)
@@ -99,14 +90,6 @@ class Configurator extends Nette\Configurator
 		}
 	}
 
-	public function onAfterConsole(Container $c)
-	{
-		if ($this->parameters['consoleMode'])
-		{
-			$c->getService('console.router')->setInput(new VariadicArgvInput());
-		}
-	}
-
 	/**
 	 * @return RobotLoader
 	 */
@@ -115,12 +98,6 @@ class Configurator extends Nette\Configurator
 		$params = $this->getParameters();
 		$loader = parent::createRobotLoader();
 		$loader->addDirectory($params['appDir']);
-
-		if ($this->isConsoleMode())
-		{
-			$loader->addDirectory($params['binDir']);
-			$loader->addDirectory($params['migrationsDir']);
-		}
 
 		if ($this->isTestMode())
 		{

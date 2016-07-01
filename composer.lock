@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b28f91b213cadc365d2021513dd120b3",
-    "content-hash": "83e182d946ffe9532a59e8b6dc5612df",
+    "hash": "28bf4001fb068c570ae0f4a4c160817c",
+    "content-hash": "47579f67a1363ed60b93e77709be92b1",
     "packages": [
         {
             "name": "fancyguy/webroot-installer",
@@ -48,92 +48,6 @@
             "description": "A composer installer for libraries that live in an application webroot.",
             "homepage": "http://fancyguy.github.com/webroot-installer/",
             "time": "2013-03-15 17:51:14"
-        },
-        {
-            "name": "kdyby/console",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Kdyby/Console.git",
-                "reference": "5fddef95acac0aaab992d56b0cf63c9b97dbd28e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Console/zipball/5fddef95acac0aaab992d56b0cf63c9b97dbd28e",
-                "reference": "5fddef95acac0aaab992d56b0cf63c9b97dbd28e",
-                "shasum": ""
-            },
-            "require": {
-                "nette/di": "~2.3@dev",
-                "php": ">=5.4",
-                "symfony/console": "~2.3|~3.0"
-            },
-            "require-dev": {
-                "kdyby/events": "~2.4@dev|~3.0@dev",
-                "latte/latte": "~2.3@dev",
-                "nette/application": "~2.3@dev",
-                "nette/bootstrap": "~2.3@dev",
-                "nette/caching": "~2.3@dev",
-                "nette/component-model": "~2.2@dev",
-                "nette/database": "~2.3@dev",
-                "nette/deprecated": "~2.3@dev",
-                "nette/di": "~2.3@dev",
-                "nette/finder": "~2.3@dev",
-                "nette/forms": "~2.3@dev",
-                "nette/http": "~2.3@dev",
-                "nette/mail": "~2.3@dev",
-                "nette/neon": "~2.3@dev",
-                "nette/php-generator": "~2.3@dev",
-                "nette/reflection": "~2.3@dev",
-                "nette/robot-loader": "~2.3@dev",
-                "nette/safe-stream": "~2.3@dev",
-                "nette/security": "~2.3@dev",
-                "nette/tester": "~1.6@rc",
-                "nette/tokenizer": "~2.2@dev",
-                "nette/utils": "~2.3@dev",
-                "symfony/event-dispatcher": "~2.3|~3.0",
-                "tracy/tracy": "~2.3@dev"
-            },
-            "suggest": {
-                "nette/application": "For hooking the extension into the app and enabling running it through www/index.php",
-                "nette/http": "For faking the url of the request in cli"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Kdyby\\Console\\": "src/"
-                },
-                "classmap": [
-                    "src/Kdyby/Console/CliPresenter.php",
-                    "src/Kdyby/Console/exceptions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Filip Procházka",
-                    "email": "filip@prochazka.su",
-                    "homepage": "http://filip-prochazka.com"
-                }
-            ],
-            "description": "Symfony Console integration for Kdyby components",
-            "homepage": "http://kdyby.org",
-            "keywords": [
-                "console",
-                "kdyby",
-                "nette"
-            ],
-            "time": "2016-05-01 20:25:11"
         },
         {
             "name": "latte/latte",
@@ -205,17 +119,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressSqlPanel.git",
-                "reference": "2b4044b42c3397ca3573339113986a7a553b1190"
+                "reference": "012003bb8fa215861d501ffc1f51f4f8c15c936e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressSqlPanel/zipball/2b4044b42c3397ca3573339113986a7a553b1190",
-                "reference": "2b4044b42c3397ca3573339113986a7a553b1190",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressSqlPanel/zipball/012003bb8fa215861d501ffc1f51f4f8c15c936e",
+                "reference": "012003bb8fa215861d501ffc1f51f4f8c15c936e",
                 "shasum": ""
             },
             "require": {
+                "nette/utils": "~2.4",
                 "php": ">=5.4.0",
-                "tracy/tracy": "~2.3"
+                "tracy/tracy": "~2.4"
             },
             "type": "library",
             "autoload": {
@@ -235,7 +150,7 @@
             ],
             "description": "Tracy panel showing committed SQL queries.",
             "homepage": "https://github.com/mangoweb/MangoPressSqlPanel",
-            "time": "2016-05-10 15:22:37"
+            "time": "2016-07-01 11:03:52"
         },
         {
             "name": "mangoweb/mangopress-templating",
@@ -243,18 +158,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressTemplating.git",
-                "reference": "3abd35007ab9112a9dff711172fccf7080a34113"
+                "reference": "ec8151e7574ce40976d6656fae9f5fe459972cbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/3abd35007ab9112a9dff711172fccf7080a34113",
-                "reference": "3abd35007ab9112a9dff711172fccf7080a34113",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/ec8151e7574ce40976d6656fae9f5fe459972cbd",
+                "reference": "ec8151e7574ce40976d6656fae9f5fe459972cbd",
                 "shasum": ""
             },
             "require": {
-                "latte/latte": "^2.3",
-                "nette/http": "^2.3",
-                "nette/utils": "^2.3",
+                "latte/latte": "^2.4",
+                "nette/http": "^2.4",
+                "nette/utils": "^2.4",
                 "php": ">=5.4.0"
             },
             "type": "library",
@@ -275,7 +190,7 @@
             ],
             "description": "Prepared templating workflow with filters and macros.",
             "homepage": "https://github.com/mangoweb/MangoPressTemplating",
-            "time": "2016-06-22 15:34:28"
+            "time": "2016-07-01 10:59:04"
         },
         {
             "name": "monolog/monolog",
@@ -1556,125 +1471,6 @@
             "time": "2016-06-17 13:15:10"
         },
         {
-            "name": "nextras/forms",
-            "version": "v1.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nextras/forms.git",
-                "reference": "d5c2d7bbf307fa15257da77217b50d652d0c4af4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nextras/forms/zipball/d5c2d7bbf307fa15257da77217b50d652d0c4af4",
-                "reference": "d5c2d7bbf307fa15257da77217b50d652d0c4af4",
-                "shasum": ""
-            },
-            "require": {
-                "nette/application": "~2.2",
-                "nette/component-model": "~2.2",
-                "nette/forms": "~2.2",
-                "nette/utils": "~2.2",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "latte/latte": "~2.2",
-                "nette/tester": "~1.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nextras\\Forms\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "http://davidgrudl.com"
-                },
-                {
-                    "name": "Nextras Community",
-                    "homepage": "https://github.com/nextras/forms/graphs/contributors"
-                },
-                {
-                    "name": "Jan Škrášek",
-                    "homepage": "http://jan.skrasek.com"
-                }
-            ],
-            "description": "Extra form components for Nette Framework.",
-            "keywords": [
-                "form",
-                "nette"
-            ],
-            "time": "2015-08-22 12:32:22"
-        },
-        {
-            "name": "nextras/migrations",
-            "version": "v3.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nextras/migrations.git",
-                "reference": "dba650957584d3a8899c820e76fd8d5b1c4a5a60"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nextras/migrations/zipball/dba650957584d3a8899c820e76fd8d5b1c4a5a60",
-                "reference": "dba650957584d3a8899c820e76fd8d5b1c4a5a60",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "dibi/dibi": "~2.3",
-                "doctrine/dbal": "~2.5",
-                "ext-openssl": "*",
-                "mockery/mockery": "~0.9",
-                "nette/database": "~2.2",
-                "nette/di": "~2.3",
-                "nette/tester": "~1.4",
-                "nette/utils": "~2.3",
-                "nextras/dbal": "@dev",
-                "symfony/console": "~2.6"
-            },
-            "suggest": {
-                "dibi/dibi": "to use DibiAdapter",
-                "nette/database": "to use NetteAdapter",
-                "nextras/dbal": "to use NextrasAdapter"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nextras\\Migrations\\": "src/"
-                },
-                "classmap": [
-                    "src/exceptions.php",
-                    "src/deprecated"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Database migrations runner",
-            "time": "2016-01-14 17:52:41"
-        },
-        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -1768,125 +1564,6 @@
             "time": "2016-05-03 20:11:27"
         },
         {
-            "name": "symfony/console",
-            "version": "v3.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "747154aa69b0f83cd02fc9aa554836dee417631a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/747154aa69b0f83cd02fc9aa554836dee417631a",
-                "reference": "747154aa69b0f83cd02fc9aa554836dee417631a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9",
-                "symfony/polyfill-mbstring": "~1.0"
-            },
-            "require-dev": {
-                "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.8|~3.0",
-                "symfony/process": "~2.8|~3.0"
-            },
-            "suggest": {
-                "psr/log": "For using the console logger",
-                "symfony/event-dispatcher": "",
-                "symfony/process": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Console\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Console Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-06-29 07:02:31"
-        },
-        {
-            "name": "symfony/polyfill-mbstring",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "suggest": {
-                "ext-mbstring": "For best performance"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill for the Mbstring extension",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "mbstring",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2016-05-18 14:26:46"
-        },
-        {
             "name": "tracy/tracy",
             "version": "v2.4.1",
             "source": {
@@ -1963,46 +1640,6 @@
     ],
     "packages-dev": [
         {
-            "name": "mikulas/adminer-package",
-            "version": "v4.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mikulas/adminer-package.git",
-                "reference": "e2313148d98c3444481a9865b9c968b4dd376f18"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Mikulas/adminer-package/zipball/e2313148d98c3444481a9865b9c968b4dd376f18",
-                "reference": "e2313148d98c3444481a9865b9c968b4dd376f18",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0",
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Mikulas Dite"
-                },
-                {
-                    "name": "Jakub Vrána",
-                    "homepage": "http://www.vrana.cz/"
-                }
-            ],
-            "description": "Adminer as a convinient package",
-            "homepage": "http://www.adminer.org/",
-            "keywords": [
-                "adminer",
-                "database",
-                "mysql",
-                "postgres",
-                "psql"
-            ],
-            "time": "2016-03-02 13:05:55"
-        },
-        {
             "name": "nette/tester",
             "version": "v1.7.1",
             "source": {
@@ -2062,7 +1699,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kdyby/console": 20,
         "mangoweb/mangopress-sql-panel": 20,
         "mangoweb/mangopress-templating": 20
     },
