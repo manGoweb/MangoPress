@@ -7,6 +7,7 @@
 
 parameters:
 	mango: off
+	fromEmail: 'info@example.com'
 
 	# Universal Analytics ID
 	UA: 'UA-XXXXXXX-X'
@@ -26,24 +27,18 @@ parameters:
 		NONCE_SALT:       "bZWrihs6uo CHANGE ON PRODUCTION bZWrihs6up"
 
 	database:
-		driver: mysqli
 		host: localhost
 		username:
 		password:
 		database:
-		charset: utf8
-		sqlmode: TRADITIONAL
-		profiler: on
 
 	s3:
 		enabled: true # disable on dev, enable on production
 		key: "AKIAIZGO5LP3LHAUFQRQ"
 		secret: # https://passwork.me/#/groups/55d5d6b5e391f44902af0d21/root/57271535e391f43a9bca88b8
 
-nette:
-	mailer:
-		host: mailtrap.io
-		secure: tls
-		port: 2525
-		username: "49949482bd6158c63"
-		password:
+mail:
+	host: smtp.mailgun.org
+	secure: tls
+	username: info@example.com
+	password:
