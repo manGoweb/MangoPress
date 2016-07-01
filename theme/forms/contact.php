@@ -5,7 +5,6 @@
 use Nette\Forms\Form;
 
 $form = new Form;
-$form->setRenderer(new \Nextras\Forms\Rendering\Bs3FormRenderer);
 
 $form->addProtection('Detected robot activity.');
 
