@@ -30,6 +30,8 @@ if(is_admin()) foreach(glob(ADMIN_UTILS_DIR . '/*.php') as $filename) {
 	require_once $filename;
 }
 
+@include __DIR__ . '/init.php';
+
 // CSRF protection
 $App->getService('session')->start();
 
