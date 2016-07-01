@@ -3,7 +3,6 @@
 {default $description = ''}
 {default $keywords = ''}
 {default $author = 'manGoweb s.r.o. <info@mangoweb.cz> (http://www.mangoweb.cz)'}
-{default $title = wp_title('', false)}
 {default $activeLang = 'cs'}
 
 <html>
@@ -12,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-	<title>{html_entity_decode($title)}</title>
+	<title>{site_title()}</title>
 
 	<meta name="description" content="{$description}">
 	<meta name="keywords" content="{$keywords}">
