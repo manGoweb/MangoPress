@@ -3,7 +3,7 @@
 	"description": "ManGoweb's WordPress project boilerplate.",
 	"require": {
 		"wordpress/wordpress": "*",
-		"nette/nette": "^2.3.4",
+		"nette/nette": "^2.4.0",
 		"kdyby/console": "@dev",
 		"nextras/migrations": "^3.0.0",
 		"nextras/forms": "^1.6",
