@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_GET['styleguide'])) {
-	view('styleguide', [ 'components' => Nette\Utils\Finder::findFiles('*.latte')->from(THEME_VIEWS_DIR . '/components') ]);
+	view('styleguide');
 	exit;
 }
 
