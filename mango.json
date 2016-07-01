@@ -5,11 +5,12 @@
     "theme/styles/index.styl",
     "theme/styles/oldie.styl",
     "theme/styles/print.styl",
-    "theme/styles/admin/index.styl"
+    "theme/styles/wp-admin.styl",
+    "theme/styles/wp-editor.styl"
   ],
   "scripts": [
     "theme/scripts/index.es6",
-    "theme/scripts/admin.es6"
+    "theme/scripts/wp-admin.es6"
   ],
   "images": [
     "theme/images/**/*.{jpg,png,gif}"
@@ -23,8 +24,7 @@
   "dependencies": [
     "bootstrap-styl",
     "jquery",
-    "lt-ie-9",
-    "stylus-normalize"
+    "lt-ie-9"
   ],
   "watch": [
     "theme/**/*.{latte,php}"
