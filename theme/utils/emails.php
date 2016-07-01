@@ -1,15 +1,18 @@
 <?php
 
-function sendEmail($message) {
+function sendEmail($message, $to = NULL) {
 	global $App;
-	return $App->mailer->send($message);
+	if($to) {
+		$message->addTo($to);
+	}
+	return $App->getService('mailer')->send($message);
 }
 
 function makeEmail($view, $params = []) {
 	global $App;
 	$msg = new Nette\Mail\Message;
 
-	$viewPath = __DIR__ . '/templates/' . $view . '.latte';
+	$viewPath = __DIR__ . '/../emails/' . $view . '.latte';
 
 	if(!file_exists($viewPath)) {
 		throw new \Exception("Email template does not exist: $viewPath");
