@@ -1,5 +1,7 @@
 <?php
 
+setlocale(LC_ALL,  get_locale().'.utf-8');
+
 use Nette\Utils\ArrayHash;
 use Nette\Utils\Strings;
 
