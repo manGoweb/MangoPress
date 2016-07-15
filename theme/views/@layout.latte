@@ -19,14 +19,14 @@
 
 	{* {use_google_fonts([ 'Lato:400,700,900:latin,latin-ext', 'Playfair+Display:700italic:latin,latin-ext' ])} *}
 
-	<link rel="stylesheet" href="{$assetsPath}/styles/index.css" media="screen">
-	<link rel="stylesheet" href="{$assetsPath}/styles/print.css" media="print">
+	<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}index.css" media="screen">
+	<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}print.css" media="print">
 
 	<link rel="icon" type="image/png" href="{$assetsPath}/favicon.png" sizes="16x16">
 	<link rel="icon" type="image/png" href="{$assetsPath}/favicon-32x32.png" sizes="32x32">
 
 	<!--[if lt IE 9]>
-	<link rel="stylesheet" href="{$assetsPath}/styles/oldie.css" media="screen">
+	<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp|noescape}oldie.css" media="screen">
 	<script src="{$assetsPath}/node_modules/lt-ie-9/lt-ie-9.min.js"></script>
 	<![endif]-->
 
@@ -60,7 +60,7 @@
 		{analytics()}
 		{*eu_cookies($activeLang)*}
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
-		<script src="{$assetsPath}/scripts/index.js" defer></script>
+		<script src="{$assetsPath}/scripts/{$buildstamp}index.js" defer></script>
 	{/block}
 
 	{wp_footer()}
