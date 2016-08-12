@@ -13,6 +13,9 @@ function transformFields($fields, $prefix = NULL) {
 		if(empty($result[$field_name]['id'])) {
 			$result[$field_name]['id'] = $prefix.$field_name;
 		}
+		if($result[$field_name]['type'] === 'editor') {
+			$result[$field_name]['type'] = 'wysiwyg';
+		}
 		if(!empty($result[$field_name]['fields'])) {
 			$result[$field_name]['fields'] = transformFields((array) $result[$field_name]['fields'], $prefix);
 		}
