@@ -1634,10 +1634,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "4.6.0",
+            "version": "4.6.1",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.6.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.6.1.zip",
                 "reference": null,
                 "shasum": null
             },
