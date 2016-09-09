@@ -1,6 +1,6 @@
 <?php
 
-$filenames = [ 'post_types', 'settings', 'taxonomies', 'meta_fields' ];
+$filenames = [ 'post_types', 'settings', 'taxonomies', 'meta_fields', 'hide_editor' ];
 
 if(!defined('NEON_WP_DIR')) {
 	define('NEON_WP_DIR', __DIR__ . '/..');
@@ -156,6 +156,25 @@ foreach($filenames as $filename) {
 				$meta_boxes[] = $data;
 			}
 			return $meta_boxes;
+		});
+	}
+
+	if($filename === 'hide_editor') {
+		$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+		$template_file = str_replace('.php','',get_post_meta($post_id, '_wp_page_template', true));
+
+		add_action( 'admin_init', function() use ($res, $template_file) {
+		    foreach($res['hide'] as $name => $data){
+		        if($name == 'editor'){
+		            if(in_array($template_file, $data['templates'])){
+		                remove_post_type_support('page', 'editor');
+		            }
+		        }elseif($name == 'thumbnail'){
+		            if(in_array($template_file, $data['templates'])){
+		                remove_post_type_support('page', 'thumbnail');
+		            }
+		        }
+		    }
 		});
 	}
 }
