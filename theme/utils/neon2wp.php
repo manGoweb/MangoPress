@@ -39,7 +39,7 @@ foreach($filenames as $filename) {
 
 	$defaults = empty($res['defaults']) ? [] : $res['defaults'];
 
-	$register = $res['register'];
+	$register = $res['register'] ?? [];
 
 
 	foreach($register as $name => $data) {
@@ -160,22 +160,29 @@ foreach($filenames as $filename) {
 	}
 
 	if($filename === 'hide_editor') {
-		$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
-		$template_file = str_replace('.php','',get_post_meta($post_id, '_wp_page_template', true));
+		$post_id = null;
+		if (isset($_GET['post'])) {
+			$post_id = $_GET['post'];
+		} elseif (isset($_GET['post_ID'])) {
+			$post_id = $_POST['post_ID'];
+		}
+		if ($post_id !== null) {
+			$template_file = str_replace('.php','',get_post_meta($post_id, '_wp_page_template', true));
 
-		add_action( 'admin_init', function() use ($res, $template_file) {
-		    foreach($res['hide'] as $name => $data){
-		        if($name == 'editor'){
-		            if(in_array($template_file, $data['templates'])){
-		                remove_post_type_support('page', 'editor');
-		            }
-		        }elseif($name == 'thumbnail'){
-		            if(in_array($template_file, $data['templates'])){
-		                remove_post_type_support('page', 'thumbnail');
-		            }
-		        }
-		    }
-		});
+			add_action( 'admin_init', function() use ($res, $template_file) {
+					foreach($res['hide'] as $name => $data){
+							if($name == 'editor'){
+									if(in_array($template_file, $data['templates'])){
+											remove_post_type_support('page', 'editor');
+									}
+							}elseif($name == 'thumbnail'){
+									if(in_array($template_file, $data['templates'])){
+											remove_post_type_support('page', 'thumbnail');
+									}
+							}
+					}
+			});
+		}
 	}
 }
 
