@@ -1,5 +1,6 @@
 parameters:
-	assetsDir: %wwwDir%/assets
+	assetsDirname: assets
+	assetsDir: %wwwDir%/%assetsDirname%
 	wp:
 		table_prefix: wp_
 	s3:
