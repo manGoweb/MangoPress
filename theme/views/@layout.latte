@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
-{default $activeLang = 'cs'}
+{default $activeLang = explode('_', get_locale())[0]}
 
-<html>
+<html lang="{$activeLang}">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
