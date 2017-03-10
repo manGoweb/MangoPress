@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-{default $description = ''}
 {default $keywords = ''}
 {default $activeLang = 'cs'}
 
@@ -12,7 +11,7 @@
 
 	<title>{site_title()}</title>
 
-	<meta name="description" content="{$description}">
+	<meta name="description" content="{get_bloginfo('description')|noescape}">
 	<meta name="keywords" content="{$keywords}">
 
 	{* {use_google_fonts([ 'Lato:400,700,900:latin,latin-ext', 'Playfair+Display:700italic:latin,latin-ext' ])} *}
