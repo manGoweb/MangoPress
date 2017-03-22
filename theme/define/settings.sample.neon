@@ -7,3 +7,8 @@ register:
 	custom_settings_page:
 		title: Custom settings page
 		menu_icon: images-alt
+
+	custom_localized_settings_page:
+		title: Custom localized settings page
+		menu_icon: admin-site
+		localized: true

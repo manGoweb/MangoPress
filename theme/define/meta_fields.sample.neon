@@ -6,7 +6,8 @@ register:
 	personal:
 		title: Personal Information
 		context: normal # normal, advanced, side
-		settings_pages: custom_settings_page
+		settings_pages:
+			- custom_settings_page
 		templates: custom-template-filename
 		post_types:
 			- post
@@ -78,3 +79,18 @@ register:
 			profile:
 				name: Profile image
 				type: file
+
+	footer:
+		title: Footer
+		context: normal # normal, advanced, side
+		settings_pages: custom_localized_settings_page
+		fields:
+			footer_copy:
+				name: Copyright
+				type: text
+				desc: "<b>{year}</b> will be replaced with current year"
+				std: "MangoPress {year}"
+			footer_sponsor:
+				name: Sponsor
+				type: text
+				std: "brought to you by"
