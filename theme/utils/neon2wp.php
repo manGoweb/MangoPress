@@ -6,6 +6,8 @@ if(!defined('NEON_WP_DIR')) {
 	define('NEON_WP_DIR', __DIR__ . '/..');
 }
 
+$localizedSettings = [];
+
 function transformFields($fields, $prefix = NULL) {
 	$result = [];
 	foreach($fields as $field_name => $field) {
@@ -21,6 +23,72 @@ function transformFields($fields, $prefix = NULL) {
 		}
 	}
 	return $result;
+}
+
+function getLanguagePostfix() {
+	return str_replace('{lang}', get_active_lang_code(), getLanguagePostfixFormat());
+}
+function getLanguagePostfixFormat() {
+	return '-({lang})';
+}
+
+function languageMetaFieldsPostfix($data) {
+	$postfix = getLanguagePostfix();
+	$postfixedData = [];
+	foreach ($data as $key => $value) {
+		if (isset($value['fields'])) {
+			$value['fields'] = languageMetaFieldsPostfix($value['fields']);
+		}
+		$id = $key . $postfix;
+		$postfixedData[$id] = $value;
+		$postfixedData[$id]['id'] = $id;
+	}
+	return $postfixedData;
+}
+
+function registerMetaFields($prefix, $register, $localizedSettings) {
+	add_filter('rwmb_meta_boxes', function($meta_boxes) use ($prefix, $register, $localizedSettings){
+		foreach($register as $name => $data) {
+			if(empty($data['id']) && !empty($name)) {
+				$data['id'] = $name;
+			}
+			$data['id'] = $prefix.$data['id'];
+			$data['fields'] = transformFields((array) $data['fields'], $prefix);
+			if(!empty($data['templates']) && (!empty($_GET['post']) || !empty($_POST['post_ID']))) {
+				$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
+				$template_name = basename(get_post_meta( $post_id, '_wp_page_template', true ), '.php');
+				if(in_array($template_name, (array) $data['templates'])) {
+					$post = get_post($post_id);
+					$data['post_types'][] = $post->post_type;
+				}
+			}
+			unset($data['templates']);
+			if(!empty($data['settings_pages'])) {
+				$setting_pagess_data = $data;
+				if(isset($setting_pages_data['templates'])) {
+					unset($setting_pages_data['templates']);
+				}
+				if(isset($setting_pages_data['post_types'])) {
+					unset($setting_pages_data['post_types']);
+				}
+				$regular_data = $data;
+				unset($regular_data['settings_pages']);
+				if (!empty($_GET['page']) && in_array($_GET['page'], $localizedSettings)) {
+					$setting_pagess_data['fields'] = languageMetaFieldsPostfix($setting_pagess_data['fields']);
+					$setting_pagess_data['fields']['postfix'] = [
+						'id' => 'postfix-format',
+						'type' => 'hidden',
+						'std' => getLanguagePostfixFormat(),
+					];
+				}
+				$meta_boxes[] = $setting_pagess_data;
+				$meta_boxes[] = $regular_data;
+			} else {
+				$meta_boxes[] = $data;
+			}
+		}
+		return $meta_boxes;
+	});
 }
 
 add_theme_support('post-thumbnails');
@@ -104,44 +172,19 @@ foreach($filenames as $filename) {
 
 	if($filename === 'meta_fields') {
 		$prefix = isset($res['prefix']) ? $res['prefix'] : '';
-		add_filter('rwmb_meta_boxes', function($meta_boxes) use ($prefix, $register){
-			foreach($register as $name => $data) {
-				if(empty($data['id']) && !empty($name)) {
-					$data['id'] = $name;
-				}
-				$data['id'] = $prefix.$data['id'];
-				$data['fields'] = transformFields((array) $data['fields'], $prefix);
-				if(!empty($data['templates']) && (!empty($_GET['post']) || !empty($_POST['post_ID']))) {
-					$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
-					$template_name = basename(get_post_meta( $post_id, '_wp_page_template', true ), '.php');
-					if(in_array($template_name, (array) $data['templates'])) {
-						$post = get_post($post_id);
-						$data['post_types'][] = $post->post_type;
-					}
-				}
-				unset($data['templates']);
-				if(!empty($data['settings_pages'])) {
-					$setting_pagess_data = $data;
-					if(isset($setting_pages_data['templates'])) {
-						unset($setting_pages_data['templates']);
-					}
-					if(isset($setting_pages_data['post_types'])) {
-						unset($setting_pages_data['post_types']);
-					}
-					$regular_data = $data;
-					unset($regular_data['settings_pages']);
-					$meta_boxes[] = $setting_pagess_data;
-					$meta_boxes[] = $regular_data;
-				} else {
-					$meta_boxes[] = $data;
-				}
-			}
-			return $meta_boxes;
-		});
+		registerMetaFields($prefix, $register, $localizedSettings);
 	}
 
 	if($filename === 'settings') {
 		$prefix = isset($res['prefix']) ? $res['prefix'] : '';
+
+		// Get localized settings
+		foreach($register as $name => $data) {
+			if (!empty($data['localized']) && $data['localized']) {
+				$localizedSettings[] = $name;
+			}
+		}
+
 		add_filter('mb_settings_pages', function($meta_boxes) use ($register, $prefix) {
 			foreach($register as $name => $data) {
 				if(empty($data['id']) && !empty($name)) {

@@ -1,0 +1,11 @@
+<footer class="copyright">
+	<div class="copyright-text">
+		{get_setting('custom_localized_settings_page', 'footer_copy')|replace:'{year}':date('Y')}
+	</div>
+	<div class="copyright-text">
+		{get_setting('custom_localized_settings_page', 'footer_sponsor')}
+	</div>
+	<a class="copyright-link" href="https://www.mangoweb.cz">
+		{include shape.latte name => mangoweb}
+	</a>
+</footer>
