@@ -26,7 +26,11 @@ function transformFields($fields, $prefix = NULL) {
 }
 
 function getLanguagePostfix() {
-	return str_replace('{lang}', get_active_lang_code(), getLanguagePostfixFormat());
+	$lang = get_active_lang_code();
+	if ($lang === 'all') {
+		return '';
+	}
+	return str_replace('{lang}', $lang, getLanguagePostfixFormat());
 }
 function getLanguagePostfixFormat() {
 	return '-({lang})';
