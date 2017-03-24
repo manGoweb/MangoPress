@@ -33,7 +33,7 @@ function getLanguagePostfix() {
 	return str_replace('{lang}', $lang, getLanguagePostfixFormat());
 }
 function getLanguagePostfixFormat() {
-	return '-({lang})';
+	return '-_{lang}_';
 }
 
 function languageMetaFieldsPostfix($data) {
@@ -107,7 +107,6 @@ foreach($filenames as $filename) {
 	}
 
 	$str = file_get_contents($path);
-	$str = Nette\Utils\Strings::replace($str, '~%post_id%~', isset($_GET['post']) ? $_GET['post'] : NULL);
 	$res = Nette\Neon\Neon::decode($str);
 
 	$defaults = empty($res['defaults']) ? [] : $res['defaults'];
