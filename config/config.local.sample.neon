@@ -37,6 +37,10 @@ parameters:
 		key: "AKIAIZGO5LP3LHAUFQRQ"
 		secret: # https://passwork.me/#/groups/55d5d6b5e391f44902af0d21/root/57271535e391f43a9bca88b8
 
+	sentry:
+		dns: NULL
+		format: $Format:%h$
+
 mail:
 	host: smtp.mailgun.org
 	secure: tls
