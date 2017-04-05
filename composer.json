@@ -7,7 +7,8 @@
 		"mangoweb/mangopress-sql-panel": "dev-master",
 		"mangoweb/mangopress-templating": "dev-master",
 		"sentry/sentry": "^0.16.0",
-		"roots/wp-password-bcrypt": "^1.0"
+		"roots/wp-password-bcrypt": "^1.0",
+		"guzzlehttp/guzzle": "^6.2"
 	},
 	"require-dev": {
 		"nette/tester": "^1.7.0"
