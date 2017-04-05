@@ -1,0 +1,36 @@
+<div class="wp-core-ui wrap">
+
+	<h1>Deploy site</h1>
+
+	<br>
+
+	<form class="postbox" action="{admin_url('admin-post.php')}" method="POST">
+		<input type="hidden" name="action" value="mango_deploy_trigger">
+
+		<div class="inside">
+
+			<h3>Current deploy settings:</h3>
+			<p>
+				<label for="revision">Git revision to deploy: </label>
+				<input class="regular-text" type="text" name="revision" value="{$revision}" placeholder="Git revision to deploy">
+			</p>
+			<p>
+				<label for="subfolder">Folder to deploy into: </label>
+				<input class="regular-text" type="text" name="subfolder" value="{$subfolder}" placeholder="Folder to deploy into">
+			</p>
+
+			<input class="button button-large button-primary" type="submit" value="Trigger deploy now">
+
+
+		</div>
+
+	</form>
+
+	<h3>Dataset preview:</h3>
+
+	<pre>{$preview}</pre>
+
+
+</div>
+
+<div class="clear"></div>

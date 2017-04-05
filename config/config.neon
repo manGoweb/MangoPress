@@ -9,6 +9,16 @@ parameters:
 		region: eu-central-1
 		key:
 		secret:
+	builder:
+		url:
+		remote:
+		revision:
+		mango-cli:
+		aws:
+			bucket:
+			key:
+			secret:
+			subfolder:
 
 database:
 	dsn: 'mysql:host=%database.host%;dbname=%database.database%'
