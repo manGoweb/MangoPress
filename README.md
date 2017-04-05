@@ -64,5 +64,5 @@ That might resolve the issue.
 
 ## Copyright
 
-Copyright 2014 by [manGoweb s.r.o.](http://www.mangoweb.cz) Code released under [the MIT license](LICENSE).
+Copyright 2014-2020 by [manGoweb s.r.o.](http://www.mangoweb.cz) Code released under [the MIT license](LICENSE).
 
