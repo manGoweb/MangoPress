@@ -1,0 +1,16 @@
+{if $status === 'success'}
+	<div style="background: lightgreen; padding: 20px;">
+		<h1>Successfully deployed to:</h1>
+		<a href="{$url}">{$url}</a>
+	</div>
+{else}
+	<div style="background: lightpink; padding: 20px;">
+		<h1>Error occurred:</h1>
+		<pre>{$error}</pre>
+	</div>
+{/if}
+
+<br>
+<br>
+
+<a href="admin.php?page=deploy">&larr; Go back to the Builder</a><br><br>
