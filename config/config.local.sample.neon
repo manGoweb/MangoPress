@@ -32,6 +32,10 @@ parameters:
 		password:
 		database:
 
+	sentry:
+		dns: NULL
+		format: $Format:%h$
+
 	s3:
 		enabled: true # disable on dev, enable on production
 		key: "AKIAIZGO5LP3LHAUFQRQ"

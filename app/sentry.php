@@ -1,13 +1,19 @@
 <?php
 
-$configFile = dirname(__DIR__) . '/config/sentry.json';
+use Nette\Neon\Decoder;
+
+
+$configFile = dirname(__DIR__) . '/config/config.local.neon';
 if (!file_exists($configFile)) {
-	echo "Sentry configuration not found at '$configFile'";
+	echo "App configuration not found at '$configFile'";
 	die;
 }
+$decoder = new Decoder();
+$appConfig = $decoder->decode(file_get_contents($configFile));
+
 
 /** @var array $config */
-$config = json_decode(file_get_contents($configFile), TRUE) + [
+$config = ($appConfig['parameters']['sentry'] ?? []) + [
 	'dsn' => NULL,
 	'curl_method' => 'async',
 	'release' => NULL,
