@@ -10,6 +10,7 @@ parameters:
 		key:
 		secret:
 	builder:
+		# dataTarget: "absolute path to your data.json"
 		url:
 		remote:
 		revision:

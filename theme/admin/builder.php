@@ -76,6 +76,8 @@ if (function_exists('createMangowebBuilderDataset')) {
 		$config = $App->parameters['builder'];
 
 		view('../admin/builder', [
+			"isLocalDeploy" => !empty($config['dataTarget']),
+			"dataTarget" => $config['dataTarget'],
 			"revision" => $config['revision'],
 			"subfolder" => $config['aws']['subfolder'],
 			"preview" => Json::encode(createMangowebBuilderDataset(), Json::PRETTY),
@@ -89,6 +91,8 @@ if (function_exists('createMangowebBuilderDataset')) {
 
 		$dataset = createMangowebBuilderDataset();
 
+		$isLocalDeploy = !empty($config['dataTarget']);
+
 		echo "<h1>Starting deploy</h1>";
 		\Tracy\Dumper::dump($httpRequest->getPost());
 		echo "<p>It might take a while...</p>";
@@ -96,38 +100,50 @@ if (function_exists('createMangowebBuilderDataset')) {
 		ob_end_flush();
 		flush();
 
-		$payload = [
-			'remote' => $config['remote'],
-			'revision' => $httpRequest->getPost('revision'),
-			'mango-cli' => $config['mango-cli'],
-			'aws' => [
-				'bucket' => $config['aws']['bucket'],
-				'accessKeyID' => $config['aws']['key'],
-				'secretAccessKey' => $config['aws']['secret'],
-				'subfolder' => $httpRequest->getPost('subfolder'),
-			],
-			'dataset' => $dataset,
-		];
+		if($isLocalDeploy) {
+			$filepath = $config['dataTarget'];
+			if(!file_exists(dirname($filepath))) {
+				echo "<p>Directory doesn't exist</p>";
+			} else {
+				$json = Json::encode($dataset, Json::PRETTY);
+				file_put_contents($filepath, $json);
+				echo "<p>Written out</p>";
+			}
+		} else {
 
-		$client = new Client([ 'base_uri' => $config['url'], 'timeout'  => 0	]);
+			$payload = [
+				'remote' => $config['remote'],
+				'revision' => $httpRequest->getPost('revision'),
+				'mango-cli' => $config['mango-cli'],
+				'aws' => [
+					'bucket' => $config['aws']['bucket'],
+					'accessKeyID' => $config['aws']['key'],
+					'secretAccessKey' => $config['aws']['secret'],
+					'subfolder' => $httpRequest->getPost('subfolder'),
+				],
+				'dataset' => $dataset,
+			];
 
-		try {
-			$response = $client->post('/upload', ['json' => $payload]);
-		} catch (BadResponseException $e) {
-			$response = $e->getResponse();
+			$client = new Client([ 'base_uri' => $config['url'], 'timeout'  => 0	]);
+
+			try {
+				$response = $client->post('/upload', ['json' => $payload]);
+			} catch (BadResponseException $e) {
+				$response = $e->getResponse();
+			}
+
+			$responseBody = Json::decode((string) $response->getBody());
+
+			$status = $responseBody->status === 'success' ? 'success' : 'error';
+
+			$params = [
+				'status' => $status,
+				'error' => $status === 'error' ? $responseBody->message : NULL,
+				'url' => $status === 'success' ? $responseBody->url : NULL,
+			];
+			view('../admin/builderResult', $params);
 		}
 
-		$responseBody = Json::decode((string) $response->getBody());
-
-		$status = $responseBody->status === 'success' ? 'success' : 'error';
-
-		$params = [
-			'status' => $status,
-			'error' => $status === 'error' ? $responseBody->message : NULL,
-			'url' => $status === 'success' ? $responseBody->url : NULL,
-		];
-
-		view('../admin/builderResult', $params);
 	}
 
 	add_action('admin_menu', function() {
