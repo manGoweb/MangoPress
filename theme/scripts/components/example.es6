@@ -1,4 +1,4 @@
-var Component = require('./component')
+const Component = require('./component')
 
 /**
  * Example component class
@@ -8,19 +8,21 @@ var Component = require('./component')
  * - DOM event listeners are in Backbone style
  *
  */
-class Example extends Component {
+module.exports = class Example extends Component {
+
+	constructor(el, data) {
+		super(el, data)
+	}
 
 	get listeners() {
 		return {
-			'click .example-child': 'handleClick'
+			'click .example-child': 'handleClick',
 		}
 	}
 
-	handleClick(e, self) {
+	handleClick(e, data) {
 		e.preventDefault()
-		alert(self.data)
+		alert(this.data)
 	}
 
 }
-
-module.exports = Example

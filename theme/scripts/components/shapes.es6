@@ -1,14 +1,12 @@
-var Component = require('./component')
-var $ = window.jQuery
-
-var spriteInserted = false
+const Component = require('./component')
+const $ = window.jQuery
 
 /**
  * Shapes component class
  *
  * - injects SVG sprite into body
  */
-class Shapes extends Component {
+module.exports = class Shapes extends Component {
 
 	/**
 	 * @param {HTMLElement} element
@@ -17,24 +15,21 @@ class Shapes extends Component {
 	constructor(element, data) {
 		super(element, data)
 
-		this.supportsSVG = document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
-		if(this.supportsSVG && !spriteInserted) this.injectSprite()
+		this.supportsSVG = document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')
+
+		if (this.supportsSVG) {
+			this.injectSprite()
+		}
 	}
 
 	injectSprite() {
-		spriteInserted = true
-
 		$.get(this.data.url, (response, status) => {
-			if(status == 'success') {
+			if (status === 'success') {
 				$(document.body).prepend(response)
 			} else {
-				spriteInserted = false
-				this.injectSprite()
+				setTimeout(() => this.injectSprite(), 1000 * 10)
 			}
 		}, 'text')
 	}
 
 }
-
-
-module.exports = Shapes

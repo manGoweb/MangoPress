@@ -20,6 +20,8 @@ parameters:
 			key:
 			secret:
 			subfolder:
+	pageRoles:
+		- contact
 
 database:
 	dsn: 'mysql:host=%database.host%;dbname=%database.database%'

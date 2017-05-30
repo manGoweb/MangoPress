@@ -1,21 +1,21 @@
-// 
+//
 // Tiny project dependencies like polyfills and environment setup
 //
 
 
 // Avoid `console` errors in browsers that lack a console.
 //
-;(function() {
-	var method
-	var noop = function () {}
-	var methods = [
+(() => {
+	let method
+	const noop = () => {}
+	const methods = [
 		'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
 		'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
 		'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-		'timeStamp', 'trace', 'warn'
+		'timeStamp', 'trace', 'warn',
 	]
-	var length = methods.length
-	var console = (window.console = window.console || {})
+	let length = methods.length
+	const console = (window.console = window.console || {})
 
 	while (length--) {
 		method = methods[length]
@@ -24,4 +24,4 @@
 			console[method] = noop
 		}
 	}
-})();
+})()
