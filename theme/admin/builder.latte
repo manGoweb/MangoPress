@@ -10,16 +10,22 @@
 		<div class="inside">
 
 			<h3>Current deploy settings:</h3>
-			<p>
-				<label for="revision">Git revision to deploy: </label>
-				<input class="regular-text" type="text" name="revision" value="{$revision}" placeholder="Git revision to deploy">
-			</p>
-			<p>
-				<label for="subfolder">Folder to deploy into: </label>
-				<input class="regular-text" type="text" name="subfolder" value="{$subfolder}" placeholder="Folder to deploy into">
-			</p>
+			{if $isLocalDeploy}
+				<p>Local target to save the payload: <code>{$dataTarget}</code></p>
 
-			<input class="button button-large button-primary" type="submit" value="Trigger deploy now">
+				<input class="button button-large button-primary" type="submit" value="Save payload now">
+			{else}
+				<p>
+					<label for="revision">Git revision to deploy: </label>
+					<input class="regular-text" type="text" name="revision" value="{$revision}" placeholder="Git revision to deploy">
+				</p>
+				<p>
+					<label for="subfolder">Folder to deploy into: </label>
+					<input class="regular-text" type="text" name="subfolder" value="{$subfolder}" placeholder="Folder to deploy into">
+				</p>
+
+				<input class="button button-large button-primary" type="submit" value="Trigger deploy now">
+			{/if}
 
 
 		</div>
