@@ -33,7 +33,7 @@ parameters:
 		database:
 
 	sentry:
-		dns: NULL
+		dsn: NULL
 		format: $Format:%h$
 
 	s3:
