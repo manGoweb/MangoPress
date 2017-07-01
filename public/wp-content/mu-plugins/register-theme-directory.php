@@ -2,4 +2,6 @@
 
 register_theme_directory(BASE_DIR);
 
-add_action('plugins_loaded', 'search_theme_directories');
+if(is_blog_installed()) {
+	add_action('plugins_loaded', 'search_theme_directories');
+}
