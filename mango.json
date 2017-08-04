@@ -15,6 +15,12 @@
   "images": [
     "theme/images/**/*.{jpg,png,gif}"
   ],
+  "sprites": [
+    {
+      "path": "theme/images/sources/*.svg",
+      "name": false
+    }
+  ],
   "static": [
     "theme/libs/**",
     "theme/images/**/*.svg",
