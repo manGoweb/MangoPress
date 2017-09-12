@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "jquery": ["node_modules/jquery/dist/jquery"]
+        },
+        "target": "es5",
+        "jsx":"react",
+        "lib": [
+            "dom",
+            "es6",
+            "scripthost",
+            "dom.iterable"
+        ],
+        "strict": true
+    }
+}

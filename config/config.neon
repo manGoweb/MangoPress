@@ -1,0 +1,30 @@
+tracy:
+	strictMode: true
+
+parameters:
+	livereload: off
+
+	database:
+		host: 127.0.0.1
+
+	s3:
+		enabled: off
+		bucket: uploads.mangoweb.org
+		region: eu-central-1
+		key:
+		secret:
+
+	sentry:
+		dsn: null
+		format: $Format:%h$
+
+database:
+	dsn: 'mysql:host=%database.host%;dbname=%database.database%'
+	user: %database.username%
+	password: %database.password%
+	options:
+		lazy: false
+
+services:
+	db: @database.default.context
+	cache: Nette\Caching\Cache

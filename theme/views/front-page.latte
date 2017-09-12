@@ -1,0 +1,19 @@
+{extends archive.latte}
+
+{block body}
+	{include parent}
+
+	<hr>
+
+	<div id="example-component-placeholder">
+		<h3>Example of front-end component. Viz <code>scripts/components/Example.ts</code>:</h3>
+		<button class="example-child">Click me</button>
+	</div>
+	{include utils/initComponent.latte name => example, place => '#example-component-placeholder', data => 'Hello world ' . date(c)}
+
+	<hr>
+
+	<h3>Example of shape usage:</h3>
+	{include utils/shape.latte name => symbol-plus}
+
+{/block}

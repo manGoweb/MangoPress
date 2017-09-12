@@ -1,0 +1,47 @@
+src_folder: theme
+dist_folder: public/assets
+styles:
+  - theme/styles/index.sass
+  - theme/styles/oldie.sass
+  - theme/styles/print.sass
+  - theme/styles/styleguide.sass
+  - theme/styles/wp-admin.sass
+  - theme/styles/wp-editor.sass
+scripts:
+  - theme/scripts/index.es6
+  - theme/scripts/styleguide.es6
+  - theme/scripts/wp-admin.es6
+images:
+  - "theme/images/**/*.{jpg,png,gif}"
+sprites:
+  -
+    path: theme/images/sprites/*.svg
+    name: false
+static:
+  - "theme/libs/**"
+  - "theme/images/**/*.svg"
+  - "theme/fonts/**"
+  - node_modules/lt-ie-9/lt-ie-9.min.js
+buildstamp:
+  - public/assets/styles/index.css
+  - public/assets/styles/styleguide.css
+  - public/assets/styles/wp-admin.css
+  - public/assets/styles/wp-editor.css
+  - public/assets/scripts/index.js
+  - public/assets/scripts/styleguide.js
+  - public/assets/scripts/wp-admin.js
+  - public/assets/sprites/shapes.svg
+dependencies:
+  - bourbon
+  - normalize-scss
+  - jquery
+  - lodash
+  - lt-ie-9
+  - react
+  - react-dom
+watch:
+  - "theme/**/*.{latte,php}"
+hooks:
+  init: mango install
+snippet: yes please
+version: ">=0.30.7"

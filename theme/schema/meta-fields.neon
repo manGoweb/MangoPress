@@ -1,0 +1,145 @@
+register:
+
+	custom_render:
+		title: Custom render
+		context: normal
+		post_type: page
+		not_template: front-page
+		# renderer defined in theme/admin/utils/example.php
+		render: renderCustomMetabox("this is metabox %name% with post %post_id%.")
+
+	custom_latte:
+		title: Custom Latte template
+		context: normal
+		post_type: page
+		latte: admin/example-metabox
+		props:
+			foo: bar
+
+	page_roles:
+		title: Page roles
+		if: hasPageRoles()
+		context: side
+		post_type:
+			- page
+			- thing
+		component: page_roles
+		data: pageRolesMetaboxPayload(%post_id%)
+
+	react_metafield:
+		name: "foobar"
+		title: React / meta field
+		context: side
+		post_type: page
+		# defined in theme/scripts/wp-admin.ts
+		component: example_metabox
+
+	-
+		title: React / custom data
+		context: side
+		post_type: page
+		# defined in theme/scripts/wp-admin.ts
+		component: example_metabox
+		data:
+			message: "Hello"
+
+	personalsingle:
+		title: Personal Information síingle
+		context: normal # normal, advanced, side
+		admin_page: nested_settings_page
+		fields:
+			full_name:
+				name: Full name
+				desc: "Format: First Last"
+				type: text
+			birth_date:
+				name: Birth date
+				type: date
+
+	personalmulti:
+		title: Personal Information multi
+		context: normal # normal, advanced, side
+		admin_pages:
+			- nested_settings_page
+		templates:
+			- template-front-page
+		post_types:
+			- post
+			- page
+		fields:
+			full_name:
+				name: Full name
+				desc: "Format: First Last"
+				type: text
+			birth_date:
+				name: Birth date
+				type: date
+
+			group_test:
+				name: Testing group
+				type: repeater
+				fields:
+					full_name:
+						name: Full name
+						desc: "Format: First Last"
+						type: text
+					birth_date:
+						name: Birth date
+						type: date
+
+			condition_logic_test_source:
+				name: Test conditional logic
+				type: select
+				options:
+					apple: Apple
+					orange: Orange
+					carrot: Carrot
+
+			condition_logic_test_target1:
+				name: Visible when Carrot
+				visible: [ condition_logic_test_source, '=', carrot ]
+				type: image
+
+			condition_logic_test_target2:
+				name: Hidden when Carrot
+				hidden: [ condition_logic_test_source, '=', [ eval = "implode('', ['c', 'arr', 'ot'])" ] ]
+				type: text
+
+			related_custom_post:
+				type: post
+				post_type: custom_post
+				field_type: select_advanced
+				query_args:
+						meta_key: custom_meta_value
+						meta_value: %post_id%
+						meta_compare: '='
+
+	images:
+		title: Images
+		context: side # normal, advanced, side
+		post_types:
+			- page
+			- video
+			- header
+		fields:
+			profile:
+				name: Profile image
+				type: file
+
+	footer:
+		title: Footer
+		context: normal # normal, advanced, side
+		admin_pages:
+			- localized
+			- with_tabs
+		tab: b
+		fields:
+			footer_copy:
+				name: Copyright
+				type: text
+				desc: "<b>{year}</b> will be replaced with current year"
+				std: "MangoPress {year}"
+			footer_sponsor:
+				name: Sponsor
+				type: text
+				std: "brought to you by"

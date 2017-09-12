@@ -1,0 +1,21 @@
+[Tt]humbs.db
+[Dd]esktop.ini
+*.DS_store
+.DS_store?
+._*
+.Trashes
+.idea
+
+/public/assets/
+/config/config.local.neon
+/mango.local.yaml
+/mango.local.json
+/.mango-snippet.html
+/node_modules
+/npm-debug.log
+/public/wp-content/uploads
+/public/wp-content/cache
+
+# You might want to delete these rules for project usage:
+/vendor
+/public

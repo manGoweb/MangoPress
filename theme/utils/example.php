@@ -1,0 +1,3 @@
+<?php
+
+bdump("Hello world");

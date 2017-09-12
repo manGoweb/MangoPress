@@ -1,0 +1,4 @@
+path: public
+color: false
+disabled_commands:
+  - db drop

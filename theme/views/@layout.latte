@@ -1,0 +1,30 @@
+{default $lang = en}
+{default $title = get_bloginfo(name)}
+
+<!DOCTYPE html>
+<html {php language_attributes()}>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{block styles}
+		<link rel="stylesheet" href="/assets/styles/{$buildstamp}index.css">
+	{/block}
+	<title>{$title}</title>
+	{php wp_head()}
+	{php do_action(get_header)}
+</head>
+<body {php body_class()}>
+	{$mangoSnippet}
+	{include utils/initComponent.latte name => shapes, data => [ url => "/assets/sprites/{$buildstamp}shapes.svg" ]}
+
+	{block body}{/block}
+
+	{php wp_footer()}
+
+	{block scripts}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
+		<script src="/assets/scripts/{$buildstamp}index.js" defer></script>
+	{/block}
+</body>
+</html>

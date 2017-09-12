@@ -1,0 +1,34 @@
+parameters:
+	livereload: on
+
+	database:
+		host: 127.0.0.1
+		database: mangopress
+		username: root
+		password:
+
+	wp:
+		AUTH_KEY:         "YFo9OsdGdc CHANGE ON PRODUCTION YFo9OsdGdd"
+		SECURE_AUTH_KEY:  "rgoJjobcfb CHANGE ON PRODUCTION rgoJjobcfc"
+		LOGGED_IN_KEY:    "x2GU6Bss6h CHANGE ON PRODUCTION x2GU6Bss6i"
+		NONCE_KEY:        "kwF7eWA7tw CHANGE ON PRODUCTION kwF7eWA7tx"
+		AUTH_SALT:        "SbPSqToK6Z CHANGE ON PRODUCTION SbPSqToK6a"
+		SECURE_AUTH_SALT: "TpLLmOmKrH CHANGE ON PRODUCTION TpLLmOmKri"
+		LOGGED_IN_SALT:   "DwPCNhVi7M CHANGE ON PRODUCTION DwPCNhVi7N"
+		NONCE_SALT:       "bZWrihs6uo CHANGE ON PRODUCTION bZWrihs6up"
+
+	sentry:
+		dsn: NULL
+		format: $Format:%h$
+		# stage: local
+
+	s3:
+		enabled: off # allow on beta / prod
+		key: "AKIAIZGO5LP3LHAUFQRQ"
+		secret: # 1Password "MangoPress S3 uploads auth"
+
+mail:
+	host: smtp.mailgun.org
+	secure: tls
+	username: info@example.com
+	password:

@@ -1,0 +1,22 @@
+{
+    "name": "mangoweb/mangopress",
+    "description": "WordPress + Nette",
+    "type": "project",
+    "require": {
+        "nette/nette": "^2.4",
+        "mangoweb/mangopress-sql-panel": "dev-master",
+        "mangoweb/mangopress-templating": "dev-master",
+        "wp-cli/wp-cli": "^1.3",
+        "roots/wp-password-bcrypt": "^1.0",
+        "sentry/sentry": "^1.7"
+    },
+    "config": {
+      "preferred-install": "dist",
+      "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "scripts": {
+      "post-update-cmd": ["echo Warning: Deleting all .git dirs under vendor ", "rm -rf vendor/**/**/.git"],
+      "post-install-cmd": ["echo Warning: Deleting all .git dirs under vendor", "rm -rf vendor/**/**/.git"]
+    }
+}

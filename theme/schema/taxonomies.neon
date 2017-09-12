@@ -1,0 +1,11 @@
+defaults:
+	show_admin_column: true
+	show_ui: true
+	show_in_menu: true
+
+register:
+
+	thing_category:
+		label: Thing category
+		post_types:
+			- thing

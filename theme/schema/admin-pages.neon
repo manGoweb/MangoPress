@@ -1,0 +1,45 @@
+register:
+
+	nested_settings_page:
+		title: Nested page
+		icon: admin-site
+		parent: settings
+
+	with_tabs:
+		title: With tabs
+		icon: admin-site
+		tabs:
+			a: Tab A
+			b: Tab B
+
+	localized:
+		title: Localized
+		icon: admin-site
+		localized: true
+
+	custom_render_page:
+		title: Custom render
+		# renderer defined in theme/admin/utils/example.php
+		render: renderCustomAdminPage(this is configured")
+		icon: admin-site
+
+	custom_latte:
+		title: Custom Latte template
+		icon: admin-site
+		latte: admin/example-admin-page
+		props:
+			foo: bar
+
+	react_page_static:
+		title: React / static
+		component: example_admin_page
+		icon: admin-site
+		data:
+			message: "static data from admin-pages.neon"
+
+	react_page_dynamic:
+		title: React / dynamic
+		component: example_admin_page
+		icon: admin-site
+		# data getter defined in theme/admin/utils/example.php
+		data: getCustomAdminPageData("static arg from admin-pages.neon")

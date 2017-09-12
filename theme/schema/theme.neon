@@ -1,0 +1,23 @@
+support:
+	- automatic-feed-links
+	- title-tag
+	- post-thumbnails
+	- customize-selective-refresh-widgets
+	html5:
+		- comment-form
+		- comment-list
+		- gallery
+		- caption
+	post-formats: []
+	custom-logo:
+		width: 250
+		height: 250
+		flex-width: true
+	custom-header:
+		default-image:
+			eval: "get_parent_theme_file_uri( '/assets/images/header.jpg' )"
+		width: 2000
+		height: 1200
+		flex-height: true
+		video: true
+		# wp-head-callback: mango_head_callback

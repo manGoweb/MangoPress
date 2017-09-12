@@ -1,0 +1,7 @@
+{extends @layout.latte}
+
+{block body}
+<h1>{get_bloginfo(name)}</h1>
+{each}
+<h2><a href="{$Post|wp_permalink}">{$Post|wp_title}</a></h2>
+{/each}

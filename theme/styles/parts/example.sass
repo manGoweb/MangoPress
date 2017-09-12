@@ -1,0 +1,43 @@
+.example
+	+clearfix
+	margin: $spacing 0
+	padding: $padding
+	background: #f0f0f0
+	border-radius: $radius
+	text-align: center
+
+	&-child
+		+relative
+		display: block
+		margin: 10px auto
+		background: lightyellow
+		border: 1px solid yellow
+		border-radius: $radius
+		outline: none
+		cursor: pointer
+		box-shadow: 1px 1px 5px rgba(#000, .5)
+
+		&:active
+			top: 1px
+			left: 1px
+			box-shadow: 0 0 3px rgba(#000, .5)
+
+		&:hover .example-shape
+			animation: spin 1.1s infinite linear
+
+
+	&-shape
+		margin-right: 5px
+
+	&-text
+		font-weight: bold
+		vertical-align: middle
+
+
+	+media($break480)
+		padding: $padding*2 $padding
+		text-align: left
+
+		&-child
+			float: right
+			margin: -3px 10px 0
