@@ -18,6 +18,11 @@ function transformFields($fields, $prefix = NULL) {
 		if($result[$field_name]['type'] === 'editor') {
 			$result[$field_name]['type'] = 'wysiwyg';
 		}
+		if($result[$field_name]['type'] === 'repeater') {
+			$result[$field_name]['type'] = 'group';
+			$result[$field_name]['clone'] = true;
+			$result[$field_name]['sort_clone'] = true;
+		}
 		if(!empty($result[$field_name]['fields'])) {
 			$result[$field_name]['fields'] = transformFields((array) $result[$field_name]['fields'], $prefix);
 		}
