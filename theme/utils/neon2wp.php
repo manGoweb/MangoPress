@@ -23,6 +23,10 @@ function transformFields($fields, $prefix = NULL) {
 			$result[$field_name]['clone'] = true;
 			$result[$field_name]['sort_clone'] = true;
 		}
+		if($result[$field_name]['type'] === 'thumb') {
+			$result[$field_name]['type'] = 'image_advanced';
+			$result[$field_name]['max_file_uploads'] = 1;
+		}
 		if(!empty($result[$field_name]['fields'])) {
 			$result[$field_name]['fields'] = transformFields((array) $result[$field_name]['fields'], $prefix);
 		}
