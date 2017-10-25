@@ -49,9 +49,6 @@ function languageMetaFieldsPostfix($data) {
 	$postfix = getLanguagePostfix();
 	$postfixedData = [];
 	foreach ($data as $key => $value) {
-		if (isset($value['fields'])) {
-			$value['fields'] = languageMetaFieldsPostfix($value['fields']);
-		}
 		$id = $key . $postfix;
 		$postfixedData[$id] = $value;
 		$postfixedData[$id]['id'] = $id;
