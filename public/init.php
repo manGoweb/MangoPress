@@ -15,6 +15,12 @@ define('CONFIG_DIR', BASE_DIR . '/config');
 
 define('WP_DIR', WWW_DIR . '/wp-core');
 
+// Properly detect HTTPS behind proxy
+if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+	$_SERVER['HTTPS'] = 'on';
+	$_SERVER['SERVER_PORT'] = 443;
+}
+
 // require Composer autoloader
 if(file_exists(LIBS_DIR . '/autoload.php')) {
 	require LIBS_DIR . '/autoload.php';
