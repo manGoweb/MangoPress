@@ -1,6 +1,20 @@
 <?php
 
-function get_setting($group, $field, $lang = NULL) {
+use Nette\Utils\Strings;
+
+function clear_postfix($str, $postfix)
+{
+	if (Strings::endsWith($str, $postfix)) {
+		$len = Strings::length($str) - Strings::length($postfix);
+
+		return Strings::substring($str, 0, $len);
+	}
+
+	return $str;
+}
+
+function get_setting($group, $field = null, $lang = null)
+{
 	static $settings;
 	if (!$settings) {
 		$settings = [];
@@ -13,5 +27,17 @@ function get_setting($group, $field, $lang = NULL) {
 	}
 
 	$postfix = str_replace('{lang}', $lang, $settings[$group]['postfix-format'] ?? '');
-	return $settings[$group][$field . $postfix] ?? $settings[$group][$field] ?? NULL;
+
+	if (!$field) {
+		$group = $settings[$group];
+		$result = [];
+
+		foreach ($group as $key => $val) {
+			$result[clear_postfix($key, $postfix)] = $val;
+		}
+
+		return $result;
+	}
+
+	return $settings[$group][$field.$postfix] ?? $settings[$group][$field] ?? null;
 }
