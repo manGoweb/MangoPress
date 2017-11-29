@@ -16,7 +16,7 @@ define('CONFIG_DIR', BASE_DIR . '/config');
 define('WP_DIR', WWW_DIR . '/wp-core');
 
 // Properly detect HTTPS behind proxy
-if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+if(($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? NULL) === 'https') {
 	$_SERVER['HTTPS'] = 'on';
 	$_SERVER['SERVER_PORT'] = 443;
 }
