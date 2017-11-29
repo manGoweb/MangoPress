@@ -36,7 +36,10 @@
   "dependencies": [
     "bootstrap-styl",
     "jquery",
-    "lt-ie-9"
+    "lt-ie-9",
+    "react",
+    "react-dom",
+    "lodash"
   ],
   "watch": [
     "theme/**/*.{latte,php}"

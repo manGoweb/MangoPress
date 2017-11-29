@@ -1,5 +1,5 @@
-var $ = window.jQuery
-var eventSplitter = /^(\S+)\s*(.*)$/
+const $ = window.jQuery
+const eventSplitter = /^(\S+)\s*(.*)$/
 
 /**
  * Abstract component class
@@ -13,7 +13,7 @@ var eventSplitter = /^(\S+)\s*(.*)$/
  *
  * @author Matěj Šimek <email@matejsimek.com> (http://www.matejsimek.com)
  */
-class Component {
+module.exports = class Component {
 
 	/**
 	 * @constructor
@@ -35,14 +35,12 @@ class Component {
 	 * Component listeners
 	 *
 	 * Format:
-	 * 	- "type": "handlerName"
-	 * 	- "type<space>.selector": "handlerName"
-	 *
-	 * @param {Component~eventHandler} event handler which is a component method
+	 *  - "type": "handlerName"
+	 *  - "type<space>.selector": "handlerName"
 	 */
 	get listeners() {
 		return {
-			// 'click .example-child': 'handleClick'
+			// 'click .example-child': 'handleClick',
 		}
 	}
 
@@ -50,34 +48,29 @@ class Component {
 	 * Assign event handlers from this.listeners property
 	 */
 	attachListeners() {
-		let self = this
-		let listeners = this.listeners
+		const listeners = this.listeners
 
-		for(let event in listeners) {
+		for (const event in listeners) {
 			let type = event.trim()
 			let selector = false
-			let callback = this[listeners[event]]
+			const callback = this[listeners[event]]
 
-			let split = event.match(eventSplitter)
-			if(split) {
-				type = split[1]
-				selector = split[2]
+			const split = event.match(eventSplitter)
+			if (split) {
+				[, type, selector] = split
 			}
 
 			/**
-			 * Handler called when an event occured
+			 * Handler called when an event occurred
 			 *
 			 * @callback Component~eventHandler
 			 * @param {object} event - an event object
-			 * @param {Component} self - currrent instance
 			 * @param {Object} data - optional data passed with event
-			 * @this {Element} - an element that catched the event
+			 * @this {Element} - an element that caught the event
 			 */
-			let listener = function(e, data) {
-				callback(e, self, data)
-			}
+			let listener = $.proxy(callback, this)
 
-			if(selector){
+			if (selector) {
 				this.$el.on(type, selector, listener)
 			} else {
 				this.$el.on(type, listener)
@@ -98,22 +91,23 @@ class Component {
 	destroy() {
 		this.detachListeners()
 
-		for (let prop in this) {
+		for (const prop in this) {
 			this[prop] = null
 		}
 	}
 
 	/**
 	 * Returns a child
-	 * @param  {string} CSS selector
+	 * @param  {string} selector - CSS selector
 	 * @return {jQuery|null}
 	 */
 	child(selector) {
-		var result = this.$el.find(selector)
-		if(!result.length) return null
-		else return result.eq(0)
+		const $result = this.$el.find(selector)
+
+		if (!$result.length) {
+			return null
+		}
+		return $result.eq(0)
 	}
 
 }
-
-module.exports = Component
