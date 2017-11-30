@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "127c80f787059fce98f9ef056cad20d1",
+    "content-hash": "ecb76541546135898f6b84ec337d50fa",
     "packages": [
         {
             "name": "composer/installers",
@@ -2163,10 +2163,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "4.9",
+            "version": "4.9.1",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.9.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.9.1.zip",
                 "reference": null,
                 "shasum": null
             },
