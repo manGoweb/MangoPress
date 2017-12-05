@@ -39,7 +39,7 @@ parameters:
 	s3:
 		enabled: true # disable on dev, enable on production
 		key: "AKIAIZGO5LP3LHAUFQRQ"
-		secret: # https://passwork.me/#/groups/55d5d6b5e391f44902af0d21/root/57271535e391f43a9bca88b8
+		secret: # https://my.1password.com/vaults/all/allitems/lb4q5qjwxfqqaqf5f7jzxr3z7a
 
 mail:
 	host: smtp.mailgun.org
