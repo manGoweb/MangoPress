@@ -25,6 +25,8 @@ buildstamp:
   - public/assets/styles/oldie.css
   - public/assets/styles/print.css
   - public/assets/scripts/index.js
+  - public/assets/styles/wp-admin.sass
+  - public/assets/styles/wp-editor.sass
 dependencies:
   - lt-ie-9
   - normalize-scss
