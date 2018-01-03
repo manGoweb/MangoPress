@@ -4,39 +4,131 @@
 
 	<br>
 
-	<form class="postbox" action="{admin_url('admin-post.php')}" method="POST">
-		<input type="hidden" name="action" value="mango_deploy_trigger">
+	<div class="postbox">
 
 		<div class="inside">
 
 			<h3>Current deploy settings:</h3>
-			{if $isLocalDeploy}
-				<p>Local target to save the payload: <code>{$dataTarget}</code></p>
 
-				<input class="button button-large button-primary" type="submit" value="Save payload now">
-			{else}
-				<p>
-					<label for="revision">Git revision to deploy: </label>
-					<input class="regular-text" type="text" name="revision" value="{$revision}" placeholder="Git revision to deploy">
-				</p>
-				<p>
-					<label for="subfolder">Folder to deploy into: </label>
-					<input class="regular-text" type="text" name="subfolder" value="{$subfolder}" placeholder="Folder to deploy into">
-				</p>
-
-				<input class="button button-large button-primary" type="submit" value="Trigger deploy now">
+			{php global $sitepress}
+			{if $sitepress}
+				<select id="mango_page_deploy_lang" name="deployLang">
+					<option value="">all languages</option>
+					{foreach $sitepress->get_active_languages() as $code => $lang}
+						<option value="{$code}">only {$code}</option>
+					{/foreach}
+				</select>
 			{/if}
 
+			<p n:if="$isLocalDeploy">Local target to save the payload: <code>{$dataTarget}</code></p>
+			<p n:if="!$isLocalDeploy"><strong>Deploy target: </strong>{$bucket}</p>
+
+			<button n:if="$isLocalDeploy" class="button button-large button-primary" id="mango_page_trigger_deploy">Save payload now</button>
+			<button n:if="!$isLocalDeploy" class="button button-large button-primary" id="mango_page_trigger_deploy">Trigger deploy now</button>
+			<button n:if="!$isLocalDeploy" class="button button-large button-primary" id="mango_page_trigger_templates_deploy">Trigger templates deploy now</button>
+
+			<pre id="mango_page_deploy_status"></pre>
+
+			<script n:syntax="double">
+				$ = jQuery
+
+				$(document.getElementById('mango_page_trigger_deploy')).on('click', function () {
+					var langEl = document.getElementById('mango_page_deploy_lang')
+					var lang = langEl ? langEl.value : null
+					$.post(ajaxurl, {action: 'mango_deploy_trigger', deployLang: lang}, function (data) {
+						document.getElementById('mango_page_deploy_status').textContent += JSON.stringify(data, null, 2)
+						console.log(data)
+						if(data.deployType === 'remote') {
+							sessionStorage.setItem('mango_depoy_buildId', data.id)
+						}
+					})
+				})
+
+				$(document.getElementById('mango_page_trigger_templates_deploy')).on('click', function () {
+					var langEl = document.getElementById('mango_page_deploy_lang')
+					var lang = langEl ? langEl.value : null
+					$.post(ajaxurl, {action: 'mango_deploy_trigger_templates', deployLang: lang}, function (data) {
+						document.getElementById('mango_page_deploy_status').textContent += JSON.stringify(data, null, 2)
+						console.log(data)
+						if(data.deployType === 'remote') {
+							sessionStorage.setItem('mango_depoy_buildId', data.id)
+						}
+					})
+				})
+
+				function checkDeployStatus() {
+					var buildId = sessionStorage.getItem('mango_depoy_buildId')
+					if(buildId) {
+						$.post(ajaxurl, {action: 'mango_deploy_status', buildId: buildId}, function (data) {
+							document.getElementById('mango_page_deploy_status').textContent = JSON.stringify(data, null, 2)
+							if(data.status == "error" || data.status == "success") {
+								sessionStorage.removeItem('mango_depoy_buildId')
+							}
+						}).always(function() {
+							setTimeout(checkDeployStatus, 5000)
+						})
+					} else {
+						setTimeout(checkDeployStatus, 5000)
+					}
+				}
+
+				checkDeployStatus()
+			</script>
 
 		</div>
 
-	</form>
+	</div>
 
-	<h3>Dataset preview:</h3>
+	<div class="postbox">
+		<div class="inside">
+			<h3>Autodeploy on page publish options:</h3>
+			<p><label><input type="checkbox" id="mango_page_autodeploy_option" {if Mangoweb\Builder\getAutodeployOption()}checked="checked"{/if}> Autodeploy</label></p>
+			<button class="button button-large button-primary" id="mango_page_autodeploy_save">Save</button> <span id="mango_page_autodeploy_msg" style="display:inline-block;padding:6px 10px 2px"></span>
+			<script n:syntax=off>
+				$ = jQuery
 
-	<pre>{$preview}</pre>
+				jQuery('#mango_page_autodeploy_save').on('click', function () {
+					var autodeploy = document.getElementById('mango_page_autodeploy_option').checked
+					document.getElementById('mango_page_autodeploy_msg').textContent = ''
+					document.getElementById('mango_page_autodeploy_msg').textContent = '...'
+					$.post(ajaxurl, {action: 'mango_deploy_autodeploy_set', enable: autodeploy}, function () {
+						document.getElementById('mango_page_autodeploy_msg').textContent = 'Saved!'
+						setTimeout(function () {
+							document.getElementById('mango_page_autodeploy_msg').textContent = ''
+						}, 5000)
+					})
+				})
+			</script>
+		</div>
+	</div>
 
 
+	<div class="postbox">
+		<div class="inside">
+			<h3>Dataset</h3>
+
+			<a class="button button-large button-primary" href="#" onclick="toggleVisible(document.getElementById('hidden'))">Toggle preview</a>
+			<a href="#" class="clipboard button button-large button-primary" data-clipboard-text="{$preview}">Copy to clipboard</a>
+
+			<div id="hidden" style="display: none;">
+				<pre id="code" style="font-size:11px; line-height: 1.3;">{$preview}</pre>
+			</div>
+
+
+			<div class="clear"></div>
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+			<script>
+				new Clipboard('.clipboard');
+
+				var toggleVisible = function(item){
+					if (item.style.display === 'none'){
+						return item.style.display = 'block';
+					}else{
+						return item.style.display = 'none';
+					}
+				};
+			</script>
+		</div>
+	</div>
 </div>
-
-<div class="clear"></div>
