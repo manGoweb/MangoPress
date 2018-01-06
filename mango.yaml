@@ -30,7 +30,7 @@ buildstamp:
 dependencies:
   - lt-ie-9
   - normalize-scss
-  - bourbon
+  - bourbon@4
   - jquery
 watch:
   - theme/**/*.{latte,php}
