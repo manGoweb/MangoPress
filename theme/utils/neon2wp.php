@@ -74,7 +74,7 @@ function registerMetaFields($prefix, $register, $localizedSettings) {
 			}
 			unset($data['templates']);
 			if(!empty($data['settings_pages'])) {
-				$setting_pagess_data = $data;
+				$setting_pages_data = $data;
 				if(isset($setting_pages_data['templates'])) {
 					unset($setting_pages_data['templates']);
 				}
@@ -84,15 +84,17 @@ function registerMetaFields($prefix, $register, $localizedSettings) {
 				$regular_data = $data;
 				unset($regular_data['settings_pages']);
 				if (!empty($_GET['page']) && in_array($_GET['page'], $localizedSettings)) {
-					$setting_pagess_data['fields'] = languageMetaFieldsPostfix($setting_pagess_data['fields']);
-					$setting_pagess_data['fields']['postfix'] = [
+					$setting_pages_data['fields'] = languageMetaFieldsPostfix($setting_pages_data['fields']);
+					$setting_pages_data['fields']['postfix'] = [
 						'id' => 'postfix-format',
 						'type' => 'hidden',
 						'std' => getLanguagePostfixFormat(),
 					];
 				}
-				$meta_boxes[] = $setting_pagess_data;
-				$meta_boxes[] = $regular_data;
+				$meta_boxes[] = $setting_pages_data;
+				if(isset($regular_data["post_types"]) || isset($regular_data["templates"])) {
+					$meta_boxes[] = $regular_data;
+				}
 			} else {
 				$meta_boxes[] = $data;
 			}
