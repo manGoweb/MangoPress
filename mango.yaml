@@ -32,7 +32,7 @@ buildstamp:
   - public/assets/scripts/wp-admin.js
   - public/assets/sprites/shapes.svg
 dependencies:
-  - bourbon
+  - bourbon@4.x
   - normalize-scss
   - jquery
   - lodash-es
