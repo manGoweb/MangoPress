@@ -3,6 +3,8 @@ import React from "react"
 
 import { map, pickBy, merge } from "lodash-es"
 
+console.log(React)
+
 class Tr extends React.Component {
 
 	clearClick = e => {
@@ -90,7 +92,7 @@ class Tr extends React.Component {
 	}
 }
 
-class PageRolesMetabox extends Component {
+class PageRolesMetabox extends React.Component {
 	state = {
 		roles: {},
 	}

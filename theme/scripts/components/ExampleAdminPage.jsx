@@ -1,7 +1,7 @@
 import createReactComponent from "../utils/createReactComponent"
-import React, { Component } from "react"
+import React from "react"
 
-import { map, pickBy, merge } from "lodash"
+import { map, pickBy, merge } from "lodash-es"
 
 const styleWorkarounds = options => {
 	let rules = []
@@ -13,7 +13,7 @@ const styleWorkarounds = options => {
 	return <style>{rules.join(" ")}</style>
 }
 
-class Tr extends Component {
+class Tr extends React.Component {
 	clearClick = e => {
 		this.props.onChange({ [this.props.name]: null })
 	}
@@ -83,7 +83,7 @@ class Tr extends Component {
 
 const incrementCount = ({ count }) => ({ count: count + 1 })
 
-class ExampleAdminPage extends Component {
+class ExampleAdminPage extends React.Component {
 	state = {
 		count: 1,
 	}
