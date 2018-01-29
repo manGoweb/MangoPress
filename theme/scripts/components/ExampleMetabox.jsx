@@ -1,9 +1,9 @@
 import createReactComponent from "../utils/createReactComponent"
-import React, { Component } from "react"
+import React from "react"
 
 const incrementCount = ({ count }) => ({ count: count + 1 })
 
-class ExampleMetabox extends Component {
+class ExampleMetabox extends React.Component {
 	state = {
 		count: 1,
 	}
