@@ -1,9 +1,9 @@
 import createReactComponent from "../utils/createReactComponent"
-import React, { Component } from "react"
+import React from "react"
 
-import { map, pickBy, merge } from "lodash"
+import { map, pickBy, merge } from "lodash-es"
 
-class Tr extends Component {
+class Tr extends React.Component {
 
 	clearClick = e => {
 		this.props.onChange({ [this.props.name]: null })

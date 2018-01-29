@@ -35,7 +35,7 @@ dependencies:
   - bourbon
   - normalize-scss
   - jquery
-  - lodash
+  - lodash-es
   - lt-ie-9
   - react
   - react-dom
