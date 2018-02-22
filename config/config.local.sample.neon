@@ -41,6 +41,10 @@ parameters:
 		key: "AKIAIZGO5LP3LHAUFQRQ"
 		secret: # https://my.1password.com/vaults/all/allitems/lb4q5qjwxfqqaqf5f7jzxr3z7a
 
+	imgproxy:
+		key: "0aa4c34cb6636fb8d4deacd150b1c7b4"
+		salt: "20030cf6ef8fc43168d77a7c05f4cd31"
+
 mail:
 	host: smtp.mailgun.org
 	secure: tls
