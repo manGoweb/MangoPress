@@ -11,6 +11,11 @@ Author URI: https://www.mangoweb.cz
 add_action( 'plugins_loaded', 'imgproxy_init' );
 
 function imgproxy_init() {
+	$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
+	if (in_array($action, ['imgedit-preview', 'image-editor'], TRUE)) {
+		return;
+	}
+
 //	add_filter('intermediate_image_sizes_advanced', 'imgproxy_hijack_sizes', 50, 2);
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
 //	add_filter('upload_dir', 'imgproxy_upload_dir');
