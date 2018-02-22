@@ -29,6 +29,10 @@ parameters:
 		basePath: # project/beta
 		bucketPublicUrl: # https://xyz.cloudfront.net/beta
 
+	imgproxy:
+		key: "0aa4c34cb6636fb8d4deacd150b1c7b4"
+		salt: "20030cf6ef8fc43168d77a7c05f4cd31"
+
 mail:
 	host: smtp.mailgun.org
 	secure: tls

@@ -31,6 +31,10 @@ define('NONCE_SALT', $wpParams['NONCE_SALT'] ?? 'put your unique phrase here');
 
 $table_prefix = 'wp_';
 
+$imgproxy = $App->parameters['imgproxy'];
+define('IMGPROXY_KEY', $imgproxy['key']);
+define('IMGPROXY_SALT', $imgproxy['salt']);
+
 if ($s3Params && $s3Params['enabled']) {
 	if (empty($s3Params['secret'])) {
 		die('S3 is enabled, but secret is missing');
