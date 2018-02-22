@@ -47,6 +47,10 @@ define('NONCE_SALT', $wpParams['NONCE_SALT']);
 
 $table_prefix  = 'wp_';
 
+$imgproxy = $params['imgproxy'];
+define('IMGPROXY_KEY', $imgproxy['key']);
+define('IMGPROXY_SALT', $imgproxy['salt']);
+
 $s3 = $params['s3'];
 define('S3_UPLOADS_BUCKET', $s3['bucket']);
 define('S3_UPLOADS_KEY', $s3['key']);

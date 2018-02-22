@@ -14,6 +14,13 @@ require_once ABSPATH . WPINC . '/class-wp-image-editor.php';
 require_once ABSPATH . WPINC . '/class-wp-image-editor-imagick.php';
 
 function imgproxy_init() {
+	if (!defined('IMGPROXY_KEY') || empty(IMGPROXY_KEY)) {
+		throw new \Exception('IMGPROXY_KEY undefined');
+	}
+	if (!defined('IMGPROXY_SALT') || empty(IMGPROXY_SALT)) {
+		throw new \Exception('IMGPROXY_SALT undefined');
+	}
+
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
 	add_filter('image_downsize', 'imgproxy_image_downsize', 99, 3 );
 }
@@ -34,13 +41,11 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 }
 
 function improxy_url($url, $width, $height) {
-	$key = '0aa4c34cb6636fb8d4deacd150b1c7b4';
-	$salt = '20030cf6ef8fc43168d77a7c05f4cd31';
-	$keyBin = pack("H*" , $key);
+	$keyBin = pack("H*" , IMGPROXY_KEY);
 	if(empty($keyBin)) {
 		die('Key expected to be hex-encoded string');
 	}
-	$saltBin = pack("H*" , $salt);
+	$saltBin = pack("H*" , IMGPROXY_SALT);
 	if(empty($saltBin)) {
 		die('Salt expected to be hex-encoded string');
 	}
