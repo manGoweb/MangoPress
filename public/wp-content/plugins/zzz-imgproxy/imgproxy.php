@@ -8,11 +8,6 @@ Version: 1.0
 Author URI: https://www.mangoweb.cz
 */
 
-function flog() {
-	$raw = json_encode(func_get_args());
-	file_put_contents('/dev/ttys008', date('Y-m-d H:i:s') . ": $raw\n", FILE_APPEND);
-}
-
 add_action( 'plugins_loaded', 'imgproxy_init' );
 
 require_once ABSPATH . WPINC . '/class-wp-image-editor.php';
@@ -63,7 +58,9 @@ function imgproxy_noop_editor($editors) {
 	return ['WP_Image_Editor_Noop'];
 }
 
-// trigger function autoload
+// Dynamically inherit from S3 Editor (if defined) or WP Editor.
+// Prefix zzz- in this plugin name ensures the autoload was setup,
+// reflection triggers the autoload.
 try {
 	new ReflectionClass('S3_Uploads_Image_Editor_Imagick');
 } catch (Throwable $_) {}
@@ -75,21 +72,10 @@ if (class_exists('S3_Uploads_Image_Editor_Imagick')) {
 
 class WP_Image_Editor_Noop extends Imgproxy_Parent
 {
-
-	public function save($destfilename = null, $mime_type = null)
-	{
-		flog(__FUNCTION__);
-		$x = parent::save($destfilename, $mime_type);
-		flog($x);
-		return $x;
-	}
-
-
 	// Dummy method that instead of resizing only returns
 	// the metadata, which is later send to imgproxy.
 	public function multi_resize($sizes)
 	{
-		flog(__FUNCTION__, xdebug_get_stack_depth());
 		$return = [];
 		foreach ($sizes as $size => $info) {
 			$return[$size] = [
