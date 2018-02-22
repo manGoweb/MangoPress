@@ -18,5 +18,8 @@
     "scripts": {
       "post-update-cmd": ["echo Warning: Deleting all .git dirs under vendor ", "rm -rf vendor/**/**/.git"],
       "post-install-cmd": ["echo Warning: Deleting all .git dirs under vendor", "rm -rf vendor/**/**/.git"]
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
     }
 }
