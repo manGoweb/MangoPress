@@ -36,6 +36,9 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 
 	// get original url
 	$url = wp_get_attachment_image_url($id, 'full', false);
+	if ($url === false) {
+		return false;
+	}
 
 	return [improxy_url($url, $width, $height), $width, $height, true];
 }
