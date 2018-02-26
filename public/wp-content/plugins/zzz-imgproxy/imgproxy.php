@@ -31,8 +31,13 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 	}
 
 	// get dimensions for requested size
-	$width = get_option( "${size}_size_w" );
-	$height = get_option( "${size}_size_h" );
+	if (is_array($size)) {
+		$width = $size[0];
+		$height = $size[0];
+	} else {
+		$width = get_option("${size}_size_w");
+		$height = get_option("${size}_size_h");
+	}
 
 	// get original url
 	$url = wp_get_attachment_image_url($id, 'full', false);
