@@ -4,7 +4,7 @@
 Plugin Name: zzz-imgproxy
 Description: Dynamic image resizing
 Author: manGoweb / Mikulas Dite
-Version: 1.0
+Version: 1.2
 Author URI: https://www.mangoweb.cz
 */
 
@@ -26,6 +26,8 @@ function imgproxy_init() {
 }
 
 function imgproxy_image_downsize($param, $id, $size = 'medium') {
+	global $_wp_additional_image_sizes;
+
 	if ($size === 'full') {
 		return false;
 	}
@@ -33,10 +35,19 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 	// get dimensions for requested size
 	if (is_array($size)) {
 		$width = $size[0];
-		$height = $size[0];
+		$height = $size[1] ?: $size[0];
+		$crop = $size[2] ?: false;
+
+	} elseif (!empty($_wp_additional_image_sizes[$size])) {
+		$sizeDef = $_wp_additional_image_sizes[$size];
+		$width = $sizeDef['width'];
+		$height = $sizeDef['height'];
+		$crop = $sizeDef['crop'] ?: false;
+
 	} else {
 		$width = get_option("${size}_size_w");
 		$height = get_option("${size}_size_h");
+		$crop = false;
 	}
 
 	// get original url
@@ -45,10 +56,10 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 		return false;
 	}
 
-	return [improxy_url($url, $width, $height), $width, $height, true];
+	return [improxy_url($url, $width, $height, $crop), $width, $height, true];
 }
 
-function improxy_url($url, $width, $height) {
+function improxy_url($url, $width, $height, $crop) {
 	$keyBin = pack("H*" , IMGPROXY_KEY);
 	if(empty($keyBin)) {
 		die('Key expected to be hex-encoded string');
@@ -57,7 +68,7 @@ function improxy_url($url, $width, $height) {
 	if(empty($saltBin)) {
 		die('Salt expected to be hex-encoded string');
 	}
-	$resize = 'fill';
+	$resize = $crop ? 'fill' : 'fit';
 	$gravity = 'no';
 	$enlarge = 1;
 	$extension = 'jpg';
