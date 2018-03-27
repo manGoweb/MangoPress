@@ -24,6 +24,7 @@ function imgproxy_init() {
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
 	add_filter('image_downsize', 'imgproxy_image_downsize', 99, 3 );
 	add_filter('wp_calculate_image_srcset_meta', 'imgproxy_srcset_meta', 50, 3 );
+	add_filter('wp_calculate_image_srcset', 'imgproxy_srcset', 50, 3 );
 }
 
 /**
@@ -35,6 +36,20 @@ function imgproxy_init() {
 function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_id = '' ) {
 	$image_meta['file'] = '.org';
 	return $image_meta;
+}
+
+function imgproxy_srcset($sources) {
+	var_dump($sources);
+	foreach ($sources as &$source) {
+		$parts = preg_split('~http://files3://~', $source['url'], 2);
+		if (count($parts) <= 1) {
+			continue;
+		}
+		$host = preg_split('~(?<=[^:/])/~', $parts[0], 2)[0];
+		$s3url = "$host/$parts[1]";
+		$source['url'] = improxy_url($s3url, $source['value'], $source['value'], TRUE);
+	}
+	return $sources;
 }
 
 function imgproxy_image_downsize($param, $id, $size = 'medium') {
