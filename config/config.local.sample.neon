@@ -26,6 +26,8 @@ parameters:
 		enabled: off # allow on beta / prod
 		key: "AKIAIZGO5LP3LHAUFQRQ"
 		secret: # 1Password "MangoPress S3 uploads auth"
+		basePath: # project/beta
+		bucketPublicUrl: # https://xyz.cloudfront.net/beta
 
 mail:
 	host: smtp.mailgun.org
