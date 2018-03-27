@@ -37,6 +37,7 @@ if ($s3Params && $s3Params['enabled']) {
 	}
 
 	define('S3_UPLOADS_BUCKET', $s3Params['bucket'] ?? null);
+	define('S3_UPLOADS_BUCKET_URL', $s3Params['bucketPublicUrl'] ?? null);
 	define('S3_UPLOADS_KEY', $s3Params['key'] ?? null);
 	define('S3_UPLOADS_SECRET', $s3Params['secret'] ?? null);
 	define('S3_UPLOADS_REGION', $s3Params['region'] ?? null);
