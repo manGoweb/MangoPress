@@ -23,6 +23,18 @@ function imgproxy_init() {
 
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
 	add_filter('image_downsize', 'imgproxy_image_downsize', 99, 3 );
+	add_filter('wp_calculate_image_srcset_meta', 'imgproxy_srcset_meta', 50, 3 );
+}
+
+/**
+ * Fix for media.php:1135 wp_calculate_image_srcset,
+ * which matches resized url against original url. It must be a substring
+ * that is in both urls, length >= 4 and not be a prefix match.
+ * Current fix assumes both images are on .org domain.
+ */
+function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_id = '' ) {
+	$image_meta['file'] = '.org';
+	return $image_meta;
 }
 
 function imgproxy_image_downsize($param, $id, $size = 'medium') {
