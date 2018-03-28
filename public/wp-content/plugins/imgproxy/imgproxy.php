@@ -4,7 +4,7 @@
 Plugin Name: imgproxy
 Description: Dynamic image resizing
 Author: manGoweb / Mikulas Dite
-Version: 1.6
+Version: 1.7
 Author URI: https://www.mangoweb.cz
 */
 
@@ -28,6 +28,8 @@ function imgproxy_init() {
 		throw new \Exception('IMGPROXY_SALT expected to be hex-encoded');
 	}
 	define('IMGPROXY_SALT_BIN', $saltBin);
+
+	define('IMGPROXY_IN_SCALE', 100000);
 
 	imgproxy_define_class();
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
@@ -93,7 +95,7 @@ function imgproxy_srcset($sources) {
 		}
 		$host = preg_split('~(?<=[^:/])/~', $parts[0], 2)[0];
 		$s3url = "$host/$parts[1]";
-		$source['url'] = improxy_url($s3url, $source['value'], $source['value'], TRUE);
+		$source['url'] = improxy_url($s3url, $source['value'], IMGPROXY_IN_SCALE, FALSE);
 	}
 	return $sources;
 }
@@ -108,18 +110,18 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 	// get dimensions for requested size
 	if (is_array($size)) {
 		$width = $size[0];
-		$height = $size[1] ?: $size[0];
+		$height = $size[1] ?: IMGPROXY_IN_SCALE;
 		$crop = $size[2] ?: false;
 
 	} elseif (!empty($_wp_additional_image_sizes[$size])) {
 		$sizeDef = $_wp_additional_image_sizes[$size];
 		$width = $sizeDef['width'];
-		$height = $sizeDef['height'];
+		$height = $sizeDef['height'] ?: IMGPROXY_IN_SCALE;
 		$crop = $sizeDef['crop'] ?: false;
 
 	} else {
 		$width = get_option("${size}_size_w");
-		$height = get_option("${size}_size_h");
+		$height = get_option("${size}_size_h") ?: IMGPROXY_IN_SCALE;
 		$crop = false;
 	}
 
@@ -129,7 +131,7 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 		return false;
 	}
 
-	return [improxy_url($url, $width, $height, $crop), $width, $height, true];
+	return [improxy_url($url, $width, $height, $crop), $width, $height, $crop];
 }
 
 function improxy_url($url, $width, $height, $crop) {
