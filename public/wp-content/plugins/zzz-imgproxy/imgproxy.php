@@ -4,7 +4,7 @@
 Plugin Name: zzz-imgproxy
 Description: Dynamic image resizing
 Author: manGoweb / Mikulas Dite
-Version: 1.2
+Version: 1.3
 Author URI: https://www.mangoweb.cz
 */
 
@@ -39,7 +39,6 @@ function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_
 }
 
 function imgproxy_srcset($sources) {
-	var_dump($sources);
 	foreach ($sources as &$source) {
 		$parts = preg_split('~http://files3://~', $source['url'], 2);
 		if (count($parts) <= 1) {
