@@ -4,7 +4,7 @@
 Plugin Name: imgproxy
 Description: Dynamic image resizing
 Author: manGoweb / Mikulas Dite
-Version: 1.5
+Version: 1.6
 Author URI: https://www.mangoweb.cz
 */
 
@@ -17,6 +17,17 @@ function imgproxy_init() {
 	if (!defined('IMGPROXY_SALT') || empty(IMGPROXY_SALT)) {
 		throw new \Exception('IMGPROXY_SALT undefined');
 	}
+
+	$keyBin = pack("H*" , IMGPROXY_KEY);
+	if (empty($keyBin)) {
+		throw new \Exception('IMGPROXY_KEY expected to be hex-encoded');
+	}
+	define('IMGPROXY_KEY_BIN', $keyBin);
+	$saltBin = pack("H*" , IMGPROXY_SALT);
+	if (empty($saltBin)) {
+		throw new \Exception('IMGPROXY_SALT expected to be hex-encoded');
+	}
+	define('IMGPROXY_SALT_BIN', $saltBin);
 
 	imgproxy_define_class();
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
@@ -122,21 +133,13 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 }
 
 function improxy_url($url, $width, $height, $crop) {
-	$keyBin = pack("H*" , IMGPROXY_KEY);
-	if(empty($keyBin)) {
-		die('Key expected to be hex-encoded string');
-	}
-	$saltBin = pack("H*" , IMGPROXY_SALT);
-	if(empty($saltBin)) {
-		die('Salt expected to be hex-encoded string');
-	}
 	$resize = $crop ? 'fill' : 'fit';
 	$gravity = 'no';
 	$enlarge = 1;
 	$extension = 'jpg';
 	$encodedUrl = rtrim(strtr(base64_encode($url), '+/', '-_'), '=');
 	$path = sprintf("/%s/%d/%d/%s/%d/%s.%s", $resize, $width, $height, $gravity, $enlarge, $encodedUrl, $extension);
-	$signature = rtrim(strtr(base64_encode(hash_hmac('sha256', $saltBin.$path, $keyBin, true)), '+/', '-_'), '=');
+	$signature = rtrim(strtr(base64_encode(hash_hmac('sha256', IMGPROXY_SALT_BIN . $path, IMGPROXY_KEY_BIN, true)), '+/', '-_'), '=');
 	return 'https://imgproxy.mangoweb.org' . sprintf("/%s%s", $signature, $path);
 }
 
