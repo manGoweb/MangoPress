@@ -4,14 +4,11 @@
 Plugin Name: zzz-imgproxy
 Description: Dynamic image resizing
 Author: manGoweb / Mikulas Dite
-Version: 1.3
+Version: 1.4
 Author URI: https://www.mangoweb.cz
 */
 
 add_action( 'plugins_loaded', 'imgproxy_init' );
-
-require_once ABSPATH . WPINC . '/class-wp-image-editor.php';
-require_once ABSPATH . WPINC . '/class-wp-image-editor-imagick.php';
 
 function imgproxy_init() {
 	if (!defined('IMGPROXY_KEY') || empty(IMGPROXY_KEY)) {
@@ -21,10 +18,49 @@ function imgproxy_init() {
 		throw new \Exception('IMGPROXY_SALT undefined');
 	}
 
+	imgproxy_define_class();
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
 	add_filter('image_downsize', 'imgproxy_image_downsize', 99, 3 );
 	add_filter('wp_calculate_image_srcset_meta', 'imgproxy_srcset_meta', 50, 3 );
 	add_filter('wp_calculate_image_srcset', 'imgproxy_srcset', 50, 3 );
+}
+
+function imgproxy_define_class() {
+	require_once ABSPATH . WPINC . '/class-wp-image-editor.php';
+	require_once ABSPATH . WPINC . '/class-wp-image-editor-imagick.php';
+
+	// Dynamically inherit from S3 Editor (if defined) or WP Editor.
+  // Prefix zzz- in this plugin name ensures the autoload was setup,
+  // reflection triggers the autoload.
+	try {
+		new ReflectionClass('S3_Uploads_Image_Editor_Imagick');
+	} catch (Throwable $_) {}
+	if (class_exists('S3_Uploads_Image_Editor_Imagick')) {
+		class Imgproxy_Parent extends S3_Uploads_Image_Editor_Imagick {}
+	} else {
+		class Imgproxy_Parent extends WP_Image_Editor_Imagick {}
+	}
+
+	class WP_Image_Editor_Noop extends Imgproxy_Parent
+	{
+		// Dummy method that instead of resizing only returns
+		// the metadata, which is later send to imgproxy.
+		public function multi_resize($sizes)
+		{
+			$return = [];
+			foreach ($sizes as $size => $info) {
+				$return[$size] = [
+					'path' => 'http://path' . $this->file,
+					'file' => 'http://file' . $this->file,
+					'width' => $info['width'],
+					'height' => $info['height'],
+					'mime-type' => $this->mime_type,
+				];
+			}
+			return $return;
+		}
+
+	}
 }
 
 /**
@@ -106,37 +142,4 @@ function improxy_url($url, $width, $height, $crop) {
 
 function imgproxy_noop_editor($editors) {
 	return ['WP_Image_Editor_Noop'];
-}
-
-// Dynamically inherit from S3 Editor (if defined) or WP Editor.
-// Prefix zzz- in this plugin name ensures the autoload was setup,
-// reflection triggers the autoload.
-try {
-	new ReflectionClass('S3_Uploads_Image_Editor_Imagick');
-} catch (Throwable $_) {}
-if (class_exists('S3_Uploads_Image_Editor_Imagick')) {
-	class Imgproxy_Parent extends S3_Uploads_Image_Editor_Imagick {}
-} else {
-	class Imgproxy_Parent extends WP_Image_Editor_Imagick {}
-}
-
-class WP_Image_Editor_Noop extends Imgproxy_Parent
-{
-	// Dummy method that instead of resizing only returns
-	// the metadata, which is later send to imgproxy.
-	public function multi_resize($sizes)
-	{
-		$return = [];
-		foreach ($sizes as $size => $info) {
-			$return[$size] = [
-				'path' => 'http://path' . $this->file,
-				'file' => 'http://file' . $this->file,
-				'width' => $info['width'],
-				'height' => $info['height'],
-				'mime-type' => $this->mime_type,
-			];
-		}
-		return $return;
-	}
-
 }
