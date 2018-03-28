@@ -4,7 +4,7 @@
 Plugin Name: imgproxy
 Description: Dynamic image resizing
 Author: manGoweb / Mikulas Dite
-Version: 1.7
+Version: 1.8
 Author URI: https://www.mangoweb.cz
 */
 
@@ -133,6 +133,10 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 		$width = get_option("${size}_size_w");
 		$height = get_option("${size}_size_h") ?: IMGPROXY_IN_SCALE;
 		$crop = false;
+	}
+
+	if ($width === 0 || $height === 0) {
+		return false;
 	}
 
 	// get original url
