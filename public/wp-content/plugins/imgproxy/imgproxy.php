@@ -33,7 +33,7 @@ function imgproxy_init() {
 
 	imgproxy_define_class();
 	add_filter('wp_image_editors', 'imgproxy_noop_editor', 50, 1);
-	add_filter('image_downsize', 'imgproxy_image_downsize', 99, 3 );
+	add_filter('image_downsize', 'imgproxy_image_downsize', 99, 3 ); // must run after s3 filters
 	add_filter('wp_calculate_image_srcset_meta', 'imgproxy_srcset_meta', 50, 3 );
 	add_filter('wp_calculate_image_srcset', 'imgproxy_srcset', 50, 3 );
 }
@@ -87,14 +87,23 @@ function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_
 	return $image_meta;
 }
 
+/**
+ * Splits botched url in format "<httpS3DirOnly>http://files3://<s3domain><s3path>",
+ * and builds s3url as
+ *  scheme and domain from <httpS3DirOnly>
+ *  path and filename from <s3path>
+ * and finally creates imgproxy url
+ */
 function imgproxy_srcset($sources) {
 	foreach ($sources as &$source) {
 		$parts = preg_split('~http://files3://~', $source['url'], 2);
 		if (count($parts) <= 1) {
 			continue;
 		}
+		// split to <scheme://domain> and <path>
 		$host = preg_split('~(?<=[^:/])/~', $parts[0], 2)[0];
 		$s3url = "$host/$parts[1]";
+		// srcset only defines width, keep the second dimension in scale
 		$source['url'] = imgproxy_url($s3url, $source['value'], IMGPROXY_IN_SCALE, FALSE);
 	}
 	return $sources;
@@ -103,6 +112,7 @@ function imgproxy_srcset($sources) {
 function imgproxy_image_downsize($param, $id, $size = 'medium') {
 	global $_wp_additional_image_sizes;
 
+	// original image does not need resizing, prevent infinite nesting
 	if ($size === 'full') {
 		return false;
 	}
