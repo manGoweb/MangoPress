@@ -95,7 +95,7 @@ function imgproxy_srcset($sources) {
 		}
 		$host = preg_split('~(?<=[^:/])/~', $parts[0], 2)[0];
 		$s3url = "$host/$parts[1]";
-		$source['url'] = improxy_url($s3url, $source['value'], IMGPROXY_IN_SCALE, FALSE);
+		$source['url'] = imgproxy_url($s3url, $source['value'], IMGPROXY_IN_SCALE, FALSE);
 	}
 	return $sources;
 }
@@ -131,10 +131,10 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 		return false;
 	}
 
-	return [improxy_url($url, $width, $height, $crop), $width, $height, $crop];
+	return [imgproxy_url($url, $width, $height, $crop), $width, $height, $crop];
 }
 
-function improxy_url($url, $width, $height, $crop) {
+function imgproxy_url($url, $width, $height, $crop) {
 	$resize = $crop ? 'fill' : 'fit';
 	$gravity = 'no';
 	$enlarge = 1;
