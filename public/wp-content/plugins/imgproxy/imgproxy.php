@@ -1,10 +1,10 @@
 <?php
 
 /*
-Plugin Name: zzz-imgproxy
+Plugin Name: imgproxy
 Description: Dynamic image resizing
 Author: manGoweb / Mikulas Dite
-Version: 1.4
+Version: 1.5
 Author URI: https://www.mangoweb.cz
 */
 
