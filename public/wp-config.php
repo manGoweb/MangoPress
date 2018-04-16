@@ -59,18 +59,11 @@ define('S3_UPLOADS_REGION', $s3['region']);
 if (!$s3['enabled']) {
 	define('S3_UPLOADS_USE_LOCAL', TRUE);
 	define('S3_UPLOADS_DISABLE_REPLACE_UPLOAD_URL', TRUE);
+	define('S3_UPLOADS_PATH_PREFIX', '/' . $s3['basePath']);
 }
 
-if (isset($s3['basePath'])) {
-	define('S3_UPLOADS_PATH_PREFIX', '/' . $s3['basePath']);
-} elseif (Mangoweb\isSharedHost()) {
-	define('PROJECT_ROOT', dirname(__DIR__, 3));
-
-	// disable installing plugins and editing files inline
-	// all changes must be versioned and deployed instead
+if ($params['stage'] != 'local')) {
 	define('DISALLOW_FILE_MODS', true);
-
-	define('S3_UPLOADS_PATH_PREFIX', '/' . Mangoweb\getReplicationGroupName() . '/' . basename(PROJECT_ROOT));
 }
 
 define('WP_DEBUG', !Tracy\Debugger::$productionMode);

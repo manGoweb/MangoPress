@@ -8,6 +8,7 @@
 parameters:
 	mango: off
 	fromEmail: 'info@example.com'
+	stage: # prod/beta/local
 
 	# Universal Analytics ID
 	UA: 'UA-XXXXXXX-X'
@@ -38,6 +39,7 @@ parameters:
 
 	s3:
 		enabled: true # disable on dev, enable on production
+		basePath: # shared-beta/domain.mgw.cz
 		key: "AKIAIZGO5LP3LHAUFQRQ"
 		secret: # https://my.1password.com/vaults/all/allitems/lb4q5qjwxfqqaqf5f7jzxr3z7a
 
