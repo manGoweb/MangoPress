@@ -82,6 +82,18 @@ function imgproxy_define_class() {
  */
 function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_id = '' ) {
 	$image_meta['file'] = '.org';
+
+	// Filter out obsolete image sizes
+	if(isset($image_meta['sizes'])) {
+		$filteredSizes = [];
+		foreach ($image_meta['sizes'] as $key => $value) {
+			if(!preg_match('/_old_/i', $key)) {
+				$filteredSizes[$key] = $value;
+			}
+		}
+		$image_meta['sizes'] = $filteredSizes;
+	}
+
 	return $image_meta;
 }
 
@@ -93,9 +105,13 @@ function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_
  * and finally creates imgproxy url
  */
 function imgproxy_srcset($sources) {
-	foreach ($sources as &$source) {
+	foreach ($sources as $key => &$source) {
 		$parts = preg_split('~http://files3://~', $source['url'], 2);
 		if (count($parts) <= 1) {
+			// Filter out invalid file URLs ending with .org (inserted in imgproxy_srcset_meta)
+			if (preg_match('/\.org$/i', $source['url'])) {
+				$source = null;
+			}
 			continue;
 		}
 		// split to <scheme://domain> and <path>
@@ -104,7 +120,8 @@ function imgproxy_srcset($sources) {
 		// srcset only defines width, keep the second dimension in scale
 		$source['url'] = imgproxy_url($s3url, $source['value'], IMGPROXY_IN_SCALE, FALSE);
 	}
-	return $sources;
+
+	return array_filter($sources);
 }
 
 function imgproxy_image_downsize($param, $id, $size = 'medium') {
@@ -118,8 +135,8 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 	// get dimensions for requested size
 	if (is_array($size)) {
 		$width = $size[0];
-		$height = $size[1] ?: IMGPROXY_IN_SCALE;
-		$crop = $size[2] ?: false;
+		$height = isset($size[1]) ? $size[1] : IMGPROXY_IN_SCALE;
+		$crop = isset($size[2]) ? $size[2] : false;
 
 	} elseif (!empty($_wp_additional_image_sizes[$size])) {
 		$sizeDef = $_wp_additional_image_sizes[$size];
@@ -133,12 +150,16 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 		$crop = false;
 	}
 
+	$width = intval($width);
+	$height = intval($height);
+
 	if ($width === 0 || $height === 0) {
 		return false;
 	}
 
 	// get original url
 	$url = wp_get_attachment_image_url($id, 'full', false);
+
 	if ($url === false) {
 		return false;
 	}
