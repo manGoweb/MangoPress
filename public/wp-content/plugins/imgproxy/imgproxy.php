@@ -105,7 +105,7 @@ function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_
  * and finally creates imgproxy url
  */
 function imgproxy_srcset($sources) {
-	foreach ($sources as $key => &$source) {
+	foreach ($sources as &$source) {
 		$parts = preg_split('~http://files3://~', $source['url'], 2);
 		if (count($parts) <= 1) {
 			// Filter out invalid file URLs ending with .org (inserted in imgproxy_srcset_meta)
@@ -149,9 +149,6 @@ function imgproxy_image_downsize($param, $id, $size = 'medium') {
 		$height = get_option("${size}_size_h") ?: IMGPROXY_IN_SCALE;
 		$crop = false;
 	}
-
-	$width = intval($width);
-	$height = intval($height);
 
 	if ($width === 0 || $height === 0) {
 		return false;
