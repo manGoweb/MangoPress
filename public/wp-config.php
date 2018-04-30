@@ -62,7 +62,7 @@ if (!$s3['enabled']) {
 	define('S3_UPLOADS_PATH_PREFIX', '/' . $s3['basePath']);
 }
 
-if ($params['stage'] !== 'local')) {
+if ($params['stage'] !== 'local') {
 	define('DISALLOW_FILE_MODS', true);
 }
 
