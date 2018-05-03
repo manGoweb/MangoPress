@@ -490,11 +490,15 @@ class MetaFieldsNeonDef extends NeonDef
 
 		$result['register'] = [];
 
+		$mixins = $data['mixins'] ?? [];
+
+		$mid = 1;
 		foreach ($register as $key => $metabox) {
 			if (!is_array($metabox)) {
 				continue;
 			}
 			$metabox['id'] = $metabox['id'] ?? $key;
+			$metabox['title'] = $metabox['title'] ?? 'Untitled metabox #' . $mid++;
 
 			if (is_int($metabox['id'])) {
 				$metabox['id'] = 'untitled_metabox_'.$metabox['id'];
@@ -507,8 +511,16 @@ class MetaFieldsNeonDef extends NeonDef
 				}
 			}
 
+			if(!empty($metabox['mixin'])) {
+				if(!empty($mixins[$metabox['mixin']])) {
+					$metabox = array_merge($mixins[$metabox['mixin']], $metabox);
+				} else {
+					throw new \Exception('Missing NEON mixin "'.$metabox['mixin'].'" in '.$metabox['id']);
+				}
+			}
+
 			$metabox['fields'] = $metabox['fields'] ?? [];
-			$metabox['fields'] = $this->sanitizeFields($metabox['fields'], []);
+			$metabox['fields'] = $this->sanitizeFields($metabox['fields'], [], $mixins);
 
 			$result['register'][] = $metabox;
 		}
@@ -526,16 +538,38 @@ class MetaFieldsNeonDef extends NeonDef
 		return $template_name;
 	}
 
-	public function sanitizeFields(array $fields, array $path)
+	public function sanitizeFields(array $fields, array $path, array $mixins)
 	{
 		$result = [];
+
+		if(!empty($fields['mixin'])) {
+			if(!empty($mixins[$fields['mixin']])) {
+				$fields = array_merge($mixins[$fields['mixin']], $fields);
+				unset($fields['mixin']);
+			} else {
+				throw new \Exception('Missing NEON mixin "'.$fields['mixin'].'" in fields.');
+			}
+		}
 
 		foreach ($fields as $key => $val) {
 			if (is_string($val)) {
 				$val = ['name' => $val, 'type' => 'text'];
 			}
 
+			if (!is_array($val)) {
+				throw new \Exception('Invalid field definition for field ' . $key);
+			}
+
 			$val['id'] = $val['id'] ?? $key;
+
+			if(!empty($val['mixin'])) {
+				if(!empty($mixins[$val['mixin']])) {
+					$val = array_merge($mixins[$val['mixin']], $val);
+					unset($val['mixin']);
+				} else {
+					throw new \Exception('Missing NEON mixin "'.$val['mixin'].'" in fields.'.$val['id']);
+				}
+			}
 
 			if (isset($val['type'])) {
 				if ('repeater' === $val['type']) {
@@ -552,7 +586,7 @@ class MetaFieldsNeonDef extends NeonDef
 			$nestPath = $path;
 			if (isset($val['fields'])) {
 				$nestPath[] = $val['id'];
-				$val['fields'] = $this->sanitizeFields($val['fields'], $nestPath);
+				$val['fields'] = $this->sanitizeFields($val['fields'], $nestPath, $mixins);
 			}
 
 			if (isset($val['max'])) {
