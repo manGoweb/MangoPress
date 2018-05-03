@@ -8,9 +8,9 @@ styles:
   - theme/styles/wp-admin.sass
   - theme/styles/wp-editor.sass
 scripts:
-  - theme/scripts/index.es6
-  - theme/scripts/styleguide.es6
-  - theme/scripts/wp-admin.es6
+  - theme/scripts/index.ts
+  - theme/scripts/styleguide.ts
+  - theme/scripts/wp-admin.ts
 images:
   - "theme/images/**/*.{jpg,png,gif}"
 sprites:
@@ -44,4 +44,4 @@ watch:
 hooks:
   init: mango install
 snippet: yes please
-version: ">=0.30.7"
+version: ">=1.8.0"

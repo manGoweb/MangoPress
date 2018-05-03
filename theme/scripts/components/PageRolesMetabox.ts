@@ -3,8 +3,6 @@ import React from "react"
 
 import { map, pickBy, merge } from "lodash-es"
 
-console.log(React)
-
 class Tr extends React.Component {
 
 	clearClick = e => {
