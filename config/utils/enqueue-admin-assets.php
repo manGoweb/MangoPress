@@ -6,7 +6,7 @@ $initTheme[] = function ($dir) {
 
 	add_action('admin_enqueue_scripts', function () {
 		$basePath = WP_SITEURL;
-		add_editor_style(get_home_url().$basePath.'/assets/styles/'.getBuildstamp().'wp-editor.css');
+		add_editor_style($basePath.'/assets/styles/'.getBuildstamp().'wp-editor.css');
 		wp_enqueue_style('mango-styles-admin', $basePath.'/assets/styles/wp-admin.css', null, getBuildstamp());
 		wp_enqueue_script('mango-scripts-admin', $basePath.'/assets/scripts/wp-admin.js', ['jquery'], getBuildstamp(), true);
 	});
