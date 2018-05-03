@@ -9,6 +9,16 @@ use Nette\Neon\Neon;
 use Nette\Utils\Json;
 use Nette\Utils\Strings;
 
+function getCurrentPostId() {
+	$post_id = null;
+	if (isset($_GET['post'])) {
+		$post_id = $_GET['post'];
+	} elseif (isset($_GET['post_ID'])) {
+		$post_id = $_POST['post_ID'];
+	}
+	return $post_id;
+}
+
 function sanitizeIconKey($item, string $key = 'menu_icon')
 {
 	$item[$key] = $item[$key] ?? $item['icon'] ?? null;
@@ -410,6 +420,16 @@ class ThemeNeonDef extends NeonDef
 		$result = $data;
 
 		$result['support'] = $data['support'] ?? $data['supports'] ?? [];
+		$result['hide'] = $data['hide'] ?? [];
+
+		$result['hide']['editor'] = $data['hide']['editor'] ?? [];
+		$result['hide']['thumbnail'] = $data['hide']['thumbnail'] ?? [];
+
+		$result['hide']['editor']['templates'] = $data['hide']['editor']['templates'] ?? $data['hide']['editor']['template'] ?? [];
+		$result['hide']['thumbnail']['templates'] = $data['hide']['thumbnail']['templates'] ?? $data['hide']['thumbnail']['template'] ?? [];
+
+		$result['hide']['editor']['post_types'] = $data['hide']['editor']['post_types'] ?? $data['hide']['editor']['post_type'] ?? [];
+		$result['hide']['thumbnail']['post_types'] = $data['hide']['thumbnail']['post_types'] ?? $data['hide']['thumbnail']['post_type'] ?? [];
 
 		return $result;
 	}
@@ -427,6 +447,24 @@ class ThemeNeonDef extends NeonDef
 			}
 		}
 
+		$post_id = getCurrentPostId();
+		$template_name = $post_id ? str_replace('.php', '', get_post_meta($post_id, '_wp_page_template', true)) : null;
+		$post_type = $post_id ? get_post_type($post_id) : ($_GET['post_type'] ?? 'post');
+
+		add_action('admin_init', function () use ($data, $template_name, $post_type) {
+			foreach ($data['hide'] as $name => $hide) {
+				if ($name == 'editor') {
+					if (in_array($template_name, $hide['templates'], true) || in_array($post_type, $hide['post_types'])) {
+						remove_post_type_support($post_type, 'editor');
+					}
+				} elseif ($name == 'thumbnail') {
+					if (in_array($template_name, $hide['templates'], true) || in_array($post_type, $hide['post_types'])) {
+						remove_post_type_support($post_type, 'thumbnail');
+					}
+				}
+			}
+		});
+
 		return true;
 	}
 }
@@ -440,7 +478,7 @@ class MetaFieldsNeonDef extends NeonDef
 	public function __construct(string $dir, array $vars = [])
 	{
 		parent::__construct($dir, $vars);
-		$post_id = (isset($_GET['post']) && is_numeric($_GET['post'])) ? $_GET['post'] : null;
+		$post_id = getCurrentPostId();
 		$this->vars = array_merge($vars, ['post_id' => $post_id]);
 	}
 
@@ -580,8 +618,8 @@ class MetaFieldsNeonDef extends NeonDef
 		add_filter('rwmb_meta_boxes', function ($meta_boxes) use ($data) {
 			$register = $data['register'];
 			foreach ($register as $metabox) {
-				if (!empty($metabox['templates']) && (!empty($_GET['post']) || !empty($_POST['post_ID']))) {
-					$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
+				if (!empty($metabox['templates']) && getCurrentPostId()) {
+					$post_id = getCurrentPostId();
 					$template_name = $this->getTemplateName($post_id);
 					if (in_array($template_name, $metabox['templates'])) {
 						$post = get_post($post_id);
@@ -591,15 +629,15 @@ class MetaFieldsNeonDef extends NeonDef
 					}
 					unset($metabox['templates']);
 				}
-				if (!empty($metabox['not_templates']) && (!empty($_GET['post']) || !empty($_POST['post_ID']))) {
-					$post_id = !empty($_GET['post']) ? $_GET['post'] : $_POST['post_ID'];
+				if (!empty($metabox['not_templates']) && getCurrentPostId()) {
+					$post_id = getCurrentPostId();
 					$template_name = $this->getTemplateName($post_id);
 					if (in_array($template_name, $metabox['not_templates'])) {
 						continue;
 					}
 				}
 				if (!empty($metabox['if'])) {
-					$post_id = $_GET['post'] ?? $_POST['post_ID'] ?? null;
+					$post_id = getCurrentPostId();
 					if (!nestedEval($metabox['if'], $this->getVars(['post_id' => $post_id]))) {
 						continue;
 					}
