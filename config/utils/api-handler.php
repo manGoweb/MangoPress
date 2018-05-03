@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/baseUrl.php';
+
 $initTheme[] = function ($dir) {
 	if(file_exists($dir . "/api/index.php")) {
 		global $Req;
@@ -14,7 +16,7 @@ $initTheme[] = function ($dir) {
 			$Payload = new Nette\Utils\ArrayHash;
 		}
 
-		$path = $Req->getUrl()->getPath();
+		$path = $Req->getUrl()->getRelativeUrl();
 		$parts = explode('/', trim($path, '/'));
 		if($parts[0] === 'api') {
 			array_shift($parts);
