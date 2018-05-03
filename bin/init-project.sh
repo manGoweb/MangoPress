@@ -8,6 +8,7 @@ mango install || true
 ./vendor/bin/wp core download || true
 ./bin/clone-local-config.sh
 
+npm i -g mangoweb/mu-plugins || true
 mup update || true
 mup install || true
 
