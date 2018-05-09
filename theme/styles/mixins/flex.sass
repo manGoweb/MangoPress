@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /// Provides a quick method for setting an element’s flex settings. Use a `null` value to “skip” a side. Fast & Neat.
 ///
 /// @example sass - Usage
@@ -27,20 +25,12 @@
 /// @krystofm - Kodérek for life.
 ///
 
-@mixin flex($justify: null, $align: null, $direction: null) {
+=flex($justify: null, $align: null, $direction: null)
 
-  $offsets: (
-    justify-content: $justify,
-    align-items: $align,
-    flex-direction: $direction
-  );
+  $offsets: (justify-content: $justify, align-items: $align, flex-direction: $direction)
 
-  display: flex;
+  display: flex
 
-  @each $offset, $value in $offsets {
-    @if $value {
+  @each $offset, $value in $offsets
+    @if $value
       #{$offset}: $value
-    }
-  }
-
-}
