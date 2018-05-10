@@ -27,10 +27,10 @@
 
 =flex($justify: null, $align: center, $direction: null)
 
-  $offsets: (justify-content: $justify, align-items: $align, flex-direction: $direction)
+  $properties: (justify-content: $justify, align-items: $align, flex-direction: $direction)
 
   display: flex
 
-  @each $offset, $value in $offsets
+  @each $property, $value in $properties
     @if $value
-      #{$offset}: $value
+      #{$property}: $value
