@@ -552,8 +552,17 @@ class MetaFieldsNeonDef extends NeonDef
 		}
 
 		foreach ($fields as $key => $val) {
-			if (is_string($val)) {
-				$val = ['name' => $val, 'type' => 'text'];
+			if (is_int($key) && is_null($val)) {
+				$val = [
+					'type' => 'divider',
+				];
+			}
+
+			if (is_int($key) && is_string($val)) {
+				$val = [
+					'name' => $val,
+					'type' => 'heading'
+				];
 			}
 
 			if (!is_array($val)) {
