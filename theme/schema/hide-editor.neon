@@ -1,0 +1,13 @@
+#
+# Hide wysiwyg editor & thumbnail for custom templates
+#
+
+hide:
+	editor:
+		templates:
+			- front-page
+
+	thumbnail:
+		templates:
+			- front-page
+

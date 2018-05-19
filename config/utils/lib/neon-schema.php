@@ -814,6 +814,48 @@ class MetaFieldsNeonDef extends NeonDef
 	}
 }
 
+class HideEditorNeonDef extends NeonDef
+{
+	protected $defaultFilename = 'hide-editor.neon';
+
+	public function sanitize(array $data)
+	{
+		$data['hide']['editor']['templates'] = $data['hide']['editor']['templates'] ?? [];
+		$data['hide']['thumbnail']['templates'] = $data['hide']['thumbnail']['templates'] ?? [];
+
+		return $data;
+	}
+
+	public function flush(array $data)
+	{
+		$post_id = null;
+		if (isset($_GET['post'])) {
+			$post_id = $_GET['post'];
+		} elseif (isset($_GET['post_ID'])) {
+			$post_id = $_POST['post_ID'];
+		}
+		if ($post_id !== null) {
+			$template_file = str_replace('.php', '', get_post_meta($post_id, '_wp_page_template', true));
+
+			add_action('admin_init', function () use ($data, $template_file) {
+				foreach ($data['hide'] as $name => $data) {
+					if ($name == 'editor') {
+						if (in_array($template_file, $data['templates'])) {
+							remove_post_type_support('page', 'editor');
+						}
+					} elseif ($name == 'thumbnail') {
+						if (in_array($template_file, $data['templates'])) {
+							remove_post_type_support('page', 'thumbnail');
+						}
+					}
+				}
+			});
+		}
+
+		return true;
+	}
+}
+
 function runNeonConfigs($dir)
 {
 	\Tracy\Debugger::timer('a');
@@ -828,6 +870,9 @@ function runNeonConfigs($dir)
 
 	$theme = new ThemeNeonDef($dir);
 	$theme->run();
+
+    $editors = new HideEditorNeonDef($dir);
+    $editors->run();
 
 	if (is_user_logged_in() && is_admin()) {
 		$meta_fields = new MetaFieldsNeonDef($dir);
