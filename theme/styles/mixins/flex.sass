@@ -1,0 +1,36 @@
+// Provides a quick method for setting an element’s flex settings. Use a `null` value to “skip” a side. Fast & Neat.
+
+    @example sass - Usage
+      .element1 {
+         +flex(space-between, center);
+      }
+
+      .element2 {
+         +flex(space-evenly, null, column);
+      }
+
+    @example css - CSS Output
+      .element1 {
+         display: flex;
+         justify-content: space-between
+         align-items: center
+      }
+
+      .element2 {
+         display: flex;
+         justify-content: space-between
+         flex-direction: column
+      }
+
+    @krystofm - Kodérek for life.
+
+
+=flex($justify: null, $align: center, $direction: null)
+
+  $properties: (justify-content: $justify, align-items: $align, flex-direction: $direction)
+
+  display: flex
+
+  @each $property, $value in $properties
+    @if $value
+      #{$property}: $value
