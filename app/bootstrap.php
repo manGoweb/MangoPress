@@ -1,6 +1,5 @@
 <?php
 
-require __DIR__ . '/hosting.php';
 $sentryClient = require __DIR__ . '/sentry.php';
 require __DIR__ . '/exceptions.php';
 require __DIR__ . '/Configurator.php';
