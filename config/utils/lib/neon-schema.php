@@ -14,6 +14,8 @@ function getCurrentPostId() {
 	if (isset($_GET['post'])) {
 		$post_id = $_GET['post'];
 	} elseif (isset($_GET['post_ID'])) {
+		$post_id = $_GET['post_ID'];
+	} elseif (isset($_POST['post_ID'])) {
 		$post_id = $_POST['post_ID'];
 	}
 	return $post_id;
