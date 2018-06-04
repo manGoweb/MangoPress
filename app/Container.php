@@ -4,7 +4,9 @@ namespace MangoPress;
 
 use Nette;
 
-class Container extends Nette\Object {
+class Container {
+
+	use Nette\SmartObject;
 
 	private $object;
 
