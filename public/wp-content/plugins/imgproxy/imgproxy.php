@@ -87,7 +87,7 @@ function imgproxy_srcset_meta($image_meta, $size_array, $image_src, $attachment_
 	if(isset($image_meta['sizes'])) {
 		$filteredSizes = [];
 		foreach ($image_meta['sizes'] as $key => $value) {
-			if(!preg_match('/_old_/i', $key)) {
+			if(!preg_match('/_old_/', $key)) {
 				$filteredSizes[$key] = $value;
 			}
 		}
