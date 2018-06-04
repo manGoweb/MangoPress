@@ -13,5 +13,5 @@ componentsHandler(
 		example_admin_page,
 		example_metabox,
 	},
-	"initAdminComponentcs"
+	"initAdminComponents"
 )
