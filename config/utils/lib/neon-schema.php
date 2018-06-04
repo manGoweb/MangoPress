@@ -602,6 +602,10 @@ class MetaFieldsNeonDef extends NeonDef
 				$val['max_file_uploads'] = $val['max'];
 			}
 
+			if (isset($val['attrs'])) {
+				$val['attributes'] = $val['attrs'];
+			}
+
 			if (isset($val['html']) && 'custom_html' === $val['type']) {
 				$val['std'] = $val['html'];
 			}
