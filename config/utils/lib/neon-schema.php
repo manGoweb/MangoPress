@@ -610,14 +610,64 @@ class MetaFieldsNeonDef extends NeonDef
 				$val['std'] = $val['html'];
 			}
 
-			foreach (['query_args', 'visible', 'hidden', 'options'] as $k) {
+			foreach (['query_args', 'visible', 'hidden', 'options', 'view', 'class'] as $k) {
 				if (isset($val[$k])) {
 					$val[$k] = nestedInterpolate($val[$k], $this->getVars());
 					$val[$k] = nestedEval($val[$k], $this->getVars());
 				}
 			}
 
+			if (!empty($val['class'])) {
+				if (is_array($val['class'])) {
+					$val['class'] = $this->combineClassnames($val['class']);
+					$val['class'] = $this->prefix($val['class']);
+				}
+			} else {
+				$val['class'] = '';
+			}
+
+			if (!empty($val['view'])) {
+				if (is_array($val['view'])) {
+					$val['view'] = $this->combineClassnames($val['view']);
+					$val['view'] = $this->prefix($val['view'], 'view-');
+				} else if(is_string($val['view'])) {
+					$val['view'] = $this->prefix(explode(' ', $val['view']), 'view-');
+				}
+			} else {
+				$val['view'] = '';
+			}
+
+			$val['class'] = $val['class'] . ' ' . $val['view'];
+
 			$result[] = $val;
+		}
+
+		return $result;
+	}
+
+	public function prefix(array $list, $prefix = '') {
+		$result = [];
+
+		foreach($list as $val) {
+			$result[] = $prefix.$val;
+		}
+
+		return implode(' ', $result);
+	}
+
+	public function combineClassnames(array $classnames, $prefix = '') {
+		$result = [];
+
+		foreach($classnames as $key => $val) {
+			if (is_string($key)) {
+				if ($val) {
+					$result = array_merge($result, explode(" ", $key));
+				}
+			} else {
+				if ($val) {
+					$result = array_merge($result, explode(" ", $val));
+				}
+			}
 		}
 
 		return $result;

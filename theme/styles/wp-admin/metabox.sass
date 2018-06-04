@@ -1,5 +1,15 @@
-.rwmb-input input
-	max-width: 100%
+.rwmb-clone
+	padding-right: 32px
+
+.ui-sortable .rwmb-clone-icon
+	margin-left: -18px
+	left: 3px
+	margin-top: 3px
+
+.rwmb-input
+	input,
+	textarea
+		max-width: 100%
 
 .rwmb-clone
 	padding-right: 32px
@@ -8,3 +18,55 @@
 	margin-left: -18px
 	left: 3px
 	margin-top: 3px
+
+.rwmb-group-wrapper.view-row
+	border-bottom: solid 1px #fafafa
+	padding: 10px 0
+
+	> .rwmb-input,
+	> .rwmb-input > .rwmb-clone
+		display: flex
+		flex-wrap: wrap
+
+		> .rwmb-field
+			display: inline-block
+			vertical-align: top
+			flex-grow: 1
+
+			> .description
+				display: block
+
+			> .rwmb-label
+				display: block
+				float: none
+				width: auto
+
+			> .rwmb-label ~ .rwmb-input
+				width: auto
+
+		> .add-clone
+			align-self: flex-end
+
+.rwmb-field
+
+	&.view-big
+		input,
+		textarea
+			font-size: 1.5em
+			width: 100%
+
+	&.view-wide
+		input,
+		textarea
+			width: 100%
+
+	&.view-full-width
+		width 100%
+
+		.rwmb-input,
+		input,
+		textarea
+			width: 100%
+
+	&.view-mini input
+		width: 5em
