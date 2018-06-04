@@ -279,6 +279,10 @@ class AdminPagesNeonDef extends NeonDef
 
 			$item = array_merge($defaults, $item);
 
+			if (isset($item['post_type'])) {
+				$item['parent'] = 'edit.php?post_type='.$item['post_type'];
+			}
+
 			if (isset($item['parent'])) {
 				$item['parent'] = empty($parents[$item['parent']]) ? $item['parent'] : $parents[$item['parent']];
 			}
@@ -336,13 +340,21 @@ class AdminPagesNeonDef extends NeonDef
 				$fn = function () use ($page) {
 					return nestedEval($page['render']);
 				};
-				add_menu_page($page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn, $page['icon_url'], $page['position'] ?? null);
+				if (isset($page['parent'])) {
+					add_submenu_page($page['parent'], $page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn);
+				} else {
+					add_menu_page($page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn, $page['icon_url'], $page['position'] ?? null);
+				}
 			}
 			foreach ($lattePages as $page) {
 				$fn = function () use ($page) {
-					view($page['latte'], nestedInterpolate(array_merge(['title' => $page['title']], $page['props'])));
+					view($page['latte'], nestedInterpolate(array_merge(['title' => $page['title']], $page['props'] ?? [])));
 				};
-				add_menu_page($page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn, $page['icon_url'], $page['position'] ?? null);
+				if (isset($page['parent'])) {
+					add_submenu_page($page['parent'], $page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn);
+				} else {
+					add_menu_page($page['title'], $page['menu_title'], $page['capability'] ?? 'manage_options', $page['menu_slug'] ?? $page['id'], $fn, $page['icon_url'], $page['position'] ?? null);
+				}
 			}
 		});
 
