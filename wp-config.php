@@ -34,6 +34,17 @@ $table_prefix = 'wp_';
 $imgproxy = $App->parameters['imgproxy'];
 define('IMGPROXY_KEY', $imgproxy['key']);
 define('IMGPROXY_SALT', $imgproxy['salt']);
+define('IMGPROXY_BASE_URL', $imgproxy['baseUrl'] ?? 'https://snappycdn.net');
+
+function get_img_proxy_base_url() {
+	global $App;
+	$imgproxy = $App->parameters['imgproxy'];
+
+	if (empty($imgproxy['projectId'])) {
+		throw new Exception('Missing imgproxy.projectId');
+	}
+	return IMGPROXY_BASE_URL . '/' . $imgproxy['projectId'];
+}
 
 if ($s3Params && $s3Params['enabled']) {
 	if (empty($s3Params['secret'])) {
