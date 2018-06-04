@@ -609,7 +609,7 @@ class MetaFieldsNeonDef extends NeonDef
 			foreach (['query_args', 'visible', 'hidden', 'options'] as $k) {
 				if (isset($val[$k])) {
 					$val[$k] = nestedInterpolate($val[$k], $this->getVars());
-					$val[$k] = nestedEval($val[$k]);
+					$val[$k] = nestedEval($val[$k], $this->getVars());
 				}
 			}
 
