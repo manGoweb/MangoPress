@@ -22,11 +22,11 @@ $config = ($appConfig['parameters']['sentry'] ?? []) + [
 
 /** @var NULL|Raven_Client $client */
 $client = NULL;
-$stage = $appConfig['parameters']['stage'];
+$stage = $appConfig['parameters']['stage'] ?? 'unknown';
 
 if ($config['dsn'] && $stage !== 'local') {
 	$client = new Raven_Client($config);
-	$client->tags_context(['stage' => $stage);
+	$client->tags_context([ 'stage' => $stage ]);
 
 	// Install error handlers and shutdown function to catch fatal errors
 	$handler = new Raven_ErrorHandler($client);
