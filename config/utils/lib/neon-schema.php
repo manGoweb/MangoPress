@@ -601,8 +601,17 @@ class MetaFieldsNeonDef extends NeonDef
 					$val['sort_clone'] = true;
 				} elseif ('editor' === $val['type']) {
 					$val['type'] = 'wysiwyg';
+				} elseif ('small_editor' === $val['type']) {
+					$val['type'] = 'wysiwyg';
+					$val['options'] = $val['options'] ?? [];
+					$val['options']['teeny'] = true;
+					$val['options']['editor_height'] = 100;
 				} elseif ('html' === $val['type']) {
 					$val['type'] = 'custom_html';
+				} elseif ('one_image' === $val['type']) {
+					$val['type'] = 'image_advanced';
+					$val['max_file_uploads'] = 1;
+					$val['max_status'] = false;
 				}
 			}
 
