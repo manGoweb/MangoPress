@@ -19,11 +19,11 @@ $container = $configurator->createContainer();
 $container->getService('session')->start();
 
 foreach (glob(__DIR__.'/lib/*.php') as $filepath) {
-	require $filepath;
+	require_once $filepath;
 }
 
 foreach (glob(__DIR__.'/utils/*.php') as $filepath) {
-	require $filepath;
+	require_once $filepath;
 }
 
 return $container;

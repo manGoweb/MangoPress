@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/baseUrl.php';
+require_once __DIR__ . '/register-image-sizes.php';
 
 $initTheme[] = function ($dir) {
 	if(file_exists($dir . "/api/index.php")) {
