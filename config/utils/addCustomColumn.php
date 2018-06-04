@@ -11,7 +11,7 @@ function addCustomColumn($post_types, $id, $title, $render)
 			return array_merge($columns, [$id => $title]);
 		});
 
-		add_action('manage_pages_custom_column', function ($column, $post_id) use ($id, $render) {
+		add_action('manage_'.$pt.'_posts_custom_column', function ($column, $post_id) use ($id, $render) {
 			if ($column === $id) {
 				call_user_func($render, $post_id, $id);
 			}
