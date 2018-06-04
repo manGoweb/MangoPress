@@ -172,7 +172,7 @@ function imgproxy_url($url, $width, $height, $crop) {
 	$encodedUrl = rtrim(strtr(base64_encode($url), '+/', '-_'), '=');
 	$path = sprintf("/%s/%d/%d/%s/%d/%s.%s", $resize, $width, $height, $gravity, $enlarge, $encodedUrl, $extension);
 	$signature = rtrim(strtr(base64_encode(hash_hmac('sha256', IMGPROXY_SALT_BIN . $path, IMGPROXY_KEY_BIN, true)), '+/', '-_'), '=');
-	return 'https://imgproxy.mangoweb.org' . sprintf("/%s%s", $signature, $path);
+	return IMGPROXY_BASE_URL . sprintf("/%s%s", $signature, $path);
 }
 
 function imgproxy_noop_editor($editors) {

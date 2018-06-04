@@ -50,6 +50,8 @@ $table_prefix  = 'wp_';
 $imgproxy = $params['imgproxy'];
 define('IMGPROXY_KEY', $imgproxy['key']);
 define('IMGPROXY_SALT', $imgproxy['salt']);
+define('IMGPROXY_PROJECT_ID', $imgproxy['projectId'] ?? 'CHANGE_THIS');
+define('IMGPROXY_BASE_URL', rtrim(($imgproxy['baseUrl'] ?? 'https://snappycdn.net'), '/') . '/' . IMGPROXY_PROJECT_ID);
 
 $s3 = $params['s3'];
 define('S3_UPLOADS_BUCKET', $s3['bucket']);
@@ -59,10 +61,10 @@ define('S3_UPLOADS_REGION', $s3['region']);
 if (!$s3['enabled']) {
 	define('S3_UPLOADS_USE_LOCAL', TRUE);
 	define('S3_UPLOADS_DISABLE_REPLACE_UPLOAD_URL', TRUE);
-	define('S3_UPLOADS_PATH_PREFIX', '/' . $s3['basePath']);
+	define('S3_UPLOADS_PATH_PREFIX', rtrim('/' . ($s3['basePath'] ?? ''), '/'));
 }
 
-if ($params['stage'] !== 'local')) {
+if (!empty($params['stage']) && $params['stage'] !== 'local') {
 	define('DISALLOW_FILE_MODS', true);
 }
 
