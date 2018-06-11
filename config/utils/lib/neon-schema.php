@@ -489,6 +489,8 @@ class MetaFieldsNeonDef extends NeonDef
 
 	private $localizedPages = [];
 
+	private $keys = [];
+
 	public function __construct(string $dir, array $vars = [])
 	{
 		parent::__construct($dir, $vars);
@@ -584,6 +586,8 @@ class MetaFieldsNeonDef extends NeonDef
 			}
 
 			$val['id'] = $val['id'] ?? $key;
+
+			$this->keys[$val['id']] = TRUE;
 
 			if(!empty($val['mixin'])) {
 				if(!empty($mixins[$val['mixin']])) {
@@ -889,6 +893,10 @@ class MetaFieldsNeonDef extends NeonDef
 	{
 		return $this->localizedPages;
 	}
+
+	public function getKeys() {
+		return array_keys($this->keys);
+	}
 }
 
 function runNeonConfigs($dir)
@@ -910,5 +918,6 @@ function runNeonConfigs($dir)
 		$meta_fields = new MetaFieldsNeonDef($dir);
 		$meta_fields->setLocalizedPages($admin_pages->getLocalizedPages());
 		$meta_fields->run();
+		update_option('allCustomMetaFields', $meta_fields->getKeys(), FALSE);
 	}
 }
