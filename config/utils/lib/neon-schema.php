@@ -847,20 +847,20 @@ class MetaFieldsNeonDef extends NeonDef
 					continue;
 				}
 				if (!empty($metabox['admin_pages'])) {
-					$metabox['settings_pages'] = $metabox['admin_pages'];
-					unset($metabox['admin_pages']);
+					$adminMetabox = [] + $metabox; // clone
+					$adminMetabox['settings_pages'] = $adminMetabox['admin_pages'];
+					unset($adminMetabox['admin_pages']);
 
 					if (!empty($_GET['page']) && in_array($_GET['page'], $this->getLocalizedPages(), true)) {
-						$metabox['fields'] = languageMetaFieldsPostfix($metabox['fields']);
-						$metabox['fields']['postfix'] = [
+						$adminMetabox['fields'] = languageMetaFieldsPostfix($adminMetabox['fields']);
+						$adminMetabox['fields']['postfix'] = [
 							'id' => 'postfix-format',
 							'type' => 'hidden',
 							'std' => getLanguagePostfixFormat(),
 						];
 					}
 
-					$meta_boxes[] = $metabox;
-					continue;
+					$meta_boxes[] = $adminMetabox;
 				}
 				$meta_boxes[] = $metabox;
 			}
