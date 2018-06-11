@@ -44,7 +44,7 @@ register:
 			message: "Hello"
 
 	personalsingle:
-		title: Personal Information síingle
+		title: Personal Information single
 		context: normal # normal, advanced, side
 		admin_page: nested_settings_page
 		fields:
@@ -62,7 +62,7 @@ register:
 		admin_pages:
 			- nested_settings_page
 		templates:
-			- template-front-page
+			- front-page
 		post_types:
 			- post
 			- page
