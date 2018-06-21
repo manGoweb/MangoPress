@@ -1,3 +1,17 @@
+
+<pre id="mango_deploy_status"></pre>
+<script src="/wp-core/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script n:syntax="double">
+	$ = jQuery
+	$(document).ready(function () {
+		setInterval(function () {
+			$.post(ajaxurl, {action: 'mango_deploy_status', buildId: {{$response['id']}}}, function (data) {
+				document.getElementById('mango_deploy_status').textContent += JSON.stringify(data)
+			})
+		}, 1000)
+	})
+</script>
+
 {if $status === 'success'}
 	<div style="background: lightgreen; padding: 20px;">
 		<h1>Successfully deployed to:</h1>
