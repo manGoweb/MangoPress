@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	{block styles}
-		<link rel="stylesheet" href="/assets/styles/{$buildstamp}index.css">
+		<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}index.css">
 	{/block}
 	<title>{$title}</title>
 	{php wp_head()}
@@ -16,7 +16,7 @@
 </head>
 <body {php body_class()}>
 	{$mangoSnippet}
-	{include utils/initComponent.latte name => shapes, data => [ url => "/assets/sprites/{$buildstamp}shapes.svg" ]}
+	{include utils/initComponent.latte name => shapes, data => [ url => "{$assetsPath}/sprites/{$buildstamp}shapes.svg" ]}
 
 	{block body}{/block}
 
@@ -24,7 +24,7 @@
 
 	{block scripts}
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
-		<script src="/assets/scripts/{$buildstamp}index.js" defer></script>
+		<script src="{$assetsPath}/scripts/{$buildstamp}index.js" defer></script>
 	{/block}
 </body>
 </html>

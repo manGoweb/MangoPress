@@ -2,13 +2,13 @@
 
 {block styles}
 	{include parent}
-	<link rel="stylesheet" href="/assets/styles/{$buildstamp}styleguide.css">
+	<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}styleguide.css">
 {/block}
 
 {block scripts}
 	{include parent}
 	{include ../utils/initComponent.latte handler => initStyleguideComponents, name => styleguide, place => ".sg"}
-	<script src="/assets/scripts/{$buildstamp}styleguide.js" defer></script>
+	<script src="{$assetsPath}/scripts/{$buildstamp}styleguide.js" defer></script>
 {/block}
 
 {block body}
