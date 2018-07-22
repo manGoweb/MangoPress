@@ -26,4 +26,6 @@ foreach (glob(__DIR__.'/utils/*.php') as $filepath) {
 	require_once $filepath;
 }
 
+define('HIDE_EXAMPLES', empty($container->parameters['showExamples']));
+
 return $container;

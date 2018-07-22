@@ -7,7 +7,7 @@ $initTheme[] = function ($dir) {
 		$register = [];
 		foreach (glob("$toolbarButtonsDir/*.php") as $filepath) {
 			$result = require_once $filepath;
-			if (empty($result)) {
+			if (empty($result) || is_bool($result)) {
 				continue;
 			}
 			if ($result instanceof \Closure) {

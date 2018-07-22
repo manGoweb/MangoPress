@@ -1,7 +1,7 @@
 <?php
 
-return [
+return HIDE_EXAMPLES ?: [
 	'component' => [
-		'name' => 'example_metabox',
+		'name' => 'example_toolbar_button',
 	],
 ];

@@ -1,6 +1,6 @@
 <?php
 
-return [
+return HIDE_EXAMPLES ?: [
 	'title' => 'Hello',
 	'href' => '#',
 	'meta' => [

@@ -6,7 +6,7 @@ $initTheme[] = function ($dir) {
 	foreach (glob($shortcodesDir.'/*.php') as $filepath) {
 		$shortcode = basename($filepath, '.php');
 		$fn = require_once $filepath;
-		if (empty($fn)) {
+		if (empty($fn) || is_bool($fn)) {
 			continue;
 		}
 		add_shortcode($shortcode, $fn);
