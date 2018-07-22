@@ -155,6 +155,8 @@ abstract class NeonDef
 
 	protected $defaultFilename;
 
+	protected $last;
+
 	public function __construct(string $dir)
 	{
 		$this->dir = $dir;
@@ -190,9 +192,14 @@ abstract class NeonDef
 			return false;
 		}
 		$data = $this->sanitize($data);
+		$this->last = $data;
 		$result = $this->flush($data);
 
 		return $result;
+	}
+
+	public function getLast() {
+		return $this->last;
 	}
 }
 
