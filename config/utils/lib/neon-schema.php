@@ -140,13 +140,10 @@ function languageMetaFieldsPostfix($data)
 {
 	$postfix = getLanguagePostfix();
 	$postfixedData = [];
-	foreach ($data as $value) {
-		if (isset($value['fields'])) {
-			$value['fields'] = languageMetaFieldsPostfix($value['fields']);
-		}
+	foreach ($data as $key => $value) {
 		$id = $value['id'].$postfix;
-		$postfixedData[$id] = $value;
-		$postfixedData[$id]['id'] = $id;
+		$postfixedData[$key] = $value;
+		$postfixedData[$key]['id'] = $id;
 	}
 
 	return $postfixedData;
@@ -520,6 +517,11 @@ class MetaFieldsNeonDef extends NeonDef
 				$metabox['id'] = 'untitled_metabox_'.$metabox['id'];
 			}
 
+
+			if (!empty($metabox['settings_pages']) || !empty($metabox['settings_page'])) {
+				throw new \Exception('meta-fields.neon: key `settings_pages` is deprecated. Use `admin_pages`.');
+			}
+
 			foreach (['post_types' => 'post_type', 'templates' => 'template', 'not_templates' => 'not_template', 'admin_pages' => 'admin_page', 'taxonomies' => 'taxonomy'] as $plural => $singular) {
 				$metabox[$plural] = $metabox[$plural] ?? $metabox[$singular] ?? null;
 				if ($metabox[$plural] && !is_array($metabox[$plural])) {
@@ -850,6 +852,7 @@ class MetaFieldsNeonDef extends NeonDef
 
 					continue;
 				}
+
 				if (!empty($metabox['admin_pages'])) {
 					$adminMetabox = [] + $metabox; // clone
 					$adminMetabox['settings_pages'] = $adminMetabox['admin_pages'];
@@ -865,8 +868,9 @@ class MetaFieldsNeonDef extends NeonDef
 					}
 
 					$meta_boxes[] = $adminMetabox;
+				} else {
+					$meta_boxes[] = $metabox;
 				}
-				$meta_boxes[] = $metabox;
 			}
 
 			return $meta_boxes;
