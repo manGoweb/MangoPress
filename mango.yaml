@@ -31,14 +31,6 @@ buildstamp:
   - public/assets/scripts/styleguide.js
   - public/assets/scripts/wp-admin.js
   - public/assets/sprites/shapes.svg
-dependencies:
-  - bourbon@4.x
-  - normalize-scss
-  - jquery
-  - lodash-es
-  - lt-ie-9
-  - react
-  - react-dom
 watch:
   - "theme/**/*.{latte,php}"
 hooks:
