@@ -218,7 +218,7 @@ class PostTypesNeonDef extends NeonDef
 				$item = ['label' => $item];
 			}
 
-			if (!empty($item['isExample']) && HIDE_EXAMPLES) {
+			if (!empty($item['isExample']) && !SHOW_EXAMPLES) {
 				continue;
 			}
 
@@ -278,7 +278,7 @@ class AdminPagesNeonDef extends NeonDef
 				$item = ['title' => $item];
 			}
 
-			if (!empty($item['isExample']) && HIDE_EXAMPLES) {
+			if (!empty($item['isExample']) && !SHOW_EXAMPLES) {
 				continue;
 			}
 
@@ -413,7 +413,7 @@ class TaxonomiesNeonDef extends NeonDef
 			$item['name'] = $item['name'] ?? $key;
 			$item = array_merge($defaults, $item);
 
-			if (!empty($item['isExample']) && HIDE_EXAMPLES) {
+			if (!empty($item['isExample']) && !SHOW_EXAMPLES) {
 				continue;
 			}
 
@@ -530,7 +530,7 @@ class MetaFieldsNeonDef extends NeonDef
 			$metabox['id'] = $metabox['id'] ?? $key;
 			$metabox['title'] = $metabox['title'] ?? 'Untitled metabox #' . $mid++;
 
-			if (!empty($metabox['isExample']) && HIDE_EXAMPLES) {
+			if (!empty($metabox['isExample']) && !SHOW_EXAMPLES) {
 				continue;
 			}
 
@@ -684,7 +684,7 @@ class MetaFieldsNeonDef extends NeonDef
 
 			$val['class'] = $val['class'] . ' ' . $val['view'];
 
-			if (!empty($val['isExample']) && HIDE_EXAMPLES) {
+			if (!empty($val['isExample']) && !SHOW_EXAMPLES) {
 				continue;
 			}
 
