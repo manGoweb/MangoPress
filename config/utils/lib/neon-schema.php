@@ -888,11 +888,14 @@ class MetaFieldsNeonDef extends NeonDef
 							'std' => getLanguagePostfixFormat(),
 						];
 					}
-
+					$adminMetabox['id'] = 'admin_' . $adminMetabox['id'];
 					$meta_boxes[] = $adminMetabox;
-				} else {
-					$meta_boxes[] = $metabox;
 				}
+
+				unset($metabox['settings_pages']);
+				unset($metabox['admin_pages']);
+				$meta_boxes[] = $metabox;
+
 			}
 
 			return $meta_boxes;
