@@ -18,7 +18,7 @@ function getCurrentPostId() {
 	} elseif (isset($_POST['post_ID'])) {
 		$post_id = $_POST['post_ID'];
 	}
-	return $post_id;
+	return is_scalar($post_id) ? $post_id : null;
 }
 
 function sanitizeIconKey($item, string $key = 'menu_icon')
