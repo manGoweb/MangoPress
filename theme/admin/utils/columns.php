@@ -1,5 +1,5 @@
 <?php
 
-addCustomColumn('page', 'example-column', 'Example column', function($id) {
+!SHOW_EXAMPLES ?: addCustomColumn('page', 'example-column', 'Example column', function($id) {
 	echo "Content for page $id";
 });

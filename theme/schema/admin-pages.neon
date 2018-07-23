@@ -1,11 +1,13 @@
 register:
 
 	nested_settings_page:
+		isExample: true
 		title: Nested page
 		icon: admin-site
 		parent: settings
 
 	with_tabs:
+		isExample: true
 		title: With tabs
 		icon: admin-site
 		tabs:
@@ -13,17 +15,20 @@ register:
 			b: Tab B
 
 	localized:
+		isExample: true
 		title: Localized
 		icon: admin-site
 		localized: true
 
 	custom_render_page:
+		isExample: true
 		title: Custom render
 		# renderer defined in theme/admin/utils/example.php
 		render: renderCustomAdminPage(this is configured")
 		icon: admin-site
 
 	custom_latte:
+		isExample: true
 		title: Custom Latte template
 		icon: admin-site
 		latte: admin/example-admin-page
@@ -31,6 +36,7 @@ register:
 			foo: bar
 
 	react_page_static:
+		isExample: true
 		title: React / static
 		component: example_admin_page
 		icon: admin-site
@@ -38,6 +44,7 @@ register:
 			message: "static data from admin-pages.neon"
 
 	react_page_dynamic:
+		isExample: true
 		title: React / dynamic
 		component: example_admin_page
 		icon: admin-site

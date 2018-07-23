@@ -18,6 +18,7 @@ remove:
 
 register:
 	thing:
+		isExample: true
 		public: true
 		label: Things
 		icon: carrot

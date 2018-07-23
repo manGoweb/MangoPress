@@ -214,6 +214,11 @@ class PostTypesNeonDef extends NeonDef
 			if (is_string($item)) {
 				$item = ['label' => $item];
 			}
+
+			if (!empty($item['isExample']) && !SHOW_EXAMPLES) {
+				continue;
+			}
+
 			$item['name'] = $item['name'] ?? $key;
 			$item = array_merge($defaults, $item);
 			$result['register'][] = $this->sanitizeItem($item);
@@ -268,6 +273,10 @@ class AdminPagesNeonDef extends NeonDef
 		foreach ($register as $key => $item) {
 			if (is_string($item)) {
 				$item = ['title' => $item];
+			}
+
+			if (!empty($item['isExample']) && !SHOW_EXAMPLES) {
+				continue;
 			}
 
 			$item['id'] = $item['id'] ?? $key;
@@ -400,6 +409,11 @@ class TaxonomiesNeonDef extends NeonDef
 		foreach ($register as $key => $item) {
 			$item['name'] = $item['name'] ?? $key;
 			$item = array_merge($defaults, $item);
+
+			if (!empty($item['isExample']) && !SHOW_EXAMPLES) {
+				continue;
+			}
+
 			$item['post_types'] = $item['post_types'] ?? $item['post_type'] ?? [];
 			if (!is_array($item['post_types'])) {
 				$item['post_types'] = [$item['post_types']];
@@ -512,6 +526,10 @@ class MetaFieldsNeonDef extends NeonDef
 			}
 			$metabox['id'] = $metabox['id'] ?? $key;
 			$metabox['title'] = $metabox['title'] ?? 'Untitled metabox #' . $mid++;
+
+			if (!empty($metabox['isExample']) && !SHOW_EXAMPLES) {
+				continue;
+			}
 
 			if (is_int($metabox['id'])) {
 				$metabox['id'] = 'untitled_metabox_'.$metabox['id'];
@@ -667,6 +685,10 @@ class MetaFieldsNeonDef extends NeonDef
 			}
 
 			$val['class'] = $val['class'] . ' ' . $val['view'];
+
+			if (!empty($val['isExample']) && !SHOW_EXAMPLES) {
+				continue;
+			}
 
 			$result[] = $val;
 		}

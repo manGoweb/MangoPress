@@ -1,21 +1,5 @@
 register:
 
-	custom_render:
-		title: Custom render
-		context: normal
-		post_type: page
-		not_template: front-page
-		# renderer defined in theme/admin/utils/example.php
-		render: renderCustomMetabox("this is metabox %name% with post %post_id%.")
-
-	custom_latte:
-		title: Custom Latte template
-		context: normal
-		post_type: page
-		latte: admin/example-metabox
-		props:
-			foo: bar
-
 	page_roles:
 		title: Page roles
 		if: hasPageRoles()
@@ -26,9 +10,31 @@ register:
 		component: page_roles
 		data: pageRolesMetaboxPayload(%post_id%)
 
+
+	# Example metaboxes:
+
+	custom_render:
+		title: Custom render
+		isExample: true
+		context: normal
+		post_type: page
+		not_template: front-page
+		# renderer defined in theme/admin/utils/example.php
+		render: renderCustomMetabox("this is metabox %name% with post %post_id%.")
+
+	custom_latte:
+		title: Custom Latte template
+		isExample: true
+		context: normal
+		post_type: page
+		latte: admin/example-metabox
+		props:
+			foo: bar
+
 	react_metafield:
 		name: "foobar"
 		title: React / meta field
+		isExample: true
 		context: side
 		post_type: page
 		# defined in theme/scripts/wp-admin.ts
@@ -36,6 +42,7 @@ register:
 
 	-
 		title: React / custom data
+		isExample: true
 		context: side
 		post_type: page
 		# defined in theme/scripts/wp-admin.ts
@@ -45,6 +52,7 @@ register:
 
 	personalsingle:
 		title: Personal Information single
+		isExample: true
 		context: normal # normal, advanced, side
 		admin_page: nested_settings_page
 		fields:
@@ -58,6 +66,7 @@ register:
 
 	personalmulti:
 		title: Personal Information multi
+		isExample: true
 		context: normal # normal, advanced, side
 		admin_pages:
 			- nested_settings_page
@@ -116,6 +125,7 @@ register:
 
 	images:
 		title: Images
+		isExample: true
 		context: side # normal, advanced, side
 		post_types:
 			- page
@@ -128,6 +138,7 @@ register:
 
 	footer:
 		title: Footer
+		isExample: true
 		context: normal # normal, advanced, side
 		admin_pages:
 			- localized

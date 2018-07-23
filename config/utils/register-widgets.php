@@ -7,7 +7,7 @@ $initTheme[] = function ($dir) {
 		foreach (glob("$widgetsDir/*.php") as $filepath) {
 			$result = require_once $filepath;
 
-			if (empty($result)) {
+			if (empty($result) || is_bool($result)) {
 				continue;
 			}
 

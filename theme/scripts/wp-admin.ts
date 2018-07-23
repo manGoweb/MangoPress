@@ -5,6 +5,7 @@ import page_roles from "./components/PageRolesMetabox"
 import example_admin_page from "./components/ExampleAdminPage"
 import example from "./components/Example"
 import example_metabox from "./components/ExampleMetabox"
+import example_toolbar_button from "./components/ExampleToolbarButton"
 
 componentsHandler(
 	{
@@ -12,6 +13,7 @@ componentsHandler(
 		example,
 		example_admin_page,
 		example_metabox,
+		example_toolbar_button,
 	},
 	"initAdminComponents"
 )

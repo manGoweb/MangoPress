@@ -1,5 +1,6 @@
 parameters:
 	livereload: on
+	showExamples: on
 
 	database:
 		host: 127.0.0.1
