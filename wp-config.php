@@ -43,7 +43,7 @@ function get_img_proxy_base_url() {
 	if (empty($imgproxy['projectId'])) {
 		throw new Exception('Missing imgproxy.projectId');
 	}
-	return IMGPROXY_BASE_URL . '/' . $imgproxy['projectId'];
+	return IMGPROXY_BASE_URL . '/' . rawurlencode($imgproxy['projectId']);
 }
 
 if ($s3Params && $s3Params['enabled']) {
