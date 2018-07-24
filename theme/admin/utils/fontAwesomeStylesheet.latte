@@ -1,0 +1,12 @@
+<style type="text/css">
+{foreach $icons as $key => $i}
+{var $icon = getFontAwesomeCode($i)}
+{if $icon}
+#adminmenu #{$key} > .menu-top > .wp-menu-image:before {
+	font-family: 'Font Awesome 5 {$icon[style][section]}';
+	content: '\{$icon[code]}';
+	font-weight: {($icon[style][fontWeight])};
+}
+{/if}
+{/foreach}
+</style>
