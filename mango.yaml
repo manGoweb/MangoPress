@@ -34,6 +34,6 @@ buildstamp:
 watch:
   - "theme/**/*.{latte,php}"
 hooks:
-  init: mango install
+  init: npm install
 snippet: yes please
 version: ">=2.0.0"
