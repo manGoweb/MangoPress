@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 composer install
-mango install || true
+npm install || true
 
 ./vendor/bin/wp core download || true
 ./bin/clone-local-config.sh
