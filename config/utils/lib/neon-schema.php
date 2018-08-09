@@ -9,7 +9,8 @@ use Nette\Neon\Neon;
 use Nette\Utils\Json;
 use Nette\Utils\Strings;
 
-function getCurrentPostId() {
+function getCurrentPostId()
+{
 	$post_id = null;
 	if (isset($_GET['post'])) {
 		$post_id = $_GET['post'];
@@ -547,8 +548,8 @@ class MetaFieldsNeonDef extends NeonDef
 				}
 			}
 
-			if(!empty($metabox['mixin'])) {
-				if(!empty($mixins[$metabox['mixin']])) {
+			if (!empty($metabox['mixin'])) {
+				if (!empty($mixins[$metabox['mixin']])) {
 					$metabox = array_merge($mixins[$metabox['mixin']], $metabox);
 				} else {
 					throw new \Exception('Missing NEON mixin "'.$metabox['mixin'].'" in '.$metabox['id']);
@@ -557,6 +558,10 @@ class MetaFieldsNeonDef extends NeonDef
 
 			$metabox['fields'] = $metabox['fields'] ?? [];
 			$metabox['fields'] = $this->sanitizeFields($metabox['fields'], [], $mixins);
+
+			if (!empty($metabox['seamless'])) {
+				$metabox['style'] = 'seamless';
+			}
 
 			$result['register'][] = $metabox;
 		}
@@ -578,8 +583,8 @@ class MetaFieldsNeonDef extends NeonDef
 	{
 		$result = [];
 
-		if(!empty($fields['mixin'])) {
-			if(!empty($mixins[$fields['mixin']])) {
+		if (!empty($fields['mixin'])) {
+			if (!empty($mixins[$fields['mixin']])) {
 				$fields = array_merge($mixins[$fields['mixin']], $fields);
 				unset($fields['mixin']);
 			} else {
@@ -607,10 +612,10 @@ class MetaFieldsNeonDef extends NeonDef
 
 			$val['id'] = $val['id'] ?? $key;
 
-			$this->keys[$val['id']] = TRUE;
+			$this->keys[$val['id']] = true;
 
-			if(!empty($val['mixin'])) {
-				if(!empty($mixins[$val['mixin']])) {
+			if (!empty($val['mixin'])) {
+				if (!empty($mixins[$val['mixin']])) {
 					$val = array_merge($mixins[$val['mixin']], $val);
 					unset($val['mixin']);
 				} else {
@@ -618,7 +623,7 @@ class MetaFieldsNeonDef extends NeonDef
 				}
 			}
 
-			foreach($val as $k => $v) {
+			foreach ($val as $k => $v) {
 				if (\Nette\Utils\Strings::startsWith($k, '@')) {
 					$newK = \Nette\Utils\Strings::substring($k, 1);
 					$val[$newK] = $val[$k];
@@ -687,7 +692,7 @@ class MetaFieldsNeonDef extends NeonDef
 				if (is_array($val['view'])) {
 					$val['view'] = $this->combineClassnames($val['view']);
 					$val['view'] = $this->prefix($val['view'], 'view-');
-				} else if(is_string($val['view'])) {
+				} elseif (is_string($val['view'])) {
 					$val['view'] = $this->prefix(explode(' ', $val['view']), 'view-');
 				}
 			} else {
@@ -706,20 +711,22 @@ class MetaFieldsNeonDef extends NeonDef
 		return $result;
 	}
 
-	public function prefix(array $list, $prefix = '') {
+	public function prefix(array $list, $prefix = '')
+	{
 		$result = [];
 
-		foreach($list as $val) {
+		foreach ($list as $val) {
 			$result[] = $prefix.$val;
 		}
 
 		return implode(' ', $result);
 	}
 
-	public function combineClassnames(array $classnames, $prefix = '') {
+	public function combineClassnames(array $classnames, $prefix = '')
+	{
 		$result = [];
 
-		foreach($classnames as $key => $val) {
+		foreach ($classnames as $key => $val) {
 			if (is_string($key)) {
 				if ($val) {
 					$result = array_merge($result, explode(" ", $key));
@@ -829,18 +836,27 @@ class MetaFieldsNeonDef extends NeonDef
 					$position = $metabox['context'] ?? 'normal';
 					$priority = $metabox['priority'] ?? 'high';
 					$post_types = $metabox['post_types'];
+					$seamless = ($metabox['style'] ?? null) === 'seamless';
 
-					add_action('add_meta_boxes', function () use ($id, $post_types, $title, $position, $priority, $fn) {
+					add_action('add_meta_boxes', function () use ($id, $post_types, $title, $position, $priority, $fn, $seamless) {
 						$post_types = (array) $post_types;
 						foreach ($post_types as $cpt) {
+							$mbid = 'metabox-'.$id;
 							add_meta_box(
-								'metabox-'.$id,
+								$mbid,
 								$title,
 								$fn,
 								$cpt,
 								$position,
 								$priority
 							);
+							if ($seamless) {
+								$screen = get_current_screen();
+								add_filter("postbox_classes_{$screen->id}_{$mbid}", function ($classes) {
+									$classes[] = 'rwmb-seamless';
+									return $classes;
+								});
+							}
 						}
 					});
 
@@ -867,18 +883,27 @@ class MetaFieldsNeonDef extends NeonDef
 					$position = $metabox['context'] ?? 'normal';
 					$priority = $metabox['priority'] ?? 'high';
 					$post_types = $metabox['post_types'];
+					$seamless = ($metabox['style'] ?? null) === 'seamless';
 
-					add_action('add_meta_boxes', function () use ($post_types, $title, $position, $priority, $fn) {
+					add_action('add_meta_boxes', function () use ($post_types, $title, $position, $priority, $fn, $seamless) {
 						$post_types = (array) $post_types;
 						foreach ($post_types as $cpt) {
+							$mbid = md5((string) microtime());
 							add_meta_box(
-								md5((string) microtime()),
+								$mbid,
 								$title,
 								$fn,
 								$cpt,
 								$position,
 								$priority
 							);
+							if ($seamless) {
+								$screen = get_current_screen();
+								add_filter("postbox_classes_{$screen->id}_{$mbid}", function ($classes) {
+									$classes[] = 'rwmb-seamless';
+									return $classes;
+								});
+							}
 						}
 					});
 
@@ -905,7 +930,6 @@ class MetaFieldsNeonDef extends NeonDef
 				unset($metabox['settings_pages']);
 				unset($metabox['admin_pages']);
 				$meta_boxes[] = $metabox;
-
 			}
 
 			return $meta_boxes;
@@ -933,7 +957,8 @@ class MetaFieldsNeonDef extends NeonDef
 		return $this->localizedPages;
 	}
 
-	public function getKeys() {
+	public function getKeys()
+	{
 		return array_keys($this->keys);
 	}
 }
@@ -957,6 +982,6 @@ function runNeonConfigs($dir)
 		$meta_fields = new MetaFieldsNeonDef($dir);
 		$meta_fields->setLocalizedPages($admin_pages->getLocalizedPages());
 		$meta_fields->run();
-		update_option('allCustomMetaFields', $meta_fields->getKeys(), FALSE);
+		update_option('allCustomMetaFields', $meta_fields->getKeys(), false);
 	}
 }
