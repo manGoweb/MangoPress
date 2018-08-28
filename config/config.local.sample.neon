@@ -1,6 +1,7 @@
 parameters:
 	livereload: on
 	showExamples: on
+	dangerouslyDisablePasswords: off
 
 	database:
 		host: 127.0.0.1
