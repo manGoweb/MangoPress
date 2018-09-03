@@ -35,7 +35,7 @@ export default class MetaField extends React.Component<MetaFieldProps, { changed
 		const { name, callback, json, visible } = this.props
 		const value = this.getValue()
 		return (
-			<React.Fragment>
+			<>
 				{this.props.children({ value, setValue: this.setValue })}
 				<input
 					type={visible ? 'text' : 'hidden'}
@@ -43,7 +43,7 @@ export default class MetaField extends React.Component<MetaFieldProps, { changed
 					value={(json ? JSON.stringify(value) : value) || ''}
 					onChange={noop}
 				/>
-			</React.Fragment>
+			</>
 		)
 	}
 }
