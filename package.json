@@ -1,5 +1,9 @@
 {
   "name": "mangopress",
+  "scripts": {
+    "start": "mango dev",
+    "build": "mango build"
+  },
   "dependencies": {
     "bourbon": "^4.3.4",
     "jquery": "^3.3.1",
