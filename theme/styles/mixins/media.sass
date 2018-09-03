@@ -16,16 +16,16 @@
 		// @media (min-width: 30em) and (max-width: 47.96875em), (min-width: 62em) and (max-width: 74.96875em)
 
 		+media(123)
-		// @media (min-width: 123px)
+		// @media (min-width: 7.6875em)
 
 		+media(123M)
-		// @media (max-width: 456px)
+		// @media (max-width: 123px)
 
 		+media(123em maxWidth(456em))
 		// @media (min-width: 123em) and (max-width: 455.96875em)
 
 		+media($break480 '(screen)', 300 maxWidth(500px), $landscape)
-		// @media (min-width: 30em) and (screen), (min-width: 300px) and (max-width: 31.21875em), (orientation: landscape)
+		// @media (min-width: 30em) and (screen), (min-width: 18.75em) and (max-width: 31.21875em), (orientation: landscape)
 
 
 =media($breakpoints...)
@@ -54,6 +54,10 @@
 
 				@if $literalUnit == ''
 					$literalUnit: 'px'
+
+				@if not $maxMode
+					$literal: em($literal)
+					$literalUnit: 'em'
 
 				$literal: '(#{$extremum}-width: #{toScalar($literal)}#{$literalUnit})'
 

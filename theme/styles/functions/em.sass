@@ -7,4 +7,16 @@
 		em(10px)            // Returns 0.625em (based on $font-size)
 		em(10px, 10px)      // Returns 1em
 @function em($value, $font-size: $base-font-size)
-	@return _toRelative($value, $font-size, 1em)
+	$unit: unit($value)
+	$emValue: 0em
+
+	@if $unit == 'px' or unitless($value)
+		$emValue: _toRelative($value, $font-size, 1em)
+	@else if $unit == 'em'
+		$emValue: $value
+	@else if $unit == 'rem'
+		$emValue: toScalar($value) * 1em
+	@else
+		@error 'The em function only accepts unitless values or values in pixels, ems or rems. Please stick to those.'
+
+	@return $emValue
