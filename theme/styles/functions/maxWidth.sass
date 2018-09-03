@@ -1,0 +1,22 @@
+@import 'em'
+@import 'toScalar'
+
+// Converts a numeric value in pixels, ems or rems to the special 'M'-prefixed counterpart as described in media.sass
+	This function is to be used in conjunction with the +media mixin. See the examples in media.sass.
+
+	NOTE: For convenience, each conversion also subtracts the value of $w-px-epsilon.
+@function maxWidth($value)
+	$unit: unit($value)
+	$emValue: 0em
+
+	@if $unit == 'px'
+		$emValue: em($value)
+	@else if $unit == 'em'
+		$emValue: $value
+	@else if $unit == 'rem'
+		$emValue: toScalar($value) * 1em
+	@else
+		@error 'The maxWidth function only accepts values in pixels, ems or rems. Please stick to those.'
+
+	@return toScalar($emValue - em($w-px-epsilon)) * 1Mem
+

@@ -1,6 +1,9 @@
-// ## Base font size. This isn't in variables so that functions can refer to it and variables can subsequently use those
-// ## functions.
-$base-font-size: 16px
+
+// ## Crucial variables.
+// ## These aren't in _variables.sass so that functions can refer to them and subsequent variables can then be defined
+// ## in terms of those functions.
+$base-font-size: 16px // You REALLY don't want to change this.
+$w-px-epsilon: .5px
 
 // ## Functions
 @import 'functions/*'

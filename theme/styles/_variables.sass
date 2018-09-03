@@ -7,8 +7,8 @@ $radius: 2px
 $spacing: 24px
 $padding: 10px
 
-$w-em-epsilon: em(.5px)
-$w-rem-epsilon: rem(.5px)
+$w-em-epsilon: em($w-px-epsilon)
+$w-rem-epsilon: rem($w-px-epsilon)
 
 // Font properties
 $font-family-sans-serif: 'Helvetica Neue', Helvetica, Arial, sans-serif
@@ -44,13 +44,13 @@ $break1200: 75em
 $break1296: 81em
 $break1400: 87em
 
-$break320M: emToMem(20em - $w-em-epsilon)
-$break480M: emToMem(30em - $w-em-epsilon)
-$break768M: emToMem(48em - $w-em-epsilon)
-$break992M: emToMem(62em - $w-em-epsilon)
-$break1200M: emToMem(75em - $w-em-epsilon)
-$break1296M: emToMem(81em - $w-em-epsilon)
-$break1400M: emToMem(87em - $w-em-epsilon)
+$break320M: maxWidth($break320)
+$break480M: maxWidth($break480)
+$break768M: maxWidth($break768)
+$break992M: maxWidth($break992)
+$break1200M: maxWidth($break1200)
+$break1296M: maxWidth($break1296)
+$break1400M: maxWidth($break1400)
 
 $landscape: '(orientation: landscape)'
 $portrait: '(orientation: portrait)'

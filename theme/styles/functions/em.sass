@@ -4,7 +4,7 @@
 	Usage:
 		em(16)              // Returns 1em (based on $font-size)
 		em(16px)            // Returns 1em (based on $font-size)
-		em(10px)            // Returns 0.625em (based on $base-font-size)
+		em(10px)            // Returns 0.625em (based on $font-size)
 		em(10px, 10px)      // Returns 1em
 @function em($value, $font-size: $base-font-size)
 	@return _toRelative($value, $font-size, 1em)

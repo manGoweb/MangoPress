@@ -7,11 +7,13 @@
 		where mediaQuery is a sass list of one of
 		- string of a classic css feature query
 		- unitless number (will be interpreted as the pixel argument for min-width)
-		- number with a special unit 'M' (e.g. 123M) (will be interpreted as the pixel argument for max-width)
+		- number with a special unit prefix 'M' (e.g. 123Mem) which denotes that max-width is to be emitted
+			NOTE: You never want to use this unit explicitly. Instead, use the maxWidth function for conversion. See examples
+			      below.
 
 	Examples:
 		+media($break480 $break768M, $break992 $break1200M)
-		// @media (min-width: 480px) and (max-width: 767px), (min-width: 992px) and (max-width: 1199px)
+		// @media (min-width: 30em) and (max-width: 47.96875em), (min-width: 62em) and (max-width: 74.96875em)
 
 		+media(123)
 		// @media (min-width: 123px)
@@ -19,11 +21,11 @@
 		+media(123M)
 		// @media (max-width: 456px)
 
-		+media(123em 456Mem)
-		// @media (min-width: 123em) and (max-width: 456em)
+		+media(123em maxWidth(456em))
+		// @media (min-width: 123em) and (max-width: 455.96875em)
 
-		+media($break480 '(screen)', 300 500M, $landscape)
-		// @media (min-width: 480px) and (screen), (min-width: 300px) and (max-width: 500px), (orientation: landscape)
+		+media($break480 '(screen)', 300 maxWidth(500px), $landscape)
+		// @media (min-width: 30em) and (screen), (min-width: 300px) and (max-width: 31.21875em), (orientation: landscape)
 
 
 =media($breakpoints...)
