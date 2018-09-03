@@ -10,7 +10,7 @@ interface InViewData {
 
 export default class InView extends Component<InViewData> {
 	static componentName = 'InView'
-	targets: any
+	targets: NodeListOf<Element> | HTMLElement[]
 	threshold: number
 	detectOnce: boolean
 	strictTop: boolean
@@ -55,15 +55,16 @@ export default class InView extends Component<InViewData> {
 			}
 		)
 
-		this.targets.forEach((target: any) => {
-			observer.observe(target)
-		})
+		for (let i = 0, length = this.targets.length; i < length; i++) {
+			observer.observe(this.targets[i])
+		}
 	}
 
 	_onScrollInit() {
 		window.addEventListener('scroll', () => {
 			window.requestAnimationFrame(() => {
-				this.targets.forEach((target: any) => {
+				for (let i = 0, length = this.targets.length; i < length; i++) {
+					const target = this.targets[i]
 					const targetRect = target.getBoundingClientRect()
 					const targetArea = targetRect.width * targetRect.height
 					const intersectionArea =
@@ -79,7 +80,7 @@ export default class InView extends Component<InViewData> {
 						) // height
 					const intersectionRatio = intersectionArea / targetArea
 					this._updateState(target, intersectionRatio, targetRect.top < window.innerHeight / 2)
-				})
+				}
 			})
 		})
 		window.scrollTo(window.scrollX, window.scrollY)
