@@ -11,6 +11,13 @@
 		"paths": {},
 		"sourceMap": true,
 		"strict": true,
-		"target": "es5"
-	}
+		"target": "es5",
+    "listFiles": true
+	},
+	"include": [
+		"theme/scripts"
+	],
+	"exclude": [
+		"vendor"
+	]
 }
