@@ -1,11 +1,5 @@
-import "./plugins"
-import componentsHandler from "./utils/initComponentsHandler"
+import componentHandler from './componentHandler'
+//import Example from './components/Example'
+import './plugins'
 
-import example from "./components/Example"
-
-componentsHandler(
-	{
-		example,
-	},
-	"initStyleguideComponents"
-)
+componentHandler([], 'initStyleguideComponents')

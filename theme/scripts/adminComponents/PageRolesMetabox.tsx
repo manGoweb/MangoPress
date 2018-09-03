@@ -1,19 +1,32 @@
-import createReactComponent from "../utils/createReactComponent"
-import React from "react"
+import createReactComponent from '../utils/createReactComponent'
+import React, { SyntheticEvent } from 'react'
 
-import { map, pickBy, merge } from "lodash-es"
+import { map, pickBy } from 'lodash-es'
 
-class Tr extends React.Component {
+interface Roles {
+	[name: string]: null | false | PostId
+}
 
-	clearClick = e => {
+interface TrProps {
+	label: string
+	name: string
+	onChange: (roles: Roles) => void
+	originalRoles: Roles
+	page_id: PageId
+	post_id: PostId
+	title: string
+}
+
+class Tr extends React.Component<TrProps> {
+	clearClick = (e: SyntheticEvent) => {
 		this.props.onChange({ [this.props.name]: null })
 	}
 
-	undoClick = e => {
+	undoClick = (e: SyntheticEvent) => {
 		this.props.onChange({ [this.props.name]: false })
 	}
 
-	setThisClick = e => {
+	setThisClick = (e: SyntheticEvent) => {
 		this.props.onChange({ [this.props.name]: this.props.post_id })
 	}
 
@@ -21,19 +34,19 @@ class Tr extends React.Component {
 		const { post_id, page_id, name, originalRoles, title, label } = this.props
 		return (
 			<tr>
-				<th style={{ whiteSpace: "nowrap", fontSize: 10 }} title={name}>
+				<th style={{ whiteSpace: 'nowrap', fontSize: 10 }} title={name}>
 					{label || name}
 				</th>
 				<td
 					style={{
-						whiteSpace: "nowrap",
+						whiteSpace: 'nowrap',
 						fontSize: 10,
-						overflow: "hidden",
-						textOverflow: "ellipsis",
-						position: "relative",
+						overflow: 'hidden',
+						textOverflow: 'ellipsis',
+						position: 'relative',
 						lineHeight: 1,
+						width: '75%',
 					}}
-					width="75%"
 				>
 					{page_id === post_id ? (
 						<strong>this page</strong>
@@ -47,39 +60,26 @@ class Tr extends React.Component {
 
 					<div
 						style={{
-							position: "absolute",
-							top: "50%",
+							position: 'absolute',
+							top: '50%',
 							right: 5,
-							transform: "translateY(-50%)",
+							transform: 'translateY(-50%)',
 						}}
 					>
 						{!page_id && (
-							<button
-								type="button"
-								className="button button-small"
-								onClick={this.setThisClick}
-							>
+							<button type="button" className="button button-small" onClick={this.setThisClick}>
 								set this page
 							</button>
-						)}
-						{' '}
+						)}{' '}
 						{page_id && (
-							<button
-								type="button"
-								className="button button-small"
-								onClick={this.clearClick}
-							>
+							<button type="button" className="button button-small" onClick={this.clearClick}>
 								×
 							</button>
 						)}
 						{originalRoles[name] &&
 							page_id !== originalRoles[name] &&
 							post_id !== originalRoles[name] && (
-								<button
-									type="button"
-									className="button button-small"
-									onClick={this.undoClick}
-								>
+								<button type="button" className="button button-small" onClick={this.undoClick}>
 									undo
 								</button>
 							)}
@@ -90,16 +90,27 @@ class Tr extends React.Component {
 	}
 }
 
-class PageRolesMetabox extends React.Component {
+interface PageRolesProps {
+	post_id: PostId
+	roles: Roles
+	labels: string[]
+	titles: string[]
+}
+
+interface PageRolesState {
+	roles: Roles
+}
+
+class PageRolesMetabox extends React.Component<PageRolesProps, PageRolesState> {
+	static componentName = 'PageRolesMetabox'
+
 	state = {
 		roles: {},
 	}
 
-	onRowChange = update => {
-		this.setState(state => {
-			state.roles = { ...state.roles, ...update }
-			state.roles = pickBy(state.roles, val => val !== false)
-			return state
+	onRowChange = (update: Roles) => {
+		this.setState({
+			roles: pickBy({ ...this.state.roles, ...update }, (val) => val !== false) as Roles,
 		})
 	}
 
@@ -114,12 +125,12 @@ class PageRolesMetabox extends React.Component {
 			<div>
 				<table className="wp-list-table widefat fixed striped posts">
 					<tbody>
-						{map(roles, (page_id, key) => (
+						{map(roles, (page_id, key: number) => (
 							<Tr
 								key={key}
 								page_id={page_id}
 								post_id={post_id}
-								name={key}
+								name={key.toString()}
 								originalRoles={originalRoles}
 								onChange={this.onRowChange}
 								title={titles[page_id]}

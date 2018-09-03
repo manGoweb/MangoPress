@@ -1,31 +1,42 @@
-import Component from "./Component"
-const $ = window.jQuery
+import Component from './Component'
 
-export default class Shapes extends Component {
-	constructor(element, data) {
-		super(element, data)
+interface ShapesData {
+	url: string
+}
 
-		this.supportsSVG = document.implementation.hasFeature(
-			"http://www.w3.org/TR/SVG11/feature#BasicStructure",
-			"1.1"
-		)
+/**
+ * Shapes component class
+ *
+ * - injects SVG sprite into body
+ */
+export default class Shapes extends Component<ShapesData> {
+	static componentName = 'Shapes'
 
-		if (this.supportsSVG) {
-			this.injectSprite()
-		}
+	init() {
+		document.implementation.hasFeature(
+			'http://www.w3.org/TR/SVG11/feature#BasicStructure',
+			'1.1'
+		) && this.injectSprite()
 	}
 
-	injectSprite() {
-		$.get(
-			this.data.url,
-			(response, status) => {
-				if (status === "success") {
-					$(document.body).prepend(response)
-				} else {
-					setTimeout(() => this.injectSprite(), 1000 * 10)
+	injectSprite(): void {
+		fetch(this.data.url)
+			.then((response: Response) => {
+				if (!response.ok) {
+					throw new Error(response.statusText)
 				}
-			},
-			"text"
-		)
+				return response.text()
+			})
+			.then((shapes: string) => {
+				const wrapper = document.createElement('div')
+				const body = document.body
+
+				wrapper.innerHTML = shapes
+
+				body.insertBefore(wrapper.children.item(0), body.firstChild)
+			})
+			.catch(() => {
+				setTimeout(() => this.injectSprite(), 1e4)
+			})
 	}
 }

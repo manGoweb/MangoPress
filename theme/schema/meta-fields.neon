@@ -38,7 +38,7 @@ register:
 		context: side
 		post_type: page
 		# defined in theme/scripts/wp-admin.ts
-		component: example_metabox
+		component: ExampleMetabox
 
 	-
 		title: React / custom data
@@ -46,7 +46,7 @@ register:
 		context: side
 		post_type: page
 		# defined in theme/scripts/wp-admin.ts
-		component: example_metabox
+		component: ExampleMetabox
 		data:
 			message: "Hello"
 

@@ -1,62 +1,67 @@
-const $ = window.jQuery
-const eventSplitter = /^(\S+)\s*(.*)$/
+import matchesSelector from '../utils/matchesSelector'
 
-export default class Component {
-	constructor(element, data = {}) {
+export interface NamedComponent {
+	componentName: string
+}
+
+export type ComponentConstructor<D> = NamedComponent &
+	(new (element: HTMLElement, data: D) => Component<D>)
+
+export class ComponentInitializationError extends Error {}
+
+export default class Component<D> {
+	protected readonly el: HTMLElement
+	protected readonly data: D
+
+	getListeners = (): EventListeners => []
+
+	constructor(element: HTMLElement, data: D) {
 		this.el = element
-		this.$el = $(element)
 		this.data = data
+	}
 
+	setup() {
 		this.attachListeners()
+
+		this.init()
 	}
 
-	get listeners() {
-		return {
-			// 'click .example-child': 'handleClick',
-		}
-	}
+	init() {}
 
-	attachListeners() {
-		const listeners = this.listeners
+	private attachListeners() {
+		const listeners = this.getListeners()
 
-		for (const event in listeners) {
-			let type = event.trim()
-			let selector = false
-			const callback = this[listeners[event]]
+		for (let i = 0, listenersCount = listeners.length; i < listenersCount; i++) {
+			const listenersSpec = listeners[i]
 
-			const split = event.match(eventSplitter)
-			if (split) {
-				;[, type, selector] = split
-			}
+			if (listenersSpec.length === 2) {
+				// EventListenerSpec
+				const [type, callback] = listenersSpec
 
-			let listener = $.proxy(callback, this)
-
-			if (selector) {
-				this.$el.on(type, selector, listener)
+				this.el.addEventListener(type, callback.bind(this), false)
 			} else {
-				this.$el.on(type, listener)
+				// DelegateEventListenerSpec
+				const [type, delegateSelector, callback] = listenersSpec
+
+				this.el.addEventListener(
+					type,
+					(e: Event) => {
+						let target = e.target
+
+						while (target && target instanceof HTMLElement && target !== this.el) {
+							if (matchesSelector(target, delegateSelector)) {
+								const delegateEvent: any = e
+								delegateEvent.delegateTarget = target
+
+								return callback.call(this, delegateEvent)
+							}
+
+							target = target.parentElement
+						}
+					},
+					false
+				)
 			}
 		}
-	}
-
-	detachListeners() {
-		this.$el.off()
-	}
-
-	destroy() {
-		this.detachListeners()
-
-		for (const prop in this) {
-			this[prop] = null
-		}
-	}
-
-	child(selector) {
-		const $result = this.$el.find(selector)
-
-		if (!$result.length) {
-			return null
-		}
-		return $result.eq(0)
 	}
 }
