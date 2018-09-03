@@ -12,7 +12,6 @@
 		"@types/lodash-es": "^4.17.1",
 		"@types/react": "^16.4.13",
 		"@types/react-dom": "^16.0.7",
-		"bourbon": "^4.3.4",
 		"jquery": "^3.3.1",
 		"lodash-es": "^4.17.10",
 		"lt-ie-9": "^0.1.0",

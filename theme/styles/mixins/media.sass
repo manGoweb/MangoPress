@@ -19,13 +19,20 @@
 		+media(123M)
 		// @media (max-width: 456px)
 
+		+media(123em 456Mem)
+		// @media (min-width: 123em) and (max-width: 456em)
+
 		+media($break480 '(screen)', 300 500M, $landscape)
 		// @media (min-width: 480px) and (screen), (min-width: 300px) and (max-width: 500px), (orientation: landscape)
 
 
 =media($breakpoints...)
+	$MAX: 'M'
 	$media: ''
 	$disjunctionCount: length($breakpoints)
+
+	@if $disjunctionCount == 0
+		@error "The media mixin expects at least one argument! None given."
 
 	@for $i from 1 through $disjunctionCount
 		$conjunction: nth($breakpoints, $i)
@@ -35,7 +42,18 @@
 			$literal: nth($conjunction, $j)
 
 			@if type-of($literal) == number
-				$literal: '(#{if(unit($literal) == 'M', 'max', 'min')}-width: #{$literal / ($literal * 0 + 1)}px)'
+				$literalUnit: unit($literal)
+				$maxMode: str-slice($literalUnit, 0, str-length($MAX)) == $MAX
+				$extremum: 'min'
+
+				@if $maxMode
+					$extremum: 'max'
+					$literalUnit: str-slice($literalUnit, str-length($MAX) + 1)
+
+				@if $literalUnit == ''
+					$literalUnit: 'px'
+
+				$literal: '(#{$extremum}-width: #{toScalar($literal)}#{$literalUnit})'
 
 			$media: $media + $literal + if($j == $conjunctionCount, '', ' and ')
 

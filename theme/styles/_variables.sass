@@ -7,6 +7,9 @@ $radius: 2px
 $spacing: 24px
 $padding: 10px
 
+$w-em-epsilon: em(.5px)
+$w-rem-epsilon: rem(.5px)
+
 // Font properties
 $font-family-sans-serif: 'Helvetica Neue', Helvetica, Arial, sans-serif
 $font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif
@@ -33,17 +36,21 @@ $c-text-light: #676767
 $c-text-back: #FFF
 
 // Breakpoints
-$break320: '(min-width: 320px)'
-$break480: '(min-width: 480px)'
-$break768: '(min-width: 768px)'
-$break992: '(min-width: 992px)'
-$break1200: '(min-width: 1200px)'
+$break320: 20em
+$break480: 30em
+$break768: 48em
+$break992: 62em
+$break1200: 75em
+$break1296: 81em
+$break1400: 87em
 
-$break320M: '(max-width: 319px)'
-$break480M: '(max-width: 479px)'
-$break768M: '(max-width: 767px)'
-$break992M: '(max-width: 991px)'
-$break1200M: '(max-width: 1199px)'
+$break320M: emToMem(20em - $w-em-epsilon)
+$break480M: emToMem(30em - $w-em-epsilon)
+$break768M: emToMem(48em - $w-em-epsilon)
+$break992M: emToMem(62em - $w-em-epsilon)
+$break1200M: emToMem(75em - $w-em-epsilon)
+$break1296M: emToMem(81em - $w-em-epsilon)
+$break1400M: emToMem(87em - $w-em-epsilon)
 
 $landscape: '(orientation: landscape)'
 $portrait: '(orientation: portrait)'
