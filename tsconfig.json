@@ -1,17 +1,16 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "jquery": ["node_modules/jquery/dist/jquery"]
-        },
-        "target": "es5",
-        "jsx":"react",
-        "lib": [
-            "dom",
-            "es6",
-            "scripthost",
-            "dom.iterable"
-        ],
-        "strict": true
-    }
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"baseUrl": "theme/scripts",
+		"experimentalDecorators": true,
+		"jsx": "react",
+		"lib": ["dom", "es6", "scripthost", "dom.iterable"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"paths": {},
+		"sourceMap": true,
+		"strict": true,
+		"target": "es5"
+	}
 }

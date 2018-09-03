@@ -1,19 +1,12 @@
-import "./plugins"
-import componentsHandler from "./utils/initComponentsHandler"
+import ExampleAdminPage from './adminComponents/ExampleAdminPage'
+import ExampleMetabox from './adminComponents/ExampleMetabox'
+import ExampleToolbarButton from './adminComponents/ExampleToolbarButton'
+import PageRolesMetabox from './adminComponents/PageRolesMetabox'
+import componentHandler from './componentHandler'
+import Example from './components/Example'
+import './plugins'
 
-import page_roles from "./components/PageRolesMetabox"
-import example_admin_page from "./components/ExampleAdminPage"
-import example from "./components/Example"
-import example_metabox from "./components/ExampleMetabox"
-import example_toolbar_button from "./components/ExampleToolbarButton"
-
-componentsHandler(
-	{
-		page_roles,
-		example,
-		example_admin_page,
-		example_metabox,
-		example_toolbar_button,
-	},
-	"initAdminComponents"
+componentHandler(
+	[Example, ExampleToolbarButton, PageRolesMetabox, ExampleAdminPage, ExampleMetabox],
+	'initAdminComponents'
 )

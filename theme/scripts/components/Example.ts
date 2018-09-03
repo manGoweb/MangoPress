@@ -1,29 +1,30 @@
-import Component from "./Component"
+import Component from './Component'
 
-/**
- * Example component class
- *
- * - all DOM operations must be executed after creating an instance (in constructor)
- * - when defining own constructor, don't forget to call super(element, data)
- * - DOM event listeners are in Backbone style
- *
- */
-export default class Example extends Component {
-	constructor(el, data) {
-		super(el, data)
+interface ExampleData {
+	name: string
+	numberOfTheDay: number
+}
+
+export default class Example extends Component<ExampleData> {
+	static componentName = 'Example'
+
+	getListeners = (): EventListeners => [
+		['click', this.handleClick],
+		['click', '.example-child', this.handleDelegateClick],
+	]
+
+	init() {
+		// Initialize your component.
 	}
 
-	get listeners() {
-		return {
-			"click .example-child": "handleClick",
-		}
+	handleDelegateClick(e: DelegateEvent<'click'>): void {
+		console.log(e.delegateTarget)
 	}
 
-	handleClick(e, data) {
+	handleClick(e: MouseEvent): void {
 		e.preventDefault()
 		alert(
-			`You clicked on button "${e.target
-				.textContent}". Component's data are: ${JSON.stringify(this.data)}.`
+			`Hello, ${this.data.name}! The number of the day is ${this.data.numberOfTheDay.toFixed(0)}`
 		)
 	}
 }
