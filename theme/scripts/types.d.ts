@@ -20,3 +20,7 @@ type EventListeners = Array<
 >
 
 type Constructor<T> = new (...args: any[]) => T
+
+interface Element {
+	msMatchesSelector(selectors: string): boolean
+}
