@@ -14,6 +14,8 @@ $initTheme[] = function ($dir) {
 				return;
 			}
 
+			status_header(200);
+
 			if (!isset($Payload)) {
 				$Payload = new Nette\Utils\ArrayHash;
 			}
