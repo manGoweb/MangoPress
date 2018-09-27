@@ -1,6 +1,7 @@
 // Favorite constants
 $gratio: 1.618
 $pi: 3.14159
+$sqrt2: 1.4142136
 
 // Dimensions
 $radius: 2px
@@ -15,35 +16,40 @@ $font-family-monospace: Monaco, Menlo, Consolas, 'Courier New', monospace
 $font-family-base: $font-family-sans-serif
 $font-family-head: $font-family-serif
 
-$base-font-size: 16px
+$fw-thin: 100
+$fw-extraLight: 200
 $fw-light: 300
 $fw-normal: 400
 $fw-medium: 500
-$fw-semibold: 600
+$fw-semiBold: 600
 $fw-bold: 700
-$em-base: $base-font-size
+$fw-extraBold: 800
 
 // Colors
 $c-main: green
 $c-comp: complement($c-main)
-$c-alt: #000
+$c-alt: #000000
 
-$c-text: #333
+$c-text: #333333
 $c-text-light: #676767
-$c-text-back: #FFF
+$c-text-back: #ffffff
 
 // Breakpoints
-$break320: '(min-width: 320px)'
-$break480: '(min-width: 480px)'
-$break768: '(min-width: 768px)'
-$break992: '(min-width: 992px)'
-$break1200: '(min-width: 1200px)'
+$break320: 20em
+$break480: 30em
+$break768: 48em
+$break992: 62em
+$break1200: 75em
+$break1296: 81em
+$break1400: 87em
 
-$break320M: '(max-width: 319px)'
-$break480M: '(max-width: 479px)'
-$break768M: '(max-width: 767px)'
-$break992M: '(max-width: 991px)'
-$break1200M: '(max-width: 1199px)'
+$break320M: maxWidth($break320)
+$break480M: maxWidth($break480)
+$break768M: maxWidth($break768)
+$break992M: maxWidth($break992)
+$break1200M: maxWidth($break1200)
+$break1296M: maxWidth($break1296)
+$break1400M: maxWidth($break1400)
 
 $landscape: '(orientation: landscape)'
 $portrait: '(orientation: portrait)'

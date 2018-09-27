@@ -1,13 +1,7 @@
-import "./plugins"
-import componentsHandler from "./utils/initComponentsHandler"
+import componentHandler from './componentHandler'
+import InView from './components/InView'
+import Shapes from './components/Shapes'
+import Example from './components/Example'
+import './plugins'
 
-import example from "./components/Example"
-import shapes from "./components/Shapes"
-
-componentsHandler(
-	{
-		example,
-		shapes,
-	},
-	"initComponents"
-)
+componentHandler([Example, InView, Shapes], 'initComponents')

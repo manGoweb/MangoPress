@@ -2,5 +2,5 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-mango install
-mango build
+npm install
+npm run build

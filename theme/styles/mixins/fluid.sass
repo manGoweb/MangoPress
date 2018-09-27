@@ -1,0 +1,17 @@
+// Based on https://css-tricks.com/snippets/css/fluid-typography/#article-header-id-0
+
+=fluid($property-name, $min-viewport-width, $max-viewport-width, $min-value, $max-value)
+	$u1: unit($min-viewport-width)
+	$u2: unit($max-viewport-width)
+	$u3: unit($min-value)
+	$u4: unit($max-value)
+
+	@if $u1 == $u2 and $u1 == $u3 and $u1 == $u4
+		&
+			#{$property-name}: $min-value
+			@media screen and (min-width: $min-viewport-width)
+				$scalar-font: toScalar($max-value - $min-value)
+				$scalar-viewport: toScalar($max-viewport-width - $min-viewport-width)
+				#{$property-name}: calc(#{$min-value} + #{$scalar-font} * ((100vw - #{$min-viewport-width}) / #{$scalar-viewport}))
+			@media screen and (min-width: $max-viewport-width)
+				#{$property-name}: $max-value

@@ -7,25 +7,34 @@
 		where mediaQuery is a sass list of one of
 		- string of a classic css feature query
 		- unitless number (will be interpreted as the pixel argument for min-width)
-		- number with a special unit 'M' (e.g. 123M) (will be interpreted as the pixel argument for max-width)
+		- number with a special unit prefix 'M' (e.g. 123Mem) which denotes that max-width is to be emitted
+			NOTE: You never want to use this unit explicitly. Instead, use the maxWidth function for conversion. See examples
+			      below.
 
 	Examples:
 		+media($break480 $break768M, $break992 $break1200M)
-		// @media (min-width: 480px) and (max-width: 767px), (min-width: 992px) and (max-width: 1199px)
+		// @media (min-width: 30em) and (max-width: 47.96875em), (min-width: 62em) and (max-width: 74.96875em)
 
 		+media(123)
-		// @media (min-width: 123px)
+		// @media (min-width: 7.6875em)
 
 		+media(123M)
-		// @media (max-width: 456px)
+		// @media (max-width: 123px)
 
-		+media($break480 '(screen)', 300 500M, $landscape)
-		// @media (min-width: 480px) and (screen), (min-width: 300px) and (max-width: 500px), (orientation: landscape)
+		+media(123em maxWidth(456em))
+		// @media (min-width: 123em) and (max-width: 455.96875em)
+
+		+media($break480 '(screen)', 300 maxWidth(500px), $landscape)
+		// @media (min-width: 30em) and (screen), (min-width: 18.75em) and (max-width: 31.21875em), (orientation: landscape)
 
 
 =media($breakpoints...)
+	$MAX: 'M'
 	$media: ''
 	$disjunctionCount: length($breakpoints)
+
+	@if $disjunctionCount == 0
+		@error "The media mixin expects at least one argument! None given."
 
 	@for $i from 1 through $disjunctionCount
 		$conjunction: nth($breakpoints, $i)
@@ -35,7 +44,22 @@
 			$literal: nth($conjunction, $j)
 
 			@if type-of($literal) == number
-				$literal: '(#{if(unit($literal) == 'M', 'max', 'min')}-width: #{$literal / ($literal * 0 + 1)}px)'
+				$literalUnit: unit($literal)
+				$maxMode: str-slice($literalUnit, 0, str-length($MAX)) == $MAX
+				$extremum: 'min'
+
+				@if $maxMode
+					$extremum: 'max'
+					$literalUnit: str-slice($literalUnit, str-length($MAX) + 1)
+
+				@if $literalUnit == ''
+					$literalUnit: 'px'
+
+				@if not $maxMode
+					$literal: em($literal)
+					$literalUnit: 'em'
+
+				$literal: '(#{$extremum}-width: #{toScalar($literal)}#{$literalUnit})'
 
 			$media: $media + $literal + if($j == $conjunctionCount, '', ' and ')
 

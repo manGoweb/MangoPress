@@ -1,28 +1,29 @@
-import createReactComponent from "../utils/createReactComponent"
-import React from "react"
+import createReactComponent from '../utils/createReactComponent'
+import React from 'react'
 
-import { map, pickBy, merge } from "lodash-es"
-
-const styleWorkarounds = options => {
-	let rules = []
-
-	if (options.noPadding) {
-		rules.push("#wpcontent { padding-left: 0 }")
-	}
-
-	return <style>{rules.join(" ")}</style>
+type Values = {
+	[key: string]: any
 }
 
-class Tr extends React.Component {
-	clearClick = e => {
+interface TrProps {
+	onChange: (value: Values) => void
+	name: string
+	post_id: string
+	page_id: string
+	originalRoles: Values
+	title: string
+}
+
+class Tr extends React.Component<TrProps> {
+	clearClick = (e: React.SyntheticEvent) => {
 		this.props.onChange({ [this.props.name]: null })
 	}
 
-	undoClick = e => {
+	undoClick = (e: React.SyntheticEvent) => {
 		this.props.onChange({ [this.props.name]: false })
 	}
 
-	setThisClick = e => {
+	setThisClick = (e: React.SyntheticEvent) => {
 		this.props.onChange({ [this.props.name]: this.props.post_id })
 	}
 
@@ -30,9 +31,9 @@ class Tr extends React.Component {
 		const { post_id, page_id, name, originalRoles, title } = this.props
 		return (
 			<tr>
-				<th style={{ whiteSpace: "nowrap", fontSize: 12 }}>{name}</th>
+				<th style={{ whiteSpace: 'nowrap', fontSize: 12 }}>{name}</th>
 				{page_id && (
-					<td style={{ whiteSpace: "nowrap", fontSize: 12 }}>
+					<td style={{ whiteSpace: 'nowrap', fontSize: 12 }}>
 						{page_id === post_id ? (
 							<strong>this page</strong>
 						) : (
@@ -42,36 +43,21 @@ class Tr extends React.Component {
 						)}
 					</td>
 				)}
-				<td
-					style={{ textAlign: "right", whiteSpace: "nowrap" }}
-					colSpan={page_id ? 1 : 2}
-				>
+				<td style={{ textAlign: 'right', whiteSpace: 'nowrap' }} colSpan={page_id ? 1 : 2}>
 					{!page_id && (
-						<button
-							type="button"
-							className="button button-small"
-							onClick={this.setThisClick}
-						>
+						<button type="button" className="button button-small" onClick={this.setThisClick}>
 							set this page
 						</button>
 					)}
 					{page_id && (
-						<button
-							type="button"
-							className="button button-small"
-							onClick={this.clearClick}
-						>
+						<button type="button" className="button button-small" onClick={this.clearClick}>
 							×
 						</button>
 					)}
 					{originalRoles[name] &&
 						page_id !== originalRoles[name] &&
 						post_id !== originalRoles[name] && (
-							<button
-								type="button"
-								className="button button-small"
-								onClick={this.undoClick}
-							>
+							<button type="button" className="button button-small" onClick={this.undoClick}>
 								undo
 							</button>
 						)}
@@ -81,9 +67,19 @@ class Tr extends React.Component {
 	}
 }
 
-const incrementCount = ({ count }) => ({ count: count + 1 })
+interface Props {
+	message: string
+}
 
-class ExampleAdminPage extends React.Component {
+interface State {
+	count: number
+}
+
+const incrementCount = ({ count }: State) => ({ count: count + 1 })
+
+class ExampleAdminPage extends React.Component<Props, State> {
+	static componentName = 'ExampleAdminPage'
+
 	state = {
 		count: 1,
 	}
@@ -95,7 +91,7 @@ class ExampleAdminPage extends React.Component {
 	rand = Math.random()
 
 	render() {
-		const { message, argFromConfig } = this.props
+		const { message } = this.props
 
 		return (
 			<div className="wrap admin-page-example">
@@ -109,8 +105,7 @@ class ExampleAdminPage extends React.Component {
 					</button>
 				</p>
 				<pre>{JSON.stringify(this.props, null, 2)}</pre>
-				<style
-				>{`.admin-page-example pre { white-space: pre-wrap; font-size: 10px }`}</style>
+				<style>{`.admin-page-example pre { white-space: pre-wrap; font-size: 10px }`}</style>
 			</div>
 		)
 	}

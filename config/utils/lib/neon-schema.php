@@ -629,6 +629,16 @@ class MetaFieldsNeonDef extends NeonDef
 				}
 			}
 
+			foreach($val as $k => $v) {
+				if (\Nette\Utils\Strings::startsWith($k, '@')) {
+					$newK = \Nette\Utils\Strings::substring($k, 1);
+					$val[$newK] = $val[$k];
+					$val[$newK] = nestedInterpolate($val[$newK], $this->getVars());
+					$val[$newK] = nestedEval($val[$newK], $this->getVars());
+					unset($val[$k]);
+				}
+			}
+
 			if (isset($val['type'])) {
 				if ('repeater' === $val['type']) {
 					$val['type'] = 'group';

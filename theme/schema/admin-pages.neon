@@ -38,7 +38,7 @@ register:
 	react_page_static:
 		isExample: true
 		title: React / static
-		component: example_admin_page
+		component: ExampleAdminPage
 		faicon: react
 		data:
 			message: "static data from admin-pages.neon"
@@ -46,7 +46,7 @@ register:
 	react_page_dynamic:
 		isExample: true
 		title: React / dynamic
-		component: example_admin_page
+		component: ExampleAdminPage
 		faicon: react
 		# data getter defined in theme/admin/utils/example.php
 		data: getCustomAdminPageData("static arg from admin-pages.neon")
