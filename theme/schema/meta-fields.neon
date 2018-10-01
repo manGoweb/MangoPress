@@ -44,6 +44,7 @@ register:
 		title: React / custom data
 		isExample: true
 		context: side
+		seamless: true
 		post_type: page
 		# defined in theme/scripts/wp-admin.ts
 		component: ExampleMetabox
