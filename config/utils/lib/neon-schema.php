@@ -167,6 +167,10 @@ abstract class NeonDef
 
 	protected $defaultFilename;
 
+	protected $last;
+
+	private $finished = false;
+
 	public function __construct(string $dir)
 	{
 		$this->dir = $dir;
@@ -195,16 +199,35 @@ abstract class NeonDef
 		return false;
 	}
 
-	public function run(string $filename = null)
+	public function preRun(string $filename = null)
 	{
+		if ($this->finished) {
+			return $this->last;
+		}
+
 		$data = $this->load($filename);
 		if (false === $data) {
 			return false;
 		}
 		$data = $this->sanitize($data);
-		$result = $this->flush($data);
+		$this->last = $data;
+		$this->finished = true;
+		return $data;
+	}
 
-		return $result;
+	public function run(string $filename = null)
+	{
+		if (!$this->finished) {
+			$data = $this->preRun($filename);
+			$result = $this->flush($data);
+
+			return $result;
+		}
+	}
+
+	public function getLast() {
+		$this->preRun();
+		return $this->last;
 	}
 }
 
@@ -491,11 +514,11 @@ class ThemeNeonDef extends NeonDef
 		add_action('admin_init', function () use ($data, $template_name, $post_type) {
 			foreach ($data['hide'] as $name => $hide) {
 				if ($name == 'editor') {
-					if (in_array($template_name, $hide['templates'], true) || in_array($post_type, $hide['post_types'])) {
+					if (in_array($template_name, $hide['templates'], true) || in_array($post_type, $hide['post_types'], true)) {
 						remove_post_type_support($post_type, 'editor');
 					}
 				} elseif ($name == 'thumbnail') {
-					if (in_array($template_name, $hide['templates'], true) || in_array($post_type, $hide['post_types'])) {
+					if (in_array($template_name, $hide['templates'], true) || in_array($post_type, $hide['post_types'], true)) {
 						remove_post_type_support($post_type, 'thumbnail');
 					}
 				}
@@ -797,7 +820,7 @@ class MetaFieldsNeonDef extends NeonDef
 				if (!empty($metabox['templates']) && getCurrentPostId()) {
 					$post_id = getCurrentPostId();
 					$template_name = $this->getTemplateName($post_id);
-					if (in_array($template_name, $metabox['templates'])) {
+					if (in_array($template_name, $metabox['templates'], true)) {
 						$post = get_post($post_id);
 						$metabox['post_types'] = $metabox['post_types'] ?? [];
 						$metabox['post_types'][] = $post->post_type;
@@ -808,7 +831,7 @@ class MetaFieldsNeonDef extends NeonDef
 				if (!empty($metabox['not_templates']) && getCurrentPostId()) {
 					$post_id = getCurrentPostId();
 					$template_name = $this->getTemplateName($post_id);
-					if (in_array($template_name, $metabox['not_templates'])) {
+					if (in_array($template_name, $metabox['not_templates'], true)) {
 						continue;
 					}
 				}
@@ -976,22 +999,26 @@ class MetaFieldsNeonDef extends NeonDef
 
 function runNeonConfigs($dir)
 {
+	global $NeonConfigs;
+	$NeonConfigs = [];
+
 	\Tracy\Debugger::timer('a');
-	$post_types = new PostTypesNeonDef($dir);
+	$NeonConfigs['post_types'] = $post_types = new PostTypesNeonDef($dir);
 	$post_types->run();
 
-	$admin_pages = new AdminPagesNeonDef($dir);
+	$NeonConfigs['admin_pages'] = $admin_pages = new AdminPagesNeonDef($dir);
 	$admin_pages->run();
 
-	$taxonomies = new TaxonomiesNeonDef($dir);
+	$NeonConfigs['taxonomies'] = $taxonomies = new TaxonomiesNeonDef($dir);
 	$taxonomies->run();
 
-	$theme = new ThemeNeonDef($dir);
+	$NeonConfigs['theme'] = $theme = new ThemeNeonDef($dir);
 	$theme->run();
 
+	$NeonConfigs['meta_fields'] = $meta_fields = new MetaFieldsNeonDef($dir);
+	$meta_fields->setLocalizedPages($admin_pages->getLocalizedPages());
+
 	if (is_user_logged_in() && is_admin()) {
-		$meta_fields = new MetaFieldsNeonDef($dir);
-		$meta_fields->setLocalizedPages($admin_pages->getLocalizedPages());
 		$meta_fields->run();
 		update_option('allCustomMetaFields', $meta_fields->getKeys(), false);
 	}
