@@ -21,6 +21,6 @@ register:
 		isExample: true
 		public: true
 		label: Things
-		icon: carrot
+		faicon: crow
 		rewrite:
 			slug: thing

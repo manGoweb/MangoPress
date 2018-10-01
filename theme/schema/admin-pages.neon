@@ -9,7 +9,7 @@ register:
 	with_tabs:
 		isExample: true
 		title: With tabs
-		icon: admin-site
+		faicon: tablets
 		tabs:
 			a: Tab A
 			b: Tab B
@@ -17,7 +17,7 @@ register:
 	localized:
 		isExample: true
 		title: Localized
-		icon: admin-site
+		faicon: hand-spock|outline
 		localized: true
 
 	custom_render_page:
@@ -25,12 +25,12 @@ register:
 		title: Custom render
 		# renderer defined in theme/admin/utils/example.php
 		render: renderCustomAdminPage(this is configured")
-		icon: admin-site
+		faicon: php
 
 	custom_latte:
 		isExample: true
 		title: Custom Latte template
-		icon: admin-site
+		faicon: file-code|outline
 		latte: admin/example-admin-page
 		props:
 			foo: bar
@@ -39,7 +39,7 @@ register:
 		isExample: true
 		title: React / static
 		component: ExampleAdminPage
-		icon: admin-site
+		faicon: react
 		data:
 			message: "static data from admin-pages.neon"
 
@@ -47,6 +47,6 @@ register:
 		isExample: true
 		title: React / dynamic
 		component: ExampleAdminPage
-		icon: admin-site
+		faicon: react
 		# data getter defined in theme/admin/utils/example.php
 		data: getCustomAdminPageData("static arg from admin-pages.neon")

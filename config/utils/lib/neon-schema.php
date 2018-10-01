@@ -27,6 +27,17 @@ function sanitizeIconKey($item, string $key = 'menu_icon')
 	$item[$key] = $item[$key] ?? $item['icon'] ?? null;
 	$item[$key] = $item[$key] ? 'dashicons-'.$item[$key] : null;
 
+	global $FontAwesomeIcons;
+	$FontAwesomeIcons = $FontAwesomeIcons ?? [];
+
+	if(!empty($item['faicon'])) {
+		if(!empty($item['name'])) {
+			$FontAwesomeIcons['menu-posts-'.$item['name']] = $item['faicon'];
+		} else if(!empty($item['id'])) {
+			$FontAwesomeIcons['toplevel_page_'.$item['id']] = $item['faicon'];
+		}
+	}
+
 	return $item;
 }
 
