@@ -7,7 +7,7 @@
 
 {block scripts}
 	{include parent}
-	{include ../utils/initComponent.latte handler => initStyleguideComponents, name => styleguide, place => ".sg"}
+	{initStyleguideComponent styleguide, [ place => ".sg" ]}
 	<script src="{$assetsPath}/scripts/{$buildstamp}styleguide.js" defer></script>
 {/block}
 
