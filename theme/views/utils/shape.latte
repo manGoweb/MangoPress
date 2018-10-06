@@ -1,5 +1,0 @@
-{default $class = ''}
-{default $name = null}
-{php if(!$name) throw new \Exception("Shape is missing a name.")}
-
-<svg class="shape shape-{$name} {$class}"><use xlink:href="#shape-{$name}" /></svg>
