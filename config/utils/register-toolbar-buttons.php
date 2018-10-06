@@ -21,7 +21,7 @@ $initTheme[] = function ($dir) {
 					'id' => $result['id'],
 					'title' => $result['title'] ?? '',
 					'meta' => [
-						'html' => viewString('utils/initComponent', array_merge($result['component'], ['handler' => 'initAdminComponents', 'place' => '#wp-admin-bar-'.$result['id']])),
+						'html' => (string) createInitComponent($result['component']['name'], [ 'place' => '#wp-admin-bar-'.$result['id'], 'data' => $result['component']['data'] ?? null ], 'initAdminComponents'),
 					],
 				];
 				$result = $r;
