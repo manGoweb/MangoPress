@@ -1,6 +1,5 @@
 support:
 	- automatic-feed-links
-	- title-tag
 	- post-thumbnails
 	- customize-selective-refresh-widgets
 
