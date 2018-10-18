@@ -1,5 +1,4 @@
 {default $lang = en}
-{default $title = get_bloginfo(name)}
 
 <!DOCTYPE html>
 <html {php language_attributes()}>
@@ -10,7 +9,6 @@
 	{block styles}
 		<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}index.css">
 	{/block}
-	<title>{$title}</title>
 	{php wp_head()}
 	{php do_action(get_header)}
 </head>
