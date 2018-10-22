@@ -1,3 +1,2 @@
 <?php
-
-bdump("Hello world");
+return !SHOW_EXAMPLES ?: bdump("Hello world");
