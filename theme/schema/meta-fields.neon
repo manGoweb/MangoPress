@@ -7,7 +7,7 @@ register:
 		post_type:
 			- page
 			- thing
-		component: page_roles
+		component: PageRolesMetabox
 		data: pageRolesMetaboxPayload(%post_id%)
 
 
