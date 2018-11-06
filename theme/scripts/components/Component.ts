@@ -4,18 +4,18 @@ export interface NamedComponent {
 	componentName: string
 }
 
-export type ComponentConstructor<D> = NamedComponent &
-	(new (element: HTMLElement, data: D) => Component<D>)
+export type ComponentConstructor<D, E extends HTMLElement = HTMLElement> = NamedComponent &
+	(new (element: E, data: D) => Component<D, E>)
 
 export class ComponentInitializationError extends Error {}
 
-export default class Component<D> {
-	protected readonly el: HTMLElement
+export default class Component<D, E extends HTMLElement = HTMLElement> {
+	protected readonly el: E
 	protected readonly data: D
 
 	getListeners = (): EventListeners => []
 
-	constructor(element: HTMLElement, data: D) {
+	constructor(element: E, data: D) {
 		this.el = element
 		this.data = data
 	}
@@ -24,6 +24,23 @@ export default class Component<D> {
 		this.attachListeners()
 
 		this.init()
+	}
+
+	protected getChild<C extends HTMLElement>(
+		selector: string,
+		F: Constructor<C>,
+		parent: HTMLElement = this.el
+	): C {
+		const child = parent.querySelector(selector)
+
+		if (!(child instanceof F)) {
+			throw new ComponentInitializationError()
+		}
+		return child
+	}
+
+	protected getChildren<C extends HTMLElement>(selector: string, parent: HTMLElement = this.el) {
+		return parent.querySelectorAll(selector) as NodeListOf<C>
 	}
 
 	init() {}

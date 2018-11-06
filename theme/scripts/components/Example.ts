@@ -14,7 +14,7 @@ export default class Example extends Component<ExampleData> {
 	]
 
 	init() {
-		// Initialize your component.
+		this.getChild('.example-child', HTMLElement).innerText += ` ${this.data.name}!`
 	}
 
 	handleDelegateClick(e: DelegateEvent<'click'>): void {
@@ -24,7 +24,7 @@ export default class Example extends Component<ExampleData> {
 	handleClick(e: MouseEvent): void {
 		e.preventDefault()
 		alert(
-			`Hello, ${this.data.name}! The number of the day is ${this.data.numberOfTheDay.toFixed(0)}`
+			`Hello, ${this.data.name}! The number of the day is ${this.data.numberOfTheDay.toFixed(0)}.`
 		)
 	}
 }
