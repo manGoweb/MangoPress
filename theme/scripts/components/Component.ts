@@ -28,12 +28,12 @@ export default class Component<D, E extends HTMLElement = HTMLElement> {
 
 	protected getChild<C extends HTMLElement>(
 		selector: string,
-		F: Constructor<C>,
+		ChildConstructor: Constructor<C>,
 		parent: HTMLElement = this.el
 	): C {
 		const child = parent.querySelector(selector)
 
-		if (!(child instanceof F)) {
+		if (!(child instanceof ChildConstructor)) {
 			throw new ComponentInitializationError(
 				`The child element matching '${selector}' is not an instance of the supplied constructor.`
 			)
