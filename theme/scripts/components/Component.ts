@@ -34,7 +34,9 @@ export default class Component<D, E extends HTMLElement = HTMLElement> {
 		const child = parent.querySelector(selector)
 
 		if (!(child instanceof F)) {
-			throw new ComponentInitializationError()
+			throw new ComponentInitializationError(
+				`The child element matching '${selector}' is not an instance of the supplied constructor.`
+			)
 		}
 		return child
 	}
