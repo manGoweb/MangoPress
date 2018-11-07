@@ -4,7 +4,7 @@ import Component, {
 } from './components/Component'
 
 export default (
-	components: Array<ComponentConstructor<any>>,
+	components: Array<ComponentConstructor<any, any>>,
 	initializerName: ComponentInitializerName = 'initComponents'
 ) => {
 	const componentsByName: {
