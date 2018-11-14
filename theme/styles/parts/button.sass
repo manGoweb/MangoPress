@@ -1,0 +1,22 @@
+.button
+	display: inline-block
+	margin: 0.25em
+	border: 1px solid
+	padding: 0.5em
+	font-weight: $fw-bold
+
+	&,
+	&:hover
+		color: inherit
+		text-decoration: none
+
+	&:hover
+		box-shadow: 0 0 5px rgba(#000000, 0.2)
+
+	&:focus
+		box-shadow: 0 0 5px rgba(#ff0000, 0.5)
+		outline: none
+
+	&:active
+		transform: translateY(1px)
+		box-shadow: none
