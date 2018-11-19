@@ -15,7 +15,7 @@ images:
   - "theme/images/**/*.{jpg,png,gif}"
 sprites:
   -
-    path: theme/sprites/*.svg
+    path: theme/images/sprites/*.svg
     name: false
 static:
   - "theme/libs/**"
