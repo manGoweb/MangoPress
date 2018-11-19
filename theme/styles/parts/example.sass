@@ -33,6 +33,17 @@
 		font-weight: bold
 		vertical-align: middle
 
+	&-icons
+		display: flex
+
+	&-icon
+		margin-right: 0.5em
+
+		color: $c-main
+
+		& + &
+			color: $c-comp
+
 
 	+media($break480)
 		padding: $padding*2 $padding
