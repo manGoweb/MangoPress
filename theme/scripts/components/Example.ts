@@ -19,12 +19,13 @@ export default class Example extends Component<ExampleData> {
 
 	handleDelegateClick(e: DelegateEvent<'click'>): void {
 		console.log(e.delegateTarget)
+		alert(
+			`Hello, ${this.data.name}! The number of the day is ${this.data.numberOfTheDay.toFixed(0)}.`
+		)
 	}
 
 	handleClick(e: MouseEvent): void {
 		e.preventDefault()
-		alert(
-			`Hello, ${this.data.name}! The number of the day is ${this.data.numberOfTheDay.toFixed(0)}.`
-		)
+		console.log('Example component clicked')
 	}
 }
