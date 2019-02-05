@@ -5,7 +5,7 @@ $initTheme[] = function ($dir) {
 
 	function parseImageSizeString($str) {
 		$crop = Nette\Utils\Strings::endsWith($str, 'c') || Nette\Utils\Strings::endsWith($str, 'crop');
-		$parts = array_filter(array_map('trim', explode('x', $str)));
+		$parts = array_map('trim', explode('x', $str));
 		$parts = array_map('intval', $parts);
 		return [ $parts[0], $parts[1] ?? $parts[0], $crop ];
 	}
