@@ -18,6 +18,13 @@ parameters:
 		dsn: null
 		format: $Format:%h$
 
+	smtp:
+		host: smtp.mailtrap.io
+		secure: tls
+		username:
+		password:
+		port: 2525
+
 database:
 	dsn: 'mysql:host=%database.host%;dbname=%database.database%'
 	user: %database.username%
@@ -28,3 +35,11 @@ database:
 services:
 	db: @database.default.context
 	cache: Nette\Caching\Cache
+
+mail:
+	smtp: true
+	host: %smtp.host%
+	secure: %smtp.secure%
+	username: %smtp.username%
+	password: %smtp.password%
+	port: %smtp.port%
