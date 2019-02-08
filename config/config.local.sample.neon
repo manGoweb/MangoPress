@@ -36,8 +36,9 @@ parameters:
 		salt: "20030cf6ef8fc43168d77a7c05f4cd31"
 		projectId: # change this to name of this project
 
-mail:
-	host: smtp.mailgun.org
-	secure: tls
-	username: info@example.com
-	password:
+	smtp:
+		host: smtp.mailtrap.io
+		secure: tls
+		username:
+		password:
+		port: 2525
