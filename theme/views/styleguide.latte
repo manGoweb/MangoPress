@@ -1,0 +1,57 @@
+{extends @layout.latte}
+
+{block body}
+<link rel="stylesheet" href="{$assetsPath}/styles/styleguide.css">
+{dump $components}
+<div class="sg" id="sg">
+	{if !empty($_GET[sg])}
+	<div class="sg-back">
+		<a href="/?sg">← Back to styleguide</a>
+	</div>
+	{/if}
+	<div class="sg-controls">
+		<div class="sg-control">
+			<label><input type="checkbox" id="show-code-examples"> Show code examples</label>
+			<script>
+				(function() {
+					var $sg = document.getElementById('sg')
+					var $el = document.getElementById('show-code-examples')
+					var refreshCodeExamples = function() {
+						if($el.checked) {
+							$sg.classList.add('show-code-examples')
+						} else {
+							$sg.classList.remove('show-code-examples')
+						}
+					}
+					$el.addEventListener('click', function(e) {
+						localStorage.setItem('sg/show-code-examples', e.target.checked ? 'true' : 'false')
+						refreshCodeExamples()
+
+					})
+					$el.checked = localStorage.getItem('sg/show-code-examples') === 'true'
+					refreshCodeExamples()
+				})()
+			</script>
+		</div>
+	</div>
+	{foreach $components as $component}
+	<div class="sg-component">
+		<h3 class="sg-component-name"><a href="/?sg={$component[name]|url}">{$component[name]}</a></h3>
+		{foreach $component[variants] as $variant}
+			<div class="sg-component-rendered-props">
+<pre n:syntax="double">{include components/{{$component[name]}}
+{{foreach $variant[props] as $key => $val}}
+	{{$key}} => {{=varExport($val, "\t")}},
+{{/foreach}}
+}</pre>
+			</div>
+			<div n:class="sg-component-rendered, $variant[class] ?? null">
+				<div class="sg-component-rendered-in">
+					{include $component[path] (expand) $variant[props]}
+				</div>
+			</div>
+		{/foreach}
+	</div>
+	{/foreach}
+</div>
+{/block}
