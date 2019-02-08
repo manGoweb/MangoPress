@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-npm i -g mangoweb/mu-plugins || true
+npm i -g git+ssh://git@mangoweb.org:libs/mu-plugins.git || true
 mup update || true
 mup install || true
 
