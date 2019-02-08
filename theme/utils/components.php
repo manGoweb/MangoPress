@@ -59,4 +59,10 @@ class Components
 
 		return $result;
 	}
+
+	public static function createTemplateArgs($template, $name, $params, $locals, $context)
+	{
+		$name = THEME_VIEWS_DIR . '/components/' . $name . '.latte';
+		return [ $name, $params + [ '_context' => $locals ], $context ];
+	}
 }
