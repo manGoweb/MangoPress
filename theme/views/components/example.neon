@@ -1,0 +1,7 @@
+-
+	foo: bar
+-
+	foo: "This is some <strong>html content</strong>"
+
+-
+	foo: safe("This is some <strong>html content</strong>")
