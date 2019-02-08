@@ -52,7 +52,8 @@ class Components
 			}
 			$result[] = [
 				'path' => $file,
-				'name' => $name,
+				'name' => basename($name, '.latte'),
+				'filename' => $name,
 				'variants' => $variants,
 			];
 		}
@@ -64,5 +65,27 @@ class Components
 	{
 		$name = THEME_VIEWS_DIR . '/components/' . $name . '.latte';
 		return [ $name, $params + [ '_context' => $locals ], $context ];
+	}
+
+	public static function declaration($template, $stringDeclaration, $declaration, $runtimeValue, $line = null)
+	{
+		$templateName = $template->getName();
+		$templatePath = \Nette\Utils\Strings::replace($templateName, '~^'.preg_quote(THEME_VIEWS_DIR, '~').'~', '');
+
+		global $latteDeclarations;
+		global $_DURING_DECLARATION;
+		$latteDeclarations = $latteDeclarations ?? [];
+		$latteDeclarations[$templateName] = $latteDeclarations[$templateName] ?? [];
+		$latteDeclarations[$templateName][$declaration['varName']] = $declaration;
+
+		$actualType = gettype($runtimeValue);
+		$actualValue = $actualType === 'NULL' ? '' : ' (' . print_r($runtimeValue, true) . ')';
+
+		if (empty($_DURING_DECLARATION) && !empty($declaration['types']) && !isInType($runtimeValue, $declaration['types'])) {
+			$typeString = implode(' | ', $declaration['types']);
+			$varName = $declaration['varName'];
+			$place = $templatePath . ($line !== null ? ":$line" : "");
+			throw new \InvalidLattePropException("'$place' prop '\$$varName' is '$actualType$actualValue' but must be of type '$typeString'.", $template);
+		}
 	}
 }

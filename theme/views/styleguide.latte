@@ -37,17 +37,34 @@
 	{foreach $components as $component}
 	<div class="sg-component">
 		<h3 class="sg-component-name"><a href="/?sg={$component[name]|url}">{$component[name]}</a></h3>
+		{var $declaration = getGloballyDeclared($component[path])}
+		<div n:if="!empty($declaration)" class="sg-component-declaration">
+			<table class="sg-component-declaration-table">
+				{foreach $declaration as $key => $d}
+				<tr>
+					<td class="sg-component-declaration-types">
+						{foreach $d[originalTypes] as $t => $alt}
+							<code title="{= is_array($alt) ? implode(' | ', $alt) : $alt}">{$t}</code>{sep}<span class="sep"> | </span>{/sep}
+						{/foreach}
+					</td>
+					<th class="sg-component-declaration-varName"><code>${$key}</code></th>
+					<td class="sg-component-declaration-defaultValue">
+						<pre>{$d[defaultValueString]}</pre>
+					</td>
+				</tr>
+				{/foreach}
+			</table>
+		</div>
 		{foreach $component[variants] as $variant}
 			<div class="sg-component-rendered-props">
-<pre n:syntax="double">{include components/{{$component[name]}}
-{{foreach $variant[props] as $key => $val}}
+<pre n:syntax="double">{component {{$component[name]}}{{foreach $variant[props] as $key => $val}}
 	{{$key}} => {{=varExport($val, "\t")}},
 {{/foreach}}
 }</pre>
 			</div>
 			<div n:class="sg-component-rendered, $variant[class] ?? null">
 				<div class="sg-component-rendered-in">
-					{include $component[path] (expand) $variant[props]}
+					{component $component[name] (expand) $variant[props]}
 				</div>
 			</div>
 		{/foreach}
