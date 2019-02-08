@@ -32,7 +32,7 @@ buildstamp:
   - public/assets/scripts/wp-admin.js
   - public/assets/sprites/shapes.svg
 watch:
-  - "theme/**/*.{latte,php}"
+  - "theme/**/*.{latte,php,neon}"
 hooks:
   init: npm install
 snippet: yes please
