@@ -85,7 +85,9 @@ class Components
 			$typeString = implode(' | ', $declaration['types']);
 			$varName = $declaration['varName'];
 			$place = $templatePath . ($line !== null ? ":$line" : "");
-			throw new \InvalidLattePropException("'$place' prop '\$$varName' is '$actualType$actualValue' but must be of type '$typeString'.", $template);
+			$e = new \Latte\CompileException("Declared '\$$varName' is '$actualType$actualValue' but must be of type '$typeString'.");
+			$e->setSource(file_get_contents($template->getName()), $declaration['line'], $template->getName());
+			throw $e;
 		}
 	}
 }
