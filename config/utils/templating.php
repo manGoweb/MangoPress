@@ -138,7 +138,7 @@ function runtimeCheckLatteDeclaration($template, string $serializedDeclaration, 
 		if (!isInType($runtimeValue, $declaration['types'])) {
 			$typeString = implode(' | ', $declaration['types']);
 			$varName = $declaration['varName'];
-			throw new InvalidLattePropException("'$templatePath' prop '\$$varName' is '$actualType$actualValue' but must be of type '$typeString'.", $template);
+			throw new InvalidLattePropException("'$templatePath' prop '\$$varName' contains '$actualType$actualValue' but must be of type '$typeString'.", $template);
 		}
 	}
 
