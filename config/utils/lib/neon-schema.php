@@ -30,10 +30,10 @@ function sanitizeIconKey($item, string $key = 'menu_icon')
 	global $FontAwesomeIcons;
 	$FontAwesomeIcons = $FontAwesomeIcons ?? [];
 
-	if(!empty($item['faicon'])) {
-		if(!empty($item['name'])) {
+	if (!empty($item['faicon'])) {
+		if (!empty($item['name'])) {
 			$FontAwesomeIcons['menu-posts-'.$item['name']] = $item['faicon'];
-		} else if(!empty($item['id'])) {
+		} elseif (!empty($item['id'])) {
 			$FontAwesomeIcons['toplevel_page_'.$item['id']] = $item['faicon'];
 		}
 	}
@@ -225,7 +225,8 @@ abstract class NeonDef
 		}
 	}
 
-	public function getLast() {
+	public function getLast()
+	{
 		$this->preRun();
 		return $this->last;
 	}
@@ -793,7 +794,7 @@ class MetaFieldsNeonDef extends NeonDef
 
 			if (is_array($metaJson)) {
 				foreach ($metaJson as $key => $val) {
-					update_post_meta($post_id, $key, Json::decode($val));
+					update_post_meta($post_id, $key, (trim($val) === '') ? null : Json::decode($val, Json::FORCE_ARRAY));
 				}
 			}
 
@@ -808,7 +809,7 @@ class MetaFieldsNeonDef extends NeonDef
 			if (is_array($callbackJson)) {
 				foreach ($callbackJson as $key => $val) {
 					if (Strings::startsWith($key, 'ac_')) {
-						call_user_func_array($key, [$post_id, Json::decode($val)]);
+						call_user_func_array($key, [$post_id, (trim($val) === '') ? null : Json::decode($val, Json::FORCE_ARRAY)]);
 					}
 				}
 			}
