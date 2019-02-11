@@ -6,12 +6,8 @@ define('NBSP', "\xC2\xA0");
 function expandTypeShortcuts($typeString)
 {
 	$shortcuts = [
-		'boolean' => 'bool',
 		'[]' => 'iterable',
-		'num' => ['int', 'float'],
 		'number' => ['int', 'float'],
-		'double' => 'float',
-		'real' => 'float',
 		'HTMLContent' => ['string', 'Nette\Utils\IHtmlString', 'Latte\Runtime\IHtmlString']
 	];
 
