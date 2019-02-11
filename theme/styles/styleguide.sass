@@ -94,3 +94,50 @@ html, body
 		border-top: 0
 		border-right: 0
 		box-shadow: 0 0 4px rgba(#000000, .1), 0 0 16px rgba(#000000, .1)
+
+	&-component-declaration
+		font-size: 12px
+
+		&-table
+			width: auto
+			border-collapse: collapse
+
+			display: none
+
+			.show-code-examples &
+				display: block
+
+			th, td
+				background: #fff
+				padding-top: .75em
+				padding-bottom: .75em
+				border-top: solid 1px #ddd
+				border-bottom: solid 1px #ddd
+				line-height: 1
+
+				&:first-child
+					border-left: solid 1px #ddd
+					padding-left: 1em
+
+				&:last-child
+					border-right: solid 1px #ddd
+					padding-right: 1em
+
+			tr:nth-child(even)
+				th, td
+					background: #eee
+
+			pre
+				margin: 0
+				padding: 0
+
+			.sep
+				opacity: .3
+
+		&-varName
+			text-align: right
+			padding-right: 1em
+			color: #8c7ae6
+
+		&-types
+			padding-right: 1em
