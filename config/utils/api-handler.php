@@ -20,7 +20,7 @@ $initTheme[] = function ($dir) {
 				$Payload = new Nette\Utils\ArrayHash;
 			}
 
-			$path = $Req->getUrl()->getRelativeUrl();
+			$path = $Req->getUrl()->getPath();
 			$parts = explode('/', trim($path, '/'));
 			if ($parts[0] === 'api') {
 				array_shift($parts);
