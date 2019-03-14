@@ -7,8 +7,11 @@ function generateFormAction($path)
 
 function isFormValid($form, $path)
 {
+	global $Url;
 	$action = generateFormAction($path);
-	$form->setAction("?do=$action");
+	$formUrl = clone $Url;
+	$formUrl->setQueryParameter("do", $action);
+	$form->setAction($formUrl);
 	if (isset($_GET['do']) && $_GET['do'] === $action && $form->isSubmitted()) {
 		$form->validate();
 		return $form->isSuccess();
