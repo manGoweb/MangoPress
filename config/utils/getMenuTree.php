@@ -25,5 +25,6 @@ function getMenuTree($location)
 {
 	$menuLocations = get_nav_menu_locations();
 	$items = wp_get_nav_menu_items($menuLocations[$location]) ?: [];
+	_wp_menu_item_classes_by_context($items);
 	return buildMenuTree($items, 0);
 }
