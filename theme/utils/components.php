@@ -15,7 +15,7 @@ class Components
 		return $thing;
 	}
 
-	public static function findAll()
+	public static function findAll($withDeclarations = false)
 	{
 		$filter = $_GET['sg'] ?? null;
 
@@ -50,21 +50,41 @@ class Components
 					}
 				}
 			}
-			$result[] = [
+			$item = [
 				'path' => $file,
 				'name' => basename($name, '.latte'),
 				'filename' => $name,
 				'variants' => $variants,
 			];
+
+			if($withDeclarations) {
+				$item['declaration'] = getGloballyDeclared($item['path']);
+			}
+			$result[] = $item;
 		}
 
 		return $result;
 	}
 
+	public static function getComponentGlobals()
+	{
+		global $App;
+
+		$assetsDirname = !empty($App->parameters['assetsDirname']) ? trim($App->parameters['assetsDirname'], '/') : 'assets';
+
+		return [
+			'App' => $App,
+			'baseUrl' => toPath(WP_HOME),
+			'basePath' => toRelativePath(WP_HOME),
+			'assetsUrl' => toPath(WP_HOME) . '/' . $assetsDirname,
+			'assetsPath' => toRelativePath(WP_HOME) . '/' . $assetsDirname,
+		];
+	}
+
 	public static function createTemplateArgs($template, $name, $params, $locals, $context)
 	{
 		$name = THEME_VIEWS_DIR . '/components/' . $name . '.latte';
-		return [ $name, $params + [ '_context' => $locals ], $context ];
+		return [ $name, $params + self::getComponentGlobals() + [ '_context' => $locals ], $context ];
 	}
 
 	public static function declaration($template, $stringDeclaration, $declaration, $runtimeValue, $line = null)
