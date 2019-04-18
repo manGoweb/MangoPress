@@ -6,12 +6,8 @@ define('NBSP', "\xC2\xA0");
 function expandTypeShortcuts($typeString)
 {
 	$shortcuts = [
-		'boolean' => 'bool',
 		'[]' => 'iterable',
-		'num' => ['int', 'float'],
 		'number' => ['int', 'float'],
-		'double' => 'float',
-		'real' => 'float',
 		'HTMLContent' => ['string', 'Nette\Utils\IHtmlString', 'Latte\Runtime\IHtmlString']
 	];
 
@@ -142,7 +138,7 @@ function runtimeCheckLatteDeclaration($template, string $serializedDeclaration, 
 		if (!isInType($runtimeValue, $declaration['types'])) {
 			$typeString = implode(' | ', $declaration['types']);
 			$varName = $declaration['varName'];
-			throw new InvalidLattePropException("'$templatePath' prop '\$$varName' is '$actualType$actualValue' but must be of type '$typeString'.", $template);
+			throw new InvalidLattePropException("'$templatePath' prop '\$$varName' contains '$actualType$actualValue' but must be of type '$typeString'.", $template);
 		}
 	}
 
@@ -190,15 +186,81 @@ function getGloballyDeclared(string $templateName)
 	$result = $latteDeclarations[$templateName] ?? null;
 
 	if (empty($result)) {
-		try {
-			@renderLatteToString($templateName);
-		} catch (\Exception $e) {
-			bdump($e);
+		$parser = new \Latte\Parser();
+		$code = file_get_contents($templateName);
+		$tokens = $parser->parse($code);
+		$declared = [];
+		foreach ($tokens as $token) {
+			if ($token->type === 'macroTag' && $token->name === 'declare') {
+				$d = parseDeclareValue($token->value);
+				if (isset($declared[$d['varName']])) {
+					$e = new \Latte\CompileException("Double declaration of '$".$d["varName"]."'");
+					$e->setSource($code, $token->line, $templateName);
+					throw $e;
+				}
+				$declared[$d['varName']] = $d;
+			}
 		}
+		$latteDeclarations[$templateName] = $declared;
 	}
 
 	$_DURING_DECLARATION = false;
 	return $latteDeclarations[$templateName] ?? [];
+}
+
+function parseDeclareValue($str, $line = null)
+{
+	$match = Nette\Utils\Strings::match($str, "~^([^\\$]*\\s+)?(\\$[a-z0-9]+)\\s*((\\??=)\\s*(.*))?$~ism");
+
+	$nullable = false;
+
+	$types = array_values(array_filter(array_map('trim', explode('|', $match[1] ?? ''))));
+	$types = array_map('normalizeType', $types);
+	$originalTypes = $types;
+	$types = flattenArray(array_map('expandTypeShortcuts', $types));
+
+	$value = trim($match[5] ?? '');
+	$right = new Latte\MacroTokens($value);
+
+	$writer = new Latte\PhpWriter(new \Latte\MacroTokens);
+	$valueCode = $writer->quotingPass($right)->joinAll();
+
+	$varName = trim(trim($match[2] ?? ''), '$');
+
+	$valueCode = $valueCode === '' ? 'null' : $valueCode;
+
+	$nullishValue = Nette\Utils\Strings::match($valueCode, '~^(null)([^a-z0-9_-]+.*)?$~ism');
+
+
+	if (!empty($value) && !empty($nullishValue) && normalizeType($nullishValue[1]) === 'null') {
+		$types[] = 'null';
+		$originalTypes[] = 'null';
+	}
+
+	$types = array_values(array_unique($types));
+	$originalTypes = array_values(array_unique($originalTypes));
+	usort($types, 'compareTypenames');
+	usort($originalTypes, 'compareTypenames');
+
+	$nullable = in_array('null', $types);
+
+	$originalTypes = array_combine($originalTypes, $originalTypes);
+	$originalTypes = array_map('expandTypeShortcuts', $originalTypes);
+
+	$declaration = [
+		'line' => $line,
+		'types' => $types,
+		'originalTypes' => $originalTypes,
+		'varName' => $varName,
+		'operator' => trim($match[4] ?? ''),
+		'defaultValueString' => $value,
+		'defaultValue' => $valueCode,
+		'comment' => trim(Nette\Utils\Strings::match($match[5] ?? '', '~([^(//)]*)//(.*)~ism')[2] ?? '') ?: null,
+		'original' => $str,
+		'nullable' => $nullable,
+	];
+
+	return $declaration;
 }
 
 $initTheme[] = function ($dir) {
@@ -208,60 +270,14 @@ $initTheme[] = function ($dir) {
 	MangoMacros::$set['declare'] = function (Latte\MacroNode $node, Latte\PhpWriter $writer) {
 		$str = $node->args . $node->modifiers;
 
-		$match = Nette\Utils\Strings::match($str, "~^([^\\$]*\\s+)?(\\$[a-z0-9]+)\\s*((\\??=)\\s*(.*))?$~ism");
-
-		$nullable = false;
-
-		$types = array_values(array_filter(array_map('trim', explode('|', $match[1] ?? ''))));
-		$types = array_map('normalizeType', $types);
-		$originalTypes = $types;
-		$types = flattenArray(array_map('expandTypeShortcuts', $types));
-
-		$value = trim($match[5] ?? '');
-		$right = new Latte\MacroTokens($value);
-
-		$valueCode = $writer->quotingPass($right)->joinAll();
-
-		$varName = trim(trim($match[2] ?? ''), '$');
-
-		$valueCode = $valueCode === '' ? 'null' : $valueCode;
-
-		$nullishValue = Nette\Utils\Strings::match($valueCode, '~^(null)([^a-z0-9_-]+.*)?$~ism');
-
-
-		if (!empty($value) && !empty($nullishValue) && normalizeType($nullishValue[1]) === 'null') {
-			$types[] = 'null';
-			$originalTypes[] = 'null';
-		}
-
-		$types = array_values(array_unique($types));
-		$originalTypes = array_values(array_unique($originalTypes));
-		usort($types, 'compareTypenames');
-		usort($originalTypes, 'compareTypenames');
-
-		$nullable = in_array('null', $types);
-
-		$originalTypes = array_combine($originalTypes, $originalTypes);
-		$originalTypes = array_map('expandTypeShortcuts', $originalTypes);
-
-		$declaration = [
-			'types' => $types,
-			'originalTypes' => $originalTypes,
-			'varName' => $varName,
-			'operator' => trim($match[4] ?? ''),
-			'defaultValueString' => $value,
-			'defaultValue' => $valueCode,
-			'comment' => trim(Nette\Utils\Strings::match($match[5] ?? '', '~([^(//)]*)//(.*)~ism')[2] ?? '') ?: null,
-			'original' => $str,
-			'nullable' => $nullable,
-		];
+		$declaration = parseDeclareValue($str, $node->startLine);
 
 		return $writer->write(
 			'/* line ' . $node->startLine . ' */
-			extract([ \''.$varName.'\' =>
-			'.$valueCode.'
+			extract([ \''.$declaration['varName'].'\' =>
+			'.$declaration['defaultValue'].'
 			], EXTR_SKIP);
-			MangoPress\Components::declaration($this, ' . var_export($str, true) . ', '.var_export($declaration, true).', $'.$varName.', '.$node->startLine.')'
+			MangoPress\Components::declaration($this, ' . var_export($str, true) . ', '.var_export($declaration, true).', $'.$declaration['varName'].', '.$node->startLine.')'
 		);
 	};
 
