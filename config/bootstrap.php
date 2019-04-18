@@ -14,6 +14,10 @@ $configurator->setTempDirectory(TEMP_DIR);
 $configurator->addConfig(__DIR__.'/config.neon');
 $configurator->addConfig(__DIR__.'/config.local.neon');
 
+if (getenv('TRACY_EDITOR_URL')) {
+	Tracy\Debugger::$editor = getenv('TRACY_EDITOR_URL');
+}
+
 $container = $configurator->createContainer();
 
 $container->getService('session')->start();
