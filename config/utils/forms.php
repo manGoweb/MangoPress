@@ -23,6 +23,8 @@ $initTheme[] = function ($dir) {
 	add_action('template_redirect', function () use ($dir) {
 		global $Forms;
 		global $View;
+		global $Post;
+		$Post = get_queried_object();
 
 		$Forms = $Forms ?? [];
 		$View = $View ?? Nette\Utils\ArrayHash::from([]);
