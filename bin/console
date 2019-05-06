@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+define('MANGO_PRESS_CONSOLE', true);
+
+/** @var Nette\DI\Container $container */
+$container = require __DIR__ . '/../public/index.php';
+
+function runMangoPressConsole()
+{
+	global $App;
+
+	// Get application from DI container.
+	$application = $App->getByType(Contributte\Console\Application::class);
+
+	// Run application.
+	exit($application->run());
+}

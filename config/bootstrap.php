@@ -11,6 +11,9 @@ $initTheme = [];
 $configurator = new Nette\Configurator();
 $configurator->enableTracy(LOG_DIR);
 $configurator->setTempDirectory(TEMP_DIR);
+$configurator->createRobotLoader()
+	->addDirectory(__DIR__ . '/../bin/commands')
+	->register();
 $configurator->addConfig(__DIR__.'/config.neon');
 $configurator->addConfig(__DIR__.'/config.local.neon');
 

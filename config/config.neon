@@ -18,12 +18,29 @@ parameters:
 		dsn: null
 		format: $Format:%h$
 
+	migrations:
+		dir: '%appDir%/../migrations'
+
 	smtp:
 		host: smtp.mailtrap.io
 		secure: tls
 		username:
 		password:
 		port: 2525
+
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+
+services:
+	db: @database.default.context
+	cache: Nette\Caching\Cache
+
+	# migrations
+	- Nextras\Migrations\Bridges\NetteDatabase\NetteAdapter
+	- Nextras\Migrations\Drivers\MySqlDriver
+	- App\Commands\ContinueCommand(..., %migrations.dir%)
+	- App\Commands\CreateCommand(..., %migrations.dir%)
+	- App\Commands\ResetCommand(..., %migrations.dir%)
 
 database:
 	dsn: 'mysql:host=%database.host%;dbname=%database.database%'
@@ -32,10 +49,6 @@ database:
 	options:
 		lazy: false
 
-services:
-	db: @database.default.context
-	cache: Nette\Caching\Cache
-
 mail:
 	smtp: true
 	host: %smtp.host%
@@ -43,3 +56,6 @@ mail:
 	username: %smtp.username%
 	password: %smtp.password%
 	port: %smtp.port%
+
+console:
+	lazy: true
