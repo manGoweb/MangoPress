@@ -1,0 +1,8 @@
+{extends @layout.latte}
+
+{var $subject = "Oh hai $name"}
+
+{block content}
+<p>Hello {$name}.</p>
+
+{include @htmlButton.latte label => 'This is a button', href => 'https://github.com/mangoweb/mangopress'}
