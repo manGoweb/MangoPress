@@ -130,7 +130,7 @@ function renderAdminComponent($id, $name, $data = [])
 
 	$htmlId = 'ac_'.$id.'_'.($idCounter[$id]++);
 
-	renderLatte(__DIR__.'/views/initAdminComponent.latte', ['id' => $id, 'htmlId' => $htmlId, 'name' => $name, 'data' => $data]);
+	renderLatte(__DIR__.'/views/initAdminComponent.latte', ['id' => $id, 'htmlId' => $htmlId, 'name' => $name, 'props' => $data]);
 }
 
 function getLanguagePostfix()
@@ -846,7 +846,7 @@ class MetaFieldsNeonDef extends NeonDef
 						$component = $metabox['component'];
 						$post_id = $post ? $post->ID : null;
 						$vars = $this->getVars(['post_id' => $post_id, 'name' => $metabox['id']]);
-						if (!empty($metabox['data'])) {
+						if (!empty($metabox['data']) || !empty($metabox['props'])) {
 							$data = nestedEval($metabox['data'] ?? $metabox['props'] ?? [], $vars);
 						} else {
 							$name = $metabox['name'] ?? $metabox['id'];

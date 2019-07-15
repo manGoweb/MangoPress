@@ -1,35 +1,17 @@
+@import 'common'
 
-// ## Crucial variables.
-// ## These aren't in _variables.sass so that functions can refer to them and subsequent variables can then be defined
-// ## in terms of those functions.
-$base-font-size: 16px // You REALLY don't want to change this.
-$w-px-epsilon: .5px
+@import '~@mangoweb/sass-base/animations/index'
+@import '~@mangoweb/sass-base/parts/shape'
 
-// ## Functions
-@import 'functions/*'
-
-// ## Settings, variables and animations
-@import 'variables'
-@import 'animations'
+// ## Frameworks
+@import '~bootstrap/scss/bootstrap-reboot'
 
 // ## Mixins
 @import 'mixins/*'
 
-// ## Frameworks
-@import '../../node_modules/normalize-scss/sass/normalize/import-now'
-
-// ## Web styles
-@import 'global'
-
-// ## Abstract
-@import 'abstract/*'
-
 // ## Components
-@import 'parts/*'
+@import 'parts/*.sass'
 
-// ## Compositions
-@import 'comps/*'
-
-// ## View components
-@import '../views/components/*.sass'
-
+// ## Latte components
+@import '../views/components/**/*.sass'
+@import '../views/*.sass'

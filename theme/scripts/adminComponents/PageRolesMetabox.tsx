@@ -1,7 +1,6 @@
-import createReactComponent from '../utils/createReactComponent'
-import React, { SyntheticEvent } from 'react'
-
 import { map, pickBy } from 'lodash-es'
+import React, { SyntheticEvent } from 'react'
+import fromReactComponent from '../utils/fromReactComponent'
 
 interface Roles {
 	[name: string]: null | false | PostId
@@ -102,8 +101,6 @@ interface PageRolesState {
 }
 
 class PageRolesMetabox extends React.Component<PageRolesProps, PageRolesState> {
-	static componentName = 'PageRolesMetabox'
-
 	state = {
 		roles: {},
 	}
@@ -149,4 +146,4 @@ class PageRolesMetabox extends React.Component<PageRolesProps, PageRolesState> {
 	}
 }
 
-export default createReactComponent(PageRolesMetabox)
+export default fromReactComponent(PageRolesMetabox, 'PageRolesMetabox')

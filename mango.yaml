@@ -36,4 +36,6 @@ watch:
 hooks:
   init: npm install
 snippet: yes please
-version: ">=2.4.0"
+version: ">=3.1.0"
+sassNodeModulesAlias: "~"
+

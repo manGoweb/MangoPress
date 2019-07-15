@@ -12,12 +12,8 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es5",
-    "listFiles": true
+		"listFiles": true
 	},
-	"include": [
-		"theme/scripts"
-	],
-	"exclude": [
-		"vendor"
-	]
+	"include": ["theme/scripts"],
+	"exclude": ["vendor"]
 }

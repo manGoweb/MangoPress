@@ -40,13 +40,13 @@ register:
 		title: React / static
 		component: ExampleAdminPage
 		faicon: react
-		data:
-			message: "static data from admin-pages.neon"
+		props:
+			message: "static props from admin-pages.neon"
 
 	react_page_dynamic:
 		isExample: true
 		title: React / dynamic
 		component: ExampleAdminPage
 		faicon: react
-		# data getter defined in theme/admin/utils/example.php
-		data: getCustomAdminPageData("static arg from admin-pages.neon")
+		# props getter defined in theme/admin/utils/example.php
+		props: getCustomAdminPageProps("static arg from admin-pages.neon")

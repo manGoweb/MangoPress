@@ -8,7 +8,7 @@ register:
 			- page
 			- thing
 		component: PageRolesMetabox
-		data: pageRolesMetaboxPayload(%post_id%)
+		props: pageRolesMetaboxPayload(%post_id%)
 
 
 	# Example metaboxes:
@@ -41,14 +41,14 @@ register:
 		component: ExampleMetabox
 
 	-
-		title: React / custom data
+		title: React / custom props
 		isExample: true
 		context: side
 		seamless: true
 		post_type: page
 		# defined in theme/scripts/wp-admin.ts
 		component: ExampleMetabox
-		data:
+		props:
 			message: "Hello"
 
 	personalsingle:

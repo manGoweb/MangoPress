@@ -1,5 +1,5 @@
 import React from 'react'
-import createReactComponent from '../utils/createReactComponent'
+import fromReactComponent from '../utils/fromReactComponent'
 
 interface Props {
 	name?: string
@@ -14,8 +14,6 @@ interface State {
 const incrementCount = ({ count }: State) => ({ count: count + 1 })
 
 class ExampleMetabox extends React.Component<Props, State> {
-	static componentName = 'ExampleMetabox'
-
 	state = {
 		count: 1,
 	}
@@ -66,4 +64,4 @@ class ExampleMetabox extends React.Component<Props, State> {
 	}
 }
 
-export default createReactComponent(ExampleMetabox)
+export default fromReactComponent(ExampleMetabox, 'ExampleMetabox')

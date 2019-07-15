@@ -5,18 +5,23 @@
 		"dev": "mango dev",
 		"build": "mango build",
 		"serve": "php -S 0.0.0.0:8000 -t public",
-		"prettier": "prettier --write \"theme/scripts/**/*.{js,jsx,ts,tsx}\""
+		"prettier": "prettier --write \"theme/scripts/**/*.{js,jsx,ts,tsx}\"",
+		"upgrade-interactive": "npm-check --update"
 	},
 	"dependencies": {
+		"@mangoweb/sass-base": "^0.0.5",
+		"@mangoweb/scripts-base": "^0.0.8",
 		"@types/jquery": "^3.3.30",
 		"@types/lodash-es": "^4.17.3",
 		"@types/react": "^16.8.23",
 		"@types/react-dom": "^16.8.4",
+		"bootstrap": "^4.3.1",
 		"jquery": "^3.4.0",
 		"lodash-es": "^4.17.14",
 		"lt-ie-9": "^0.1.2",
-		"nette-forms": "^2.4.9",
+		"nette-forms": "^3.0.2",
 		"normalize-scss": "^7.0.1",
+		"npm-check": "^5.9.0",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6"
 	},
