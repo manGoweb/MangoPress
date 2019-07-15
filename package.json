@@ -8,21 +8,21 @@
 		"prettier": "prettier --write \"theme/scripts/**/*.{js,jsx,ts,tsx}\""
 	},
 	"dependencies": {
-		"@types/jquery": "^3.3.6",
+		"@types/jquery": "^3.3.30",
 		"@types/lodash-es": "^4.17.3",
-		"@types/react": "^16.8.16",
+		"@types/react": "^16.8.23",
 		"@types/react-dom": "^16.8.4",
 		"jquery": "^3.4.0",
-		"lodash-es": "^4.17.10",
-		"lt-ie-9": "^0.1.0",
-		"nette-forms": "^2.4.2",
+		"lodash-es": "^4.17.14",
+		"lt-ie-9": "^0.1.2",
+		"nette-forms": "^2.4.9",
 		"normalize-scss": "^7.0.1",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6"
 	},
 	"devDependencies": {
-		"concurrently": "^4.0.1",
-		"prettier": "^1.17.0",
-		"typescript": "^3.4.5"
+		"concurrently": "^4.1.1",
+		"prettier": "^1.18.2",
+		"typescript": "^3.5.3"
 	}
 }
