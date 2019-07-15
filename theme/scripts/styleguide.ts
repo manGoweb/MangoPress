@@ -1,5 +1,3 @@
-import componentHandler from './componentHandler'
-//import Example from './components/Example'
-import './plugins'
+import { initializeComponents } from '@mangoweb/scripts-base'
 
-componentHandler([], 'initStyleguideComponents')
+initializeComponents([], 'initStyleguideComponents')

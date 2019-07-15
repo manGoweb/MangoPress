@@ -18,7 +18,7 @@ function varExport($var, $indent="")
 		case "boolean":
 			return $var ? "TRUE" : "FALSE";
 		default:
-			if ($var instanceof \Nette\Utils\Html) {
+			if ($var instanceof \SafeHtmlString) {
 				return 'safe("' . addslashes((string) $var) . '")';
 			}
 			return var_export($var, true);

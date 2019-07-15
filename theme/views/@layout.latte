@@ -9,6 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	{block styles}
 		<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}index.css">
+		<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}print.css" media="print">
 	{/block}
 	<link rel="manifest" href="/manifest.webmanifest">
 	<title>{$title}</title>
@@ -17,14 +18,24 @@
 </head>
 <body {php body_class()}>
 	{$mangoSnippet}
-	{initComponent Shapes, [ data => [ url => "{$assetsPath}/sprites/{$buildstamp}shapes.svg" ] ]}
+	{initComponent Shapes, [ props => [ url => "{$assetsPath}/sprites/{$buildstamp}shapes.svg" ] ]}
 
-	{block body}{/block}
+	{block body}
+	<div class="page">
+		{block alerts}
+			<div class="alerts" n:if="!empty($flashes)">
+				<div n:foreach="$flashes as $flash" class="alert type-{$flash->type}">{$flash->message}</div>
+			</div>
+		{/block}
+		{block page}{/block}
+	</div>
+	{/block}
 
 	{php wp_footer()}
 
 	{block scripts}
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/nette-forms@3.0.2/src/assets/netteForms.min.js" defer></script>
 		<script src="{$assetsPath}/scripts/{$buildstamp}index.js" defer></script>
 	{/block}
 </body>

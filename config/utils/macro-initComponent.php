@@ -26,12 +26,12 @@ function createInitComponent($name, $argsOrHandler = null, string $handler = 'in
 	$handler = $args['handler'] ?? $handler;
 	$name = $args['name'] ?? null;
 	$place = $args['place'] ?? null;
-	$data = $args['data'] ?? null;
+	$props = $args['props'] ?? null;
 
 	$component = [
 		'name' => $name,
 		'place' => $place,
-		'data' => $data,
+		'props' => $props,
 	];
 
 	return Nette\Utils\Html::el("script")->addHtml(

@@ -1,7 +1,7 @@
 {extends @layout.latte}
 
 {block body}
-<link rel="stylesheet" href="{$assetsPath}/styles/styleguide.css">
+<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp}styleguide.css">
 {dump $components}
 <div class="sg" id="sg">
 	{if !empty($_GET[sg])}

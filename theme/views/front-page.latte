@@ -1,6 +1,6 @@
 {extends archive.latte}
 
-{block body}
+{block page}
 	{include parent}
 
 	<hr>
@@ -27,7 +27,7 @@
 	</div>
 	{initComponent Example, [
 		place => '#example-component-placeholder',
-		data => [
+		props => [
 			name => 'Krasavec',
 			numberOfTheDay => 42,
 		],

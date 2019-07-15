@@ -1,8 +1,8 @@
 {default $name = null}
 {default $place = '#' . $htmlId}
-{default $data = null}
+{default $props = null}
 {php if(!$name) throw new \Exception("Front-end component is missing a name.")}
-{default $component = [ name => $name, data => $data, place => $place ]}
+{default $component = [ name => $name, props => $props, place => $place ]}
 {default $handler = initAdminComponents}
 
 <div id="{$htmlId}" class="adminComponentPlaceholder">

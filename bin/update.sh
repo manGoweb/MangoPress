@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-yarn upgrade-interactive
+npm run upgrade-interactive
 
 composer update
 

@@ -5,9 +5,9 @@ function renderCustomAdminPage()
 	echo '<p>This is custom render with <code>renderCustomAdminPage()</code>. Timestamp: '.date('c').'</p>';
 }
 
-function getCustomAdminPageData()
+function getCustomAdminPageProps()
 {
-	return ['message' => 'data from getCustomAdminPageData(). Timestamp: '.date('c').''];
+	return ['message' => 'props from getCustomAdminPageProps(). Timestamp: '.date('c').''];
 }
 
 function renderCustomMetabox()

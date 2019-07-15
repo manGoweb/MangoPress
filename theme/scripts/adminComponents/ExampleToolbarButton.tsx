@@ -1,5 +1,5 @@
 import React from 'react'
-import createReactComponent from '../utils/createReactComponent'
+import fromReactComponent from '../utils/fromReactComponent'
 
 interface State {
 	count: number
@@ -10,8 +10,6 @@ interface State {
 const incrementCount = ({ count }: State) => ({ count: count + 1 })
 
 class ExampleToolbarButton extends React.Component<{}, State> {
-	static componentName = 'ExampleToolbarButton'
-
 	state = {
 		count: 0,
 		serverTime: undefined,
@@ -52,4 +50,4 @@ class ExampleToolbarButton extends React.Component<{}, State> {
 	}
 }
 
-export default createReactComponent(ExampleToolbarButton)
+export default fromReactComponent(ExampleToolbarButton, 'ExampleToolbarButton')

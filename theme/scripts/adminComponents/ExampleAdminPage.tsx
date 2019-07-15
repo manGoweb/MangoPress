@@ -1,4 +1,4 @@
-import createReactComponent from '../utils/createReactComponent'
+import fromReactComponent from '../utils/fromReactComponent'
 import React from 'react'
 
 type Values = {
@@ -78,8 +78,6 @@ interface State {
 const incrementCount = ({ count }: State) => ({ count: count + 1 })
 
 class ExampleAdminPage extends React.Component<Props, State> {
-	static componentName = 'ExampleAdminPage'
-
 	state = {
 		count: 1,
 	}
@@ -111,4 +109,4 @@ class ExampleAdminPage extends React.Component<Props, State> {
 	}
 }
 
-export default createReactComponent(ExampleAdminPage)
+export default fromReactComponent(ExampleAdminPage, 'ExampleAdminPage')
