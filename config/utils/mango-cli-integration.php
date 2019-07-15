@@ -20,7 +20,7 @@ $initTheme[] = function () {
 
 	// Browsersync
 	$View->mangoSnippet = null;
-	$mangoSnippetPath = PROJECT_ROOT_DIR.'/.mango-snippet.html';
+	$mangoSnippetPath = ABSPATH.'/assets/.mango-snippet.html';
 
 	if (!empty($App->parameters['livereload']) && file_exists($mangoSnippetPath)) {
 		$View->mangoSnippet = Nette\Utils\Html::el()->setHtml(file_get_contents($mangoSnippetPath));
