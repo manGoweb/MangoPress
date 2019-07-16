@@ -6,6 +6,8 @@ use Nette\Forms\Form;
 
 $form = new Form;
 
+$form->getElementPrototype()->class = 'defaultForm';
+
 $form->addProtection('Detected robot activity.');
 
 $c = $form->addContainer('frm');

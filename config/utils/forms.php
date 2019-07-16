@@ -12,6 +12,7 @@ function isFormValid($form, $path)
 	$formUrl = clone $Url;
 	$formUrl->setQueryParameter("do", $action);
 	$form->setAction($formUrl);
+	$form->getElementPrototype()->data('nette-form', 'true');
 	if (isset($_GET['do']) && $_GET['do'] === $action && $form->isSubmitted()) {
 		$form->validate();
 		return $form->isSuccess();
