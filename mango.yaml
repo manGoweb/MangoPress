@@ -1,8 +1,8 @@
+version: ">=3.2.0"
 src_folder: theme
 dist_folder: public/assets
 styles:
   - theme/styles/index.sass
-  - theme/styles/oldie.sass
   - theme/styles/print.sass
   - theme/styles/styleguide.sass
   - theme/styles/wp-admin.sass
@@ -36,6 +36,4 @@ watch:
 hooks:
   init: npm install
 snippet: yes please
-version: ">=3.1.0"
 sassNodeModulesAlias: "~"
-
