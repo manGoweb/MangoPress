@@ -3,7 +3,7 @@ import ExampleAdminPage from './adminComponents/ExampleAdminPage'
 import ExampleMetabox from './adminComponents/ExampleMetabox'
 import ExampleToolbarButton from './adminComponents/ExampleToolbarButton'
 import PageRolesMetabox from './adminComponents/PageRolesMetabox'
-import { Shapes } from '@mangoweb/scripts-base'
+import { Shapes } from '@mangoweb/shapes'
 import './plugins'
 
 initializeComponents(
