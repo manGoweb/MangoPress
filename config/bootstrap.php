@@ -9,9 +9,15 @@ define('TEMP_DIR', __DIR__.'/../temp');
 $initTheme = [];
 
 $configurator = new Nette\Configurator();
+
+if (getenv('NETTE_DEBUG')) {
+	$configurator->setDebugMode(getenv('NETTE_DEBUG') === 'TRUE');
+}
+
 if (!\Tracy\Debugger::$productionMode) {
 	$configurator->enableTracy(LOG_DIR);
 }
+
 $configurator->setTempDirectory(TEMP_DIR);
 $configurator->addConfig(__DIR__.'/config.neon');
 $configurator->addConfig(__DIR__.'/config.local.neon');
