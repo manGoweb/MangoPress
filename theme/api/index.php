@@ -14,4 +14,8 @@ switch($ApiQuery[0]) {
 		sleep(1);
 		$Payload['server-time'] = current_time('j. n. Y H:i:s');
 		break;
+	case 'system-check';
+		\Tracy\Debugger::log('Checking if Papertrail is working');
+		throw new \Exception('Checking if Sentry is working');
+		break;
 }
