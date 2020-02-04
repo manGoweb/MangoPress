@@ -51,20 +51,14 @@ if ($s3Params && $s3Params['enabled']) {
 		die('S3 is enabled, but secret is missing');
 	}
 
-	define('S3_UPLOADS_BUCKET', $s3Params['bucket'] ?? null);
-	define('S3_UPLOADS_BUCKET_URL', $s3Params['bucketPublicUrl'] ?? null);
+	define('S3_UPLOADS_BUCKET', trim($s3Params['bucket'] . '/' . ($s3Params['basePath'] ?? ''), '/'));
 	define('S3_UPLOADS_KEY', $s3Params['key'] ?? null);
 	define('S3_UPLOADS_SECRET', $s3Params['secret'] ?? null);
 	define('S3_UPLOADS_REGION', $s3Params['region'] ?? null);
-
-	if (!empty($s3Params['basePath'])) {
-		define('S3_UPLOADS_PATH_PREFIX', '/'.Nette\Utils\Strings::trim($s3Params['basePath'], '/'));
-	} elseif (Mangoweb\isSharedHost()) {
-		define('PROJECT_ROOT', dirname(__DIR__, 2));
-		define('DISALLOW_FILE_MODS', true);
-		define('S3_UPLOADS_PATH_PREFIX', '/'.Mangoweb\getReplicationGroupName().'/'.basename(PROJECT_ROOT));
+	if (!empty($s3params['bucketPublicUrl'])) {
+		define('S3_UPLOADS_BUCKET_URL', $s3Params['bucketPublicUrl'] ?? null);
 	} else {
-		die('Missing config s3.basePath');
+		define('S3_UPLOADS_BUCKET_URL', 'https://s3.'. S3_UPLOADS_REGION . '.amazonaws.com/' . S3_UPLOADS_BUCKET);
 	}
 } else {
 	define('S3_UPLOADS_USE_LOCAL', true);
