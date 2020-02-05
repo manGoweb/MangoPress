@@ -1,5 +1,8 @@
 <?php
 
+define('MANGOPRESS_VERSION', '2.0.0');
+define('APP_ROOT', __DIR__);
+
 $App = require __DIR__.'/config/bootstrap.php';
 
 $databaseParams = $App->parameters['database'];
@@ -28,6 +31,7 @@ define('AUTH_SALT', $wpParams['AUTH_SALT'] ?? 'put your unique phrase here');
 define('SECURE_AUTH_SALT', $wpParams['SECURE_AUTH_SALT'] ?? 'put your unique phrase here');
 define('LOGGED_IN_SALT', $wpParams['LOGGED_IN_SALT'] ?? 'put your unique phrase here');
 define('NONCE_SALT', $wpParams['NONCE_SALT'] ?? 'put your unique phrase here');
+define('WP_CRON_LOCK_TIMEOUT', $wpParams['CRON_LOCK_TIMEOUT'] ?? 10 * 60);
 
 $table_prefix = 'wp_';
 
