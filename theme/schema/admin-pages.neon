@@ -24,7 +24,7 @@ register:
 		isExample: true
 		title: Custom render
 		# renderer defined in theme/admin/utils/example.php
-		render: renderCustomAdminPage(this is configured")
+		render: renderCustomAdminPage("this is configured")
 		faicon: php
 
 	custom_latte:

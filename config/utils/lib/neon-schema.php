@@ -679,6 +679,7 @@ class MetaFieldsNeonDef extends NeonDef
 					$val['options'] = $val['options'] ?? [];
 					$val['options']['teeny'] = true;
 					$val['options']['editor_height'] = 100;
+					$val['options']['media_buttons'] = false;
 				} elseif ('html' === $val['type']) {
 					$val['type'] = 'custom_html';
 				} elseif ('one_image' === $val['type']) {

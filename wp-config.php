@@ -1,5 +1,8 @@
 <?php
 
+define('MANGOPRESS_VERSION', '2.0.0');
+define('APP_ROOT', __DIR__);
+
 $App = require __DIR__.'/config/bootstrap.php';
 
 $databaseParams = $App->parameters['database'];
@@ -28,6 +31,7 @@ define('AUTH_SALT', $wpParams['AUTH_SALT'] ?? 'put your unique phrase here');
 define('SECURE_AUTH_SALT', $wpParams['SECURE_AUTH_SALT'] ?? 'put your unique phrase here');
 define('LOGGED_IN_SALT', $wpParams['LOGGED_IN_SALT'] ?? 'put your unique phrase here');
 define('NONCE_SALT', $wpParams['NONCE_SALT'] ?? 'put your unique phrase here');
+define('WP_CRON_LOCK_TIMEOUT', $wpParams['CRON_LOCK_TIMEOUT'] ?? 10 * 60);
 
 $table_prefix = 'wp_';
 
@@ -51,20 +55,14 @@ if ($s3Params && $s3Params['enabled']) {
 		die('S3 is enabled, but secret is missing');
 	}
 
-	define('S3_UPLOADS_BUCKET', $s3Params['bucket'] ?? null);
-	define('S3_UPLOADS_BUCKET_URL', $s3Params['bucketPublicUrl'] ?? null);
+	define('S3_UPLOADS_BUCKET', trim($s3Params['bucket'] . '/' . ($s3Params['basePath'] ?? ''), '/'));
 	define('S3_UPLOADS_KEY', $s3Params['key'] ?? null);
 	define('S3_UPLOADS_SECRET', $s3Params['secret'] ?? null);
 	define('S3_UPLOADS_REGION', $s3Params['region'] ?? null);
-
-	if (!empty($s3Params['basePath'])) {
-		define('S3_UPLOADS_PATH_PREFIX', '/'.Nette\Utils\Strings::trim($s3Params['basePath'], '/'));
-	} elseif (Mangoweb\isSharedHost()) {
-		define('PROJECT_ROOT', dirname(__DIR__, 2));
-		define('DISALLOW_FILE_MODS', true);
-		define('S3_UPLOADS_PATH_PREFIX', '/'.Mangoweb\getReplicationGroupName().'/'.basename(PROJECT_ROOT));
+	if (!empty($s3params['bucketPublicUrl'])) {
+		define('S3_UPLOADS_BUCKET_URL', $s3Params['bucketPublicUrl'] ?? null);
 	} else {
-		die('Missing config s3.basePath');
+		define('S3_UPLOADS_BUCKET_URL', 'https://s3.'. S3_UPLOADS_REGION . '.amazonaws.com/' . S3_UPLOADS_BUCKET);
 	}
 } else {
 	define('S3_UPLOADS_USE_LOCAL', true);

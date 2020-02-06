@@ -3,7 +3,7 @@ import React from 'react'
 import DOM from 'react-dom'
 
 export default function fromReactComponent<Props>(
-	CustomComponent: React.ComponentClass<Props, any> | React.FunctionComponent,
+	CustomComponent: React.ComponentClass<Props, any> | React.FunctionComponent<Props>,
 	componentName: string
 ) {
 	return class ReactComponent extends Component<Props, HTMLDivElement> {

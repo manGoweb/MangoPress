@@ -1,4 +1,4 @@
-version: ">=3.2.0"
+version: ">=3.5.0"
 src_folder: theme
 dist_folder: public/assets
 styles:
@@ -7,10 +7,12 @@ styles:
   - theme/styles/styleguide.sass
   - theme/styles/wp-admin.sass
   - theme/styles/wp-editor.sass
+  - theme/styles/gutenberg.sass
 scripts:
   - theme/scripts/index.ts
   - theme/scripts/styleguide.ts
   - theme/scripts/wp-admin.ts
+  - theme/scripts/gutenberg.ts
 images:
   - "theme/images/**/*.{jpg,png,gif}"
 sprites:
