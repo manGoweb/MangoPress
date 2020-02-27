@@ -1,12 +1,14 @@
 <?php
 
+namespace MangoPress;
+
 function generateFormAction($path)
 {
 	return 'submit-' . basename($path, '.php');
 }
 
-function isFormValid($form, $path)
-{
+function formHandler(\Nette\Forms\Form $form, string $path, callable $onSubmit) {
+
 	global $Url;
 	$action = generateFormAction($path);
 	$formUrl = clone $Url;
@@ -15,7 +17,7 @@ function isFormValid($form, $path)
 	$form->getElementPrototype()->data('nette-form', 'true');
 	if (isset($_GET['do']) && $_GET['do'] === $action && $form->isSubmitted()) {
 		$form->validate();
-		return $form->isSuccess();
+		return call_user_func($onSubmit, $form);
 	}
 	return false;
 }
@@ -28,7 +30,7 @@ $initTheme[] = function ($dir) {
 		$Post = get_queried_object();
 
 		$Forms = $Forms ?? [];
-		$View = $View ?? Nette\Utils\ArrayHash::from([]);
+		$View = $View ?? \Nette\Utils\ArrayHash::from([]);
 
 		foreach (glob($dir . '/forms/*.php') as $filepath) {
 			$Forms[basename($filepath, '.php')] = require_once $filepath;

@@ -21,8 +21,12 @@ $c->addTextarea('message', 'Message')
 
 $c->addSubmit('send', 'Send');
 
-if (isFormValid($form, __FILE__)) {
-	dump($c->getValues());
-}
+MangoPress\formHandler($form, __FILE__, function(Form $form) {
+	if ($form->isValid()){
+		flashMessage('Contact form is valid. Yay');
+	} else {
+		flashMessage('Not valid');
+	}
+});
 
 return $form;
