@@ -86,5 +86,5 @@ function getPageByRole($role, $allowRaw = false)
 // Callback after post is saved
 function ac_savePageRoles($post_id, $vals)
 {
-	update_option('page_roles'.get_active_lang_code(), (array) $vals);
+	update_option('page_roles'.get_active_lang_code(), array_filter((array) $vals));
 }

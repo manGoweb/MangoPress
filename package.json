@@ -12,9 +12,9 @@
 		"@mangoweb/sass-base": "^0.0.5",
 		"@mangoweb/scripts-base": "0.0.13",
 		"@mangoweb/shapes": "0.0.4",
-		"@types/jquery": "^3.3.31",
+		"@types/jquery": "^3.3.33",
 		"@types/lodash-es": "^4.17.3",
-		"@types/react": "^16.9.17",
+		"@types/react": "^16.9.23",
 		"@types/react-dom": "^16.9.5",
 		"bootstrap": "^4.4.1",
 		"jquery": "^3.4.0",
@@ -23,12 +23,12 @@
 		"nette-forms": "^3.0.3",
 		"normalize-scss": "^7.0.1",
 		"npm-check": "^5.9.0",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0"
+		"react": "^16.13.0",
+		"react-dom": "^16.13.0"
 	},
 	"devDependencies": {
-		"concurrently": "^5.0.2",
+		"concurrently": "^5.1.0",
 		"prettier": "^1.19.1",
-		"typescript": "^3.7.5"
+		"typescript": "^3.8.2"
 	}
 }
