@@ -17,7 +17,7 @@
 		"@types/react": "^16.9.23",
 		"@types/react-dom": "^16.9.5",
 		"bootstrap": "^4.4.1",
-		"jquery": "^3.4.0",
+		"jquery": "^3.5.0",
 		"lodash-es": "^4.17.15",
 		"lt-ie-9": "^0.1.2",
 		"nette-forms": "^3.0.3",
