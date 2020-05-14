@@ -18,7 +18,7 @@
 </head>
 <body {php body_class()}>
 	{$mangoSnippet}
-	{initComponent Shapes, [ props => [ url => "{$assetsPath}/sprites/{$buildstamp}shapes.svg" ] ]}
+	{initComponent ShapesFallback}
 
 	{block body}
 	<div class="page">
@@ -35,6 +35,7 @@
 
 	{block scripts}
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise" defer></script>
 		<script src="{$assetsPath}/scripts/{$buildstamp}index.js" defer></script>
 	{/block}
 </body>

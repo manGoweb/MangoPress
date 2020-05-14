@@ -1,0 +1,7 @@
+{declare string $name}
+{declare string $assetsPath}
+{declare $buildstamp}
+
+<svg class="shape shape-{$name}">
+	<use xlink:href="{="{$assetsPath}/sprites/{$buildstamp}shapes.svg"}#shape-{$name}"></use>
+</svg>
