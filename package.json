@@ -11,7 +11,7 @@
 	"dependencies": {
 		"@mangoweb/sass-base": "^0.0.5",
 		"@mangoweb/scripts-base": "0.0.13",
-		"@mangoweb/shapes": "0.0.4",
+		"@mangoweb/shapes-fallback": "0.0.2",
 		"@types/jquery": "^3.3.33",
 		"@types/lodash-es": "^4.17.3",
 		"@types/react": "^16.9.23",

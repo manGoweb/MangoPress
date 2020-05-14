@@ -1,0 +1,7 @@
+{declare string $name}
+{declare string $assetsPath}
+{declare string $buildstamp = getBuildstamp() ?? ''} {* @TODO: find out why buildstamp is not available without calling getBuildstamp() *}
+
+<svg class="shape shape-{$name}">
+	<use xlink:href="{="{$assetsPath}/sprites/{$buildstamp}shapes.svg"}#shape-{$name}"></use>
+</svg>
