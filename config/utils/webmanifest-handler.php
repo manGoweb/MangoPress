@@ -10,7 +10,7 @@ $initTheme[] = function ($dir) {
 			return;
 		}
 
-		if ($Req->getUrl()->getPath() === '/manifest.webmanifest' && file_exists($dir . '/webmanifest.php')) {
+		if ($Req->getUrl()->getPath() === '/webmanifest.json/' && file_exists($dir . '/webmanifest.php')) {
 			$webmanifest = require($dir . '/webmanifest.php');
 			sendPayload($webmanifest);
 		}
