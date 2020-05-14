@@ -53,6 +53,7 @@ class Components
 			$item = [
 				'path' => $file,
 				'name' => basename($name, '.latte'),
+				'buildstamp' => getBuildstamp(),
 				'filename' => $name,
 				'variants' => $variants,
 			];
